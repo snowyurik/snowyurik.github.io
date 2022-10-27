@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>A bit of everyday hugo commands | Snowyurik&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
+	
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	<time class="entry__meta-published meta-published" datetime="2022-10-28T01:44:42&#43;07:00">October 28, 2022</time>
+	</div>
+				<h1 class="entry__title">A bit of everyday hugo commands</h1>
+<details class="entry__toc toc" open>
+	<summary class="toc__title">Table of Contents</summary>
+	<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-new-post">Create new post</a></li>
+        <li><a href="#formatting-in-summary">Formatting in summary</a></li>
+        <li><a href="#publish-post">Publish post</a></li>
+        <li><a href="#run-locally">Run locally</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+				<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
+<h3 id="create-new-post">Create new post</h3>
+<pre><code>hugo new post/postname.md
+</code></pre><h3 id="formatting-in-summary">Formatting in summary</h3>
+<p>By default summary is plain text, soo.. just use <code>&lt;!--mоre--&gt;</code> and formatting will work in summary.
+I&rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add <code>&lt;!--mоre--&gt;</code> automatically?</p>
+<p>Lets try..</p>
+<p>Yes, I can change <code>archetypes/default.md</code>.
+And I also want draft to be false by default.. here we go:</p>
+<pre><code>---
+title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+draft: false
+---
+
+&lt;!--mоre--&gt;
+</code></pre><p>Btw: I used Cyrillic &lsquo;o&rsquo; in &lsquo;more&rsquo;, otherwise it breaks layout. Maybe there is better solution, but I do not think I will need to talk about <code>&lt;!--mоre--&gt;</code> again any time soon.</p>
+<h3 id="publish-post">Publish post</h3>
+<ul>
+<li>Go to post header section (top of .md file)</li>
+<li>Remove <code>draft: true</code> or replace it with <code>draft:false</code></li>
+</ul>
+<h3 id="run-locally">Run locally</h3>
+<pre><code>hugo server -D
+</code></pre><p>Will run hugo server in &ldquo;development&rdquo; mode, draft blogs are visible</p>
+<pre><code>hugo server
+</code></pre><p>will run it in &ldquo;release&rdquo; mode</p>
+<h3 id="deploy">Deploy</h3>
+<ul>
+<li>We need 2 repositories:
+&ndash; One is our root repository with themes and all raw data
+&ndash; Subproject liked to <code>%blogname%.github.io</code></li>
+<li>So <code>git add %ssh.link.to.blogname.project.on.github% public</code></li>
+<li><code>hugo</code> command will compile static html content to <code>public</code> folder</li>
+<li><code>cd public &amp;&amp; git add . &amp;&amp; git commit -m 'whatever' &amp;&amp; git push</code></li>
+<li>Or just <code>hugo deploy</code></li>
+</ul></div>
+				
+			</article>
+		</div>
+	</main>
+	
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/snowyurik">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2022 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+</body>
+</html>

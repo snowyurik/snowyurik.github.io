@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Snowyurik&#39;s Blog</title>
+    <link>http://example.org/post/</link>
+    <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Oct 2022 01:44:42 +0700</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A bit of everyday hugo commands</title>
+      <link>http://example.org/post/hugocommands/</link>
+      <pubDate>Fri, 28 Oct 2022 01:44:42 +0700</pubDate>
+      
+      <guid>http://example.org/post/hugocommands/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m using Hugo as blog engine. So, here is a bit of cli commands&lt;/p&gt;
+&lt;h3 id=&#34;create-new-post&#34;&gt;Create new post&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;hugo new post/postname.md
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;formatting-in-summary&#34;&gt;Formatting in summary&lt;/h3&gt;
+&lt;p&gt;By default summary is plain text, soo.. just use &lt;code&gt;&amp;lt;!--mоre--&amp;gt;&lt;/code&gt; and formatting will work in summary.
+I&amp;rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add &lt;code&gt;&amp;lt;!--mоre--&amp;gt;&lt;/code&gt; automatically?&lt;/p&gt;
+&lt;p&gt;Lets try..&lt;/p&gt;
+&lt;p&gt;Yes, I can change &lt;code&gt;archetypes/default.md&lt;/code&gt;.
+And I also want draft to be false by default.. here we go:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: &amp;quot;{{ replace .Name &amp;quot;-&amp;quot; &amp;quot; &amp;quot; | title }}&amp;quot;
+date: {{ .Date }}
+draft: false
+---
+
+&amp;lt;!--mоre--&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Btw: I used Cyrillic &amp;lsquo;o&amp;rsquo; in &amp;lsquo;more&amp;rsquo;, otherwise it breaks layout. Maybe there is better solution, but I do not think I will need to talk about &lt;code&gt;&amp;lt;!--mоre--&amp;gt;&lt;/code&gt; again any time soon.&lt;/p&gt;
+&lt;h3 id=&#34;publish-post&#34;&gt;Publish post&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to post header section (top of .md file)&lt;/li&gt;
+&lt;li&gt;Remove &lt;code&gt;draft: true&lt;/code&gt; or replace it with &lt;code&gt;draft:false&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;run-locally&#34;&gt;Run locally&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;hugo server -D
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Will run hugo server in &amp;ldquo;development&amp;rdquo; mode, draft blogs are visible&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hugo server
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;will run it in &amp;ldquo;release&amp;rdquo; mode&lt;/p&gt;
+&lt;h3 id=&#34;deploy&#34;&gt;Deploy&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;We need 2 repositories:
+&amp;ndash; One is our root repository with themes and all raw data
+&amp;ndash; Subproject liked to &lt;code&gt;%blogname%.github.io&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;So &lt;code&gt;git add %ssh.link.to.blogname.project.on.github% public&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo&lt;/code&gt; command will compile static html content to &lt;code&gt;public&lt;/code&gt; folder&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd public &amp;amp;&amp;amp; git add . &amp;amp;&amp;amp; git commit -m &#39;whatever&#39; &amp;amp;&amp;amp; git push&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Or just &lt;code&gt;hugo deploy&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>So, it&#39;s crisis time</title>
+      <link>http://example.org/post/initblog/</link>
+      <pubDate>Fri, 28 Oct 2022 01:28:11 +0700</pubDate>
+      
+      <guid>http://example.org/post/initblog/</guid>
+      <description>&lt;p&gt;Hosting services become unpredictable this days. The fact is: you can loose access to your content.
+Using &amp;ldquo;discipline&amp;rdquo; for content backup does not work long term, even if backups are automated.
+But there is solution:&lt;/p&gt;
+&lt;p&gt;If you create workflow where contenets can only published if you already have a backup - you will always have a backup.&lt;/p&gt;
+&lt;p&gt;So, here we are: on githun.io, aka github pages.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Even if I will loose access to github - I will have it all on my laptop.&lt;/li&gt;
+&lt;li&gt;If I will loose my laptop - I will be able to restore cotent from git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the past I had a blog build around transparency idea, more like diary. However.. this time I think I should focus.
+But we will see.&lt;/p&gt;
+&lt;p&gt;Right now, I will focus on 2 topics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Techical tips, because there are a lot of new technologies which require too much search for simple things.&lt;/li&gt;
+&lt;li&gt;Digital nomad life tips, like &amp;ldquo;How to get cheap fresh water in Thailand&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Basically, anything that takes more than a day to figure out might worth posting.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
