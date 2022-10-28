@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/post/hugocommands/</loc>
-    <lastmod>2022-10-28T01:44:42+07:00</lastmod>
+    <loc>http://example.org/post/mvn.spring.boot.multimodule/</loc>
+    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/post/</loc>
-    <lastmod>2022-10-28T01:44:42+07:00</lastmod>
+    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/</loc>
+    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/hugocommands/</loc>
     <lastmod>2022-10-28T01:44:42+07:00</lastmod>
   </url>
   
