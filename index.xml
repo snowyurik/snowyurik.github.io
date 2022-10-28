@@ -8,6 +8,25 @@
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Oct 2022 18:30:30 +0700</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Hire me</title>
+      <link>http://example.org/hireme/</link>
+      <pubDate>Fri, 28 Oct 2022 22:47:20 +0700</pubDate>
+      
+      <guid>http://example.org/hireme/</guid>
+      <description>&lt;h2 id=&#34;contacts&#34;&gt;Contacts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;email: &lt;a href=&#34;mailto:yuriy@vihv.org&#34;&gt;yuriy@vihv.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;telegram: &lt;a href=&#34;http://t.me/dukethecucumber&#34;&gt;@dukethecucumber&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;skype: yoreck_o&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;code-examples&#34;&gt;Code examples&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/snowyurik&#34;&gt;https://github.com/snowyurik&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;skills&#34;&gt;Skills&lt;/h2&gt;
+&lt;p&gt;Cpp, C#, Java, ReactJS, PHP
+(full CV on request)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Maven multimodule project with Spring Boot</title>
       <link>http://example.org/post/mvn.spring.boot.multimodule/</link>
       <pubDate>Fri, 28 Oct 2022 18:30:30 +0700</pubDate>

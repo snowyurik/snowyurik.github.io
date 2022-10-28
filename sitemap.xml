@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://example.org/hireme/</loc>
+    <lastmod>2022-10-28T22:47:20+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://example.org/post/mvn.spring.boot.multimodule/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
