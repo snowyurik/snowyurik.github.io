@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Maven multimodule project with Spring Boot | Snowyurik&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
+	
+<nav class="main-nav" role="navigation">
+	<button id="toggle" class="main-nav__btn" aria-label="Menu toggle" aria-expanded="false" tabindex="0">
+		<div class="main-nav__btn-box" tabindex="-1">
+			<svg class="main-nav__icon icon-menu" width="18" height="18" viewBox="0 0 18 18">
+				<path class="icon-menu__burger" d="M18 0v3.6H0V0h18zM0 10.8h18V7.2H0v3.6zM0 18h18v-3.6H0V18z"/>
+				<path class="icon-menu__x" d="M11.55 9L18 15.45 15.45 18 9 11.55 2.55 18 0 15.45 6.45 9 0 2.55 2.55 0 9 6.45 15.45 0 18 2.55 11.55 9z"/>
+			</svg>
+		</div>
+	</button>
+	<ul id="menu" class="main-nav__list">
+			<li class="main-nav__item">
+				<a class="main-nav__link" href="/hireme/">
+					
+					<span class="main-nav__text">Contacts (hire me!)</span>
+					
+				</a>
+			</li>
+	</ul>
+</nav>
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	<time class="entry__meta-published meta-published" datetime="2022-10-28T18:30:30&#43;07:00">October 28, 2022</time>
+	</div>
+				<h1 class="entry__title">Maven multimodule project with Spring Boot</h1>
+<details class="entry__toc toc" open>
+	<summary class="toc__title">Table of Contents</summary>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#folder-structure">Folder structure</a></li>
+    <li><a href="#project-types">Project types</a></li>
+    <li><a href="#linking-everything-together">Linking everything together</a>
+      <ul>
+        <li><a href="#package-name">Package name</a></li>
+        <li><a href="#groupid">GroupID</a></li>
+        <li><a href="#rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</a></li>
+        <li><a href="#modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</a></li>
+        <li><a href="#but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</a></li>
+        <li><a href="#using-one-module-from-another">Using one module from another</a></li>
+        <li><a href="#build-commands">Build commands</a></li>
+        <li><a href="#spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+				<div class="entry__content"><p>I will try to be close to real task here.
+Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
+Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.</p>
+<h2 id="folder-structure">Folder structure</h2>
+<pre><code>rootProject
+ -&gt; datalib
+ -&gt; cli
+ -&gt; web
+</code></pre><h2 id="project-types">Project types</h2>
+<p><code>rootProject/pom.xml</code> should refer to type <code>pom</code>. Type <code>pom</code> means that rootProject is just a place for references from the other projects. There is no <code>target</code>, no .jar files for the rooProject, it&rsquo;s used by subprojects (aka modules) to find each other, plus if you have same dependensy in different subprojects you can only mention them once in <code>rootProject/pom.xml</code>.</p>
+<p>All subprojects / modules will have type <code>jar</code> in our case. So build will produce .jar files.</p>
+<h2 id="linking-everything-together">Linking everything together</h2>
+<h3 id="package-name">Package name</h3>
+<p>Package name aka namespace has to be the same for rootProject and submodules.</p>
+<h3 id="groupid">GroupID</h3>
+<p><code>project/groupId</code> also has to be the same for rootProject and submodules, like this:</p>
+<pre><code>&lt;project ..&gt;
+  ...
+  &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+  ...
+&lt;/project&gt;
+</code></pre><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
+<p>file: rootProject/pom.xml</p>
+<pre><code>&lt;project ..&gt;
+  ...
+  &lt;!-- modules --&gt;
+  &lt;modules&gt;
+    &lt;module&gt;web&lt;/module&gt;
+    &lt;module&gt;cli&lt;/module&gt;
+    &lt;module&gt;datalib&lt;/module&gt;
+  &lt;/modules&gt;
+</code></pre><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
+<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml</p>
+<pre><code>&lt;project&gt;
+    ...
+    &lt;parent&gt;
+        &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
+        &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;/parent&gt;
+    ...
+&lt;/project&gt;
+</code></pre><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
+<p>Obviously, we can&rsquo;t have 2 parants for the module.
+So we have to move spring reference to rootProject/pom.xml.</p>
+<pre><code>&lt;project&gt;
+    &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+    &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
+    &lt;packaging&gt;pom&lt;/packaging&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;rootProject&lt;/name&gt;
+    
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.7.4&lt;/version&gt;
+        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    ...
+&lt;/project&gt;
+</code></pre><p>Hierarhy is like this:</p>
+<ul>
+<li>Spring Boot</li>
+<li>
+<ul>
+<li>rootProject</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>web</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>cli</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>datalib</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="using-one-module-from-another">Using one module from another</h3>
+<p>Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:</p>
+<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml</p>
+<pre><code>&lt;project&gt;
+    ...
+    &lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+			&lt;artifactId&gt;datalib&lt;/artifactId&gt;
+			&lt;version&gt;${project.version}&lt;/version&gt;
+			&lt;scope&gt;provided&lt;/scope&gt;
+			&lt;type&gt;jar&lt;/type&gt;
+		&lt;/dependency&gt;
+		...
+    &lt;/dependencies&gt;
+    ...
+&lt;/project&gt;
+</code></pre><h3 id="build-commands">Build commands</h3>
+<p>That&rsquo;s a bit counterintuitive. You need 2 commands:</p>
+<p>From rootProject/</p>
+<pre><code>mvn clean install
+</code></pre><p>will build all projects in correct order and place relusting .jar files in local storage, where java will be able to find them.
+To run maven commands on subproject, you need to use -pl and -am, like this:</p>
+<pre><code>mvn -am -pl web spring-boot:run
+</code></pre><p>or</p>
+<pre><code>mvn -am -pl cli test
+</code></pre><p><code>-am</code> means &ldquo;take dependencies into consideration&rdquo; without that you might get <code>symbol not found</code> error.</p>
+<p><code>-pl</code> just short for &ndash;project and thats just set context to module.</p>
+<h3 id="spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</h3>
+<p>You king of can use spring only for web module, but you will need to create wrapper components for datalib classes. And I don&rsquo;t think it&rsquo;s possible to use Spring based datalib in cli if cli is not Spring based. But I might be wrong.</p></div>
+				
+			</article>
+		</div>
+	</main>
+	
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/snowyurik">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2022 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+<script src="/js/menu.js"></script>
+</body>
+</html>
