@@ -45,6 +45,63 @@
 			<div class="cards">
 					<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/webmvctest-custom-add-expect-result-matcher/">ResultMatcher for .addExpect</a></h1>
+	<div class="entry__content"><p>Let&rsquo;s say we save some list of items and then read it back.
+Here is our original list:</p>
+<pre><code>List&lt;MyItem&gt; myItemList = new ArrayList&lt;MyItem&gt;() {{
+        add( new MyItem() {{
+            title = &quot;Test Item 1&quot;;
+        }});
+        add( ... );
+        ...
+    }};
+</code></pre><p>And we have mockMvc defined like:</p>
+<pre><code>@Autowired MockMvc mvc;
+</code></pre><p>We can store the list with <code>mvc.perform( put(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.</p>
+<p>We can read the list with <code>mvc.perform( get(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.
+But!</p>
+<h3 id="the-problem">The problem</h3>
+<p>We do not have database ids in our original list.
+So <code>.andExpect( content().json( myItemListAsJsonString ) )</code> will give us false-negative result.</p>
+<h3 id="solution---use-lambda-callback-for-comparison">Solution - use lambda callback for comparison</h3>
+<pre><code>this.mvc.perform(get(&quot;/api/myitem/list&quot;))
+    .andExpect( status().isOk() )
+    .andExpect( (result)-&gt;{ // lambda for ResultMatcher
+                            // return void
+                            // if result not match expectation - we should throw exception
+    
+        String jsonString = result.getResponse().getContentAsString();
+        List&lt;MyItem&gt; storedMyItemList = objectMapper.readValue(jsonString, 
+                                            new TypeReference&lt;List&lt;MyItem&gt;&gt;(){});
+        for( Contour storedItem : storedMyItemList) {
+            myItemList.stream().filter( x -&gt; storedItem.title.equals(x.title))
+                .findFirst().orElseThrow(
+                    () -&gt; { // lambda for exception
+                        throw new AssertionError(&quot;Contour not found, expected: \n&quot;
+                            + myItemListAsJsonString + &quot;\nactual: \n&quot; + jsonString
+                            + &quot;myitem.id field is ignored&quot;
+                        );
+                    }
+                );
+        }
+    });
+</code></pre></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-06T00:49:22&#43;07:00">November 06, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
+		<a class="meta-tags__link" href="/tags/springboottest/" rel="tag">SpringBootTest</a>, 
+		<a class="meta-tags__link" href="/tags/unittest/" rel="tag">UnitTest</a>, 
+		<a class="meta-tags__link" href="/tags/rest/" rel="tag">REST</a>, 
+		<a class="meta-tags__link" href="/tags/webmvctest/" rel="tag">WebMvcTest</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/mvn.spring.boot.multimodule/">Maven multimodule project with Spring Boot</a></h1>
 	<div class="entry__content"><p>I will try to be close to real task here.
 Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).

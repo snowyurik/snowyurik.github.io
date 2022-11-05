@@ -5,6 +5,52 @@
     <link>http://example.org/tags/</link>
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java</title>
+      <link>http://example.org/tags/java/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>http://example.org/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>REST</title>
+      <link>http://example.org/tags/rest/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>http://example.org/tags/rest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringBootTest</title>
+      <link>http://example.org/tags/springboottest/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>http://example.org/tags/springboottest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UnitTest</title>
+      <link>http://example.org/tags/unittest/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>http://example.org/tags/unittest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WebMvcTest</title>
+      <link>http://example.org/tags/webmvctest/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>http://example.org/tags/webmvctest/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

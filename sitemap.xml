@@ -3,22 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://example.org/tags/java/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/rest/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/webmvctest-custom-add-expect-result-matcher/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/springboottest/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/unittest/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/webmvctest/</loc>
+    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://example.org/hireme/</loc>
     <lastmod>2022-10-28T22:47:20+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/post/mvn.spring.boot.multimodule/</loc>
-    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/post/</loc>
-    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
   
@@ -34,10 +69,6 @@
   
   <url>
     <loc>http://example.org/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/tags/</loc>
   </url>
   
 </urlset>
