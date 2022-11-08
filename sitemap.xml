@@ -3,12 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/tags/java/</loc>
-    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
+    <loc>http://example.org/post/just-a-few-useful-bashrc/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/post/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/java/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
@@ -19,11 +29,6 @@
   
   <url>
     <loc>http://example.org/post/webmvctest-custom-add-expect-result-matcher/</loc>
-    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   

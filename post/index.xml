@@ -6,7 +6,86 @@
     <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Nov 2022 01:47:19 +0700</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Just a few useful .bashrc changes</title>
+      <link>http://example.org/post/just-a-few-useful-bashrc/</link>
+      <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
+      
+      <guid>http://example.org/post/just-a-few-useful-bashrc/</guid>
+      <description>&lt;p&gt;I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If command is too long to memorise&lt;/li&gt;
+&lt;li&gt;If command is not self-explainary&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;here-are-some&#34;&gt;Here are some:&lt;/h2&gt;
+&lt;h3 id=&#34;start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console&#34;&gt;Start new process in parallel, suppress stdout/stderr and unlink from current console&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;parallel() {
+    nohup $@ &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;  
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Usage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;parallel command arg1 arg2 arg3 ...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;parallel kate .
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will open current folder in kate editor.&lt;/p&gt;
+&lt;h3 id=&#34;record-video-from-screen-with-ffmpeg&#34;&gt;Record video from screen with ffmpeg&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;capturescreen() {
+    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 $1
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Usage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;capturescreen outfile.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;git-branch-but-sorted-by-last-commit-date-and-with-description&#34;&gt;git branch, but sorted by last commit date and with description&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;gitbranches() {
+    branch=&amp;quot;&amp;quot;
+    branches=`git branch $@`
+    while read -r branch; do
+        clean_branch_name=${branch//\*\ /}
+        description=`git config branch.$clean_branch_name.description`
+        lastcommitdate=`git for-each-ref --sort=committerdate &amp;quot;refs/heads/**/${clean_branch_name}&amp;quot; --format=&#39;%(committerdate:short)&#39;`
+        if [ &amp;quot;$clean_branch_name&amp;quot; != &amp;quot;$branch&amp;quot; ]; then
+            printf &amp;quot;\033[0;32m&amp;quot;;
+        fi;
+        printf &amp;quot;%-15s %s\n&amp;quot; &amp;quot;$branch    [$lastcommitdate]   $description&amp;quot;
+        if [ &amp;quot;$clean_branch_name&amp;quot; != &amp;quot;$branch&amp;quot; ]; then
+            printf &amp;quot;\033[0m&amp;quot;;
+        fi;
+    done &amp;lt;&amp;lt;&amp;lt; &amp;quot;$branches&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Useful if you use branch per task, like in GitFlow. You can pass &lt;code&gt;git branch&lt;/code&gt; attributes to this function as usual&lt;/p&gt;
+&lt;p&gt;Example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gitbranches --no-merged
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;init-envvars-for-my-current-projects&#34;&gt;Init envvars for my current projects&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;initmyenv() {
+    if ! [[ &amp;quot;$PATH&amp;quot; =~ &amp;quot;$HOME//scripts:&amp;quot; ]]
+    then
+        PATH=&amp;quot;$HOME//scripts:$PATH&amp;quot;
+    fi
+    export PATH
+    export PROJECT1_DBCONNECT=&amp;quot;Server=localhost;Database=project1;User Id=sa;Password=somepw;&amp;quot;
+    export PROJECT2_DBCONNECT=&amp;quot;Server=localhost;Database=project2;User Id=sa;Password=somepw;&amp;quot;
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Btw, whis way you do not leak you db password to git. Search 12factor for more )&lt;/p&gt;
+&lt;h3 id=&#34;show-git-graph-in-text-mode&#34;&gt;Show git graph in text mode&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;gitgraph() {
+    git log --graph --full-history --all --color --pretty=format:&amp;quot;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;help-for-my-ustom-commands&#34;&gt;Help for my ustom commands&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;helb() {
+    echo &amp;quot;.. i need sombody, heeeelb&amp;quot;;
+    echo &amp;quot;
+        parallel &amp;lt;cmd&amp;gt; &amp;lt;args&amp;gt;   - run command in parallel and forward stderr and stdout to /dev/null
+        gitgraph                - display git log in nice form, with branch tree
+        gitbranches             - display git branch with descriptions
+        capturescreen   &amp;lt;outfile&amp;gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+    &amp;quot;;
+    # also show my custom scripts
+    ls -1 ~/scripts
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I put call to  &lt;code&gt;helb&lt;/code&gt; at the end of .bashrc, so every time I run new console I can see it.
+That&amp;rsquo;s it )&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>ResultMatcher for .addExpect</title>
       <link>http://example.org/post/webmvctest-custom-add-expect-result-matcher/</link>

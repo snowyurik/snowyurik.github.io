@@ -50,6 +50,86 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/just-a-few-useful-bashrc/">Just a few useful .bashrc changes</a></h1>
+	<div class="entry__content"><p>I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:</p>
+<ul>
+<li>If command is too long to memorise</li>
+<li>If command is not self-explainary</li>
+</ul>
+<h2 id="here-are-some">Here are some:</h2>
+<h3 id="start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</h3>
+<pre><code>parallel() {
+    nohup $@ &gt; /dev/null 2&gt;&amp;1 &amp;  
+}
+</code></pre><p>Usage</p>
+<pre><code>parallel command arg1 arg2 arg3 ...
+</code></pre><p>Example</p>
+<pre><code>parallel kate .
+</code></pre><p>This will open current folder in kate editor.</p>
+<h3 id="record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</h3>
+<pre><code>capturescreen() {
+    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 $1
+}
+</code></pre><p>Usage</p>
+<pre><code>capturescreen outfile.mp4
+</code></pre><h3 id="git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</h3>
+<pre><code>gitbranches() {
+    branch=&quot;&quot;
+    branches=`git branch $@`
+    while read -r branch; do
+        clean_branch_name=${branch//\*\ /}
+        description=`git config branch.$clean_branch_name.description`
+        lastcommitdate=`git for-each-ref --sort=committerdate &quot;refs/heads/**/${clean_branch_name}&quot; --format='%(committerdate:short)'`
+        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
+            printf &quot;\033[0;32m&quot;;
+        fi;
+        printf &quot;%-15s %s\n&quot; &quot;$branch    [$lastcommitdate]   $description&quot;
+        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
+            printf &quot;\033[0m&quot;;
+        fi;
+    done &lt;&lt;&lt; &quot;$branches&quot;
+}
+</code></pre><p>Useful if you use branch per task, like in GitFlow. You can pass <code>git branch</code> attributes to this function as usual</p>
+<p>Example</p>
+<pre><code>gitbranches --no-merged
+</code></pre><h3 id="init-envvars-for-my-current-projects">Init envvars for my current projects</h3>
+<pre><code>initmyenv() {
+    if ! [[ &quot;$PATH&quot; =~ &quot;$HOME//scripts:&quot; ]]
+    then
+        PATH=&quot;$HOME//scripts:$PATH&quot;
+    fi
+    export PATH
+    export PROJECT1_DBCONNECT=&quot;Server=localhost;Database=project1;User Id=sa;Password=somepw;&quot;
+    export PROJECT2_DBCONNECT=&quot;Server=localhost;Database=project2;User Id=sa;Password=somepw;&quot;
+    ...
+}
+</code></pre><p>Btw, whis way you do not leak you db password to git. Search 12factor for more )</p>
+<h3 id="show-git-graph-in-text-mode">Show git graph in text mode</h3>
+<pre><code>gitgraph() {
+    git log --graph --full-history --all --color --pretty=format:&quot;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&quot;
+}
+</code></pre><h3 id="help-for-my-ustom-commands">Help for my ustom commands</h3>
+<pre><code>helb() {
+    echo &quot;.. i need sombody, heeeelb&quot;;
+    echo &quot;
+        parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
+        gitgraph                - display git log in nice form, with branch tree
+        gitbranches             - display git branch with descriptions
+        capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+    &quot;;
+    # also show my custom scripts
+    ls -1 ~/scripts
+}
+</code></pre><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
+That&rsquo;s it )</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/webmvctest-custom-add-expect-result-matcher/">ResultMatcher for .addExpect</a></h1>
 	<div class="entry__content"><p>Let&rsquo;s say we save some list of items and then read it back.
 Here is our original list:</p>
