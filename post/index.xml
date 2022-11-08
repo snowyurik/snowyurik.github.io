@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Snowyurik&#39;s Blog</title>
-    <link>http://example.org/post/</link>
+    <link>https://snowyurik.github.io/post/</link>
     <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Nov 2022 02:38:59 +0700</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Nov 2022 02:38:59 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo feedback problem</title>
-      <link>http://example.org/post/hugo-feedback-problem/</link>
+      <link>https://snowyurik.github.io/post/hugo-feedback-problem/</link>
       <pubDate>Wed, 09 Nov 2022 02:38:59 +0700</pubDate>
       
-      <guid>http://example.org/post/hugo-feedback-problem/</guid>
+      <guid>https://snowyurik.github.io/post/hugo-feedback-problem/</guid>
       <description>&lt;p&gt;Ok I have this static blog now, it&amp;rsquo;s kind of useful for myslef, but I have no idea if anyone else read it.
 I can use some 3rd party js based tracker, but adblockers will cancel them and I that&amp;rsquo;s feels right.
 As for this blog is static website and hosted on github pages I can&amp;rsquo;t count visitors myself on server side.&lt;/p&gt;
@@ -59,10 +59,10 @@ As for this blog is static website and hosted on github pages I can&amp;rsquo;t 
     
     <item>
       <title>Just a few useful .bashrc changes</title>
-      <link>http://example.org/post/just-a-few-useful-bashrc/</link>
+      <link>https://snowyurik.github.io/post/just-a-few-useful-bashrc/</link>
       <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
       
-      <guid>http://example.org/post/just-a-few-useful-bashrc/</guid>
+      <guid>https://snowyurik.github.io/post/just-a-few-useful-bashrc/</guid>
       <description>&lt;p&gt;I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If command is too long to memorise&lt;/li&gt;
@@ -138,10 +138,10 @@ That&amp;rsquo;s it )&lt;/p&gt;</description>
     
     <item>
       <title>ResultMatcher for .addExpect</title>
-      <link>http://example.org/post/webmvctest-custom-add-expect-result-matcher/</link>
+      <link>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/post/webmvctest-custom-add-expect-result-matcher/</guid>
+      <guid>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s say we save some list of items and then read it back.
 Here is our original list:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;List&amp;lt;MyItem&amp;gt; myItemList = new ArrayList&amp;lt;MyItem&amp;gt;() {{
@@ -186,10 +186,10 @@ So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&g
     
     <item>
       <title>Maven multimodule project with Spring Boot</title>
-      <link>http://example.org/post/mvn.spring.boot.multimodule/</link>
+      <link>https://snowyurik.github.io/post/mvn.spring.boot.multimodule/</link>
       <pubDate>Fri, 28 Oct 2022 18:30:30 +0700</pubDate>
       
-      <guid>http://example.org/post/mvn.spring.boot.multimodule/</guid>
+      <guid>https://snowyurik.github.io/post/mvn.spring.boot.multimodule/</guid>
       <description>&lt;p&gt;I will try to be close to real task here.
 Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
 Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.&lt;/p&gt;
@@ -320,10 +320,10 @@ To run maven commands on subproject, you need to use -pl and -am, like this:&lt;
     
     <item>
       <title>A bit of everyday hugo commands</title>
-      <link>http://example.org/post/hugocommands/</link>
+      <link>https://snowyurik.github.io/post/hugocommands/</link>
       <pubDate>Fri, 28 Oct 2022 01:44:42 +0700</pubDate>
       
-      <guid>http://example.org/post/hugocommands/</guid>
+      <guid>https://snowyurik.github.io/post/hugocommands/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m using Hugo as blog engine. So, here is a bit of cli commands&lt;/p&gt;
 &lt;h3 id=&#34;create-new-post&#34;&gt;Create new post&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;hugo new post/postname.md
@@ -365,10 +365,10 @@ draft: false
     
     <item>
       <title>So, it&#39;s crisis time</title>
-      <link>http://example.org/post/initblog/</link>
+      <link>https://snowyurik.github.io/post/initblog/</link>
       <pubDate>Fri, 28 Oct 2022 01:28:11 +0700</pubDate>
       
-      <guid>http://example.org/post/initblog/</guid>
+      <guid>https://snowyurik.github.io/post/initblog/</guid>
       <description>&lt;p&gt;Hosting services become unpredictable this days. The fact is: you can loose access to your content.
 Using &amp;ldquo;discipline&amp;rdquo; for content backup does not work long term, even if backups are automated.
 But there is solution:&lt;/p&gt;

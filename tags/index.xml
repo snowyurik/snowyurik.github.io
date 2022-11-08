@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Snowyurik&#39;s Blog</title>
-    <link>http://example.org/tags/</link>
+    <link>https://snowyurik.github.io/tags/</link>
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java</title>
-      <link>http://example.org/tags/java/</link>
+      <link>https://snowyurik.github.io/tags/java/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/tags/java/</guid>
+      <guid>https://snowyurik.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>REST</title>
-      <link>http://example.org/tags/rest/</link>
+      <link>https://snowyurik.github.io/tags/rest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/tags/rest/</guid>
+      <guid>https://snowyurik.github.io/tags/rest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SpringBootTest</title>
-      <link>http://example.org/tags/springboottest/</link>
+      <link>https://snowyurik.github.io/tags/springboottest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/tags/springboottest/</guid>
+      <guid>https://snowyurik.github.io/tags/springboottest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>UnitTest</title>
-      <link>http://example.org/tags/unittest/</link>
+      <link>https://snowyurik.github.io/tags/unittest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/tags/unittest/</guid>
+      <guid>https://snowyurik.github.io/tags/unittest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WebMvcTest</title>
-      <link>http://example.org/tags/webmvctest/</link>
+      <link>https://snowyurik.github.io/tags/webmvctest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>http://example.org/tags/webmvctest/</guid>
+      <guid>https://snowyurik.github.io/tags/webmvctest/</guid>
       <description></description>
     </item>
     
