@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Snowyurik&#39;s Blog</title>
+    <link>https://snowyurik.github.io/tags/java/</link>
+    <description>Recent content in Java on Snowyurik&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ResultMatcher for .addExpect</title>
+      <link>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</link>
+      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
+      
+      <guid>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s say we save some list of items and then read it back.
+Here is our original list:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;List&amp;lt;MyItem&amp;gt; myItemList = new ArrayList&amp;lt;MyItem&amp;gt;() {{
+        add( new MyItem() {{
+            title = &amp;quot;Test Item 1&amp;quot;;
+        }});
+        add( ... );
+        ...
+    }};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And we have mockMvc defined like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Autowired MockMvc mvc;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can store the list with &lt;code&gt;mvc.perform( put(&amp;quot;/api/myitem/list&amp;quot; )).andExpect( status().isOk() )&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We can read the list with &lt;code&gt;mvc.perform( get(&amp;quot;/api/myitem/list&amp;quot; )).andExpect( status().isOk() )&lt;/code&gt;.
+But!&lt;/p&gt;
+&lt;h3 id=&#34;the-problem&#34;&gt;The problem&lt;/h3&gt;
+&lt;p&gt;We do not have database ids in our original list.
+So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&gt; will give us false-negative result.&lt;/p&gt;
+&lt;h3 id=&#34;solution---use-lambda-callback-for-comparison&#34;&gt;Solution - use lambda callback for comparison&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;this.mvc.perform(get(&amp;quot;/api/myitem/list&amp;quot;))
+    .andExpect( status().isOk() )
+    .andExpect( (result)-&amp;gt;{ // lambda for ResultMatcher
+                            // return void
+                            // if result not match expectation - we should throw exception
+    
+        String jsonString = result.getResponse().getContentAsString();
+        List&amp;lt;MyItem&amp;gt; storedMyItemList = objectMapper.readValue(jsonString, 
+                                            new TypeReference&amp;lt;List&amp;lt;MyItem&amp;gt;&amp;gt;(){});
+        for( Contour storedItem : storedMyItemList) {
+            myItemList.stream().filter( x -&amp;gt; storedItem.title.equals(x.title))
+                .findFirst().orElseThrow(
+                    () -&amp;gt; { // lambda for exception
+                        throw new AssertionError(&amp;quot;Contour not found, expected: \n&amp;quot;
+                            + myItemListAsJsonString + &amp;quot;\nactual: \n&amp;quot; + jsonString
+                            + &amp;quot;myitem.id field is ignored&amp;quot;
+                        );
+                    }
+                );
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

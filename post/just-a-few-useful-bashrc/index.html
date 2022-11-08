@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Just a few useful .bashrc changes | Snowyurik&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
+	
+<nav class="main-nav" role="navigation">
+	<button id="toggle" class="main-nav__btn" aria-label="Menu toggle" aria-expanded="false" tabindex="0">
+		<div class="main-nav__btn-box" tabindex="-1">
+			<svg class="main-nav__icon icon-menu" width="18" height="18" viewBox="0 0 18 18">
+				<path class="icon-menu__burger" d="M18 0v3.6H0V0h18zM0 10.8h18V7.2H0v3.6zM0 18h18v-3.6H0V18z"/>
+				<path class="icon-menu__x" d="M11.55 9L18 15.45 15.45 18 9 11.55 2.55 18 0 15.45 6.45 9 0 2.55 2.55 0 9 6.45 15.45 0 18 2.55 11.55 9z"/>
+			</svg>
+		</div>
+	</button>
+	<ul id="menu" class="main-nav__list">
+			<li class="main-nav__item">
+				<a class="main-nav__link" href="/hireme/">
+					
+					<span class="main-nav__text">Contacts (hire me!)</span>
+					
+				</a>
+			</li>
+	</ul>
+</nav>
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
+	</div>
+				<h1 class="entry__title">Just a few useful .bashrc changes</h1>
+<details class="entry__toc toc" open>
+	<summary class="toc__title">Table of Contents</summary>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#here-are-some">Here are some:</a>
+      <ul>
+        <li><a href="#start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</a></li>
+        <li><a href="#record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</a></li>
+        <li><a href="#git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</a></li>
+        <li><a href="#init-envvars-for-my-current-projects">Init envvars for my current projects</a></li>
+        <li><a href="#show-git-graph-in-text-mode">Show git graph in text mode</a></li>
+        <li><a href="#help-for-my-ustom-commands">Help for my ustom commands</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+				<div class="entry__content"><p>I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:</p>
+<ul>
+<li>If command is too long to memorise</li>
+<li>If command is not self-explainary</li>
+</ul>
+<h2 id="here-are-some">Here are some:</h2>
+<h3 id="start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</h3>
+<pre><code>parallel() {
+    nohup $@ &gt; /dev/null 2&gt;&amp;1 &amp;  
+}
+</code></pre><p>Usage</p>
+<pre><code>parallel command arg1 arg2 arg3 ...
+</code></pre><p>Example</p>
+<pre><code>parallel kate .
+</code></pre><p>This will open current folder in kate editor.</p>
+<h3 id="record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</h3>
+<pre><code>capturescreen() {
+    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 $1
+}
+</code></pre><p>Usage</p>
+<pre><code>capturescreen outfile.mp4
+</code></pre><h3 id="git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</h3>
+<pre><code>gitbranches() {
+    branch=&quot;&quot;
+    branches=`git branch $@`
+    while read -r branch; do
+        clean_branch_name=${branch//\*\ /}
+        description=`git config branch.$clean_branch_name.description`
+        lastcommitdate=`git for-each-ref --sort=committerdate &quot;refs/heads/**/${clean_branch_name}&quot; --format='%(committerdate:short)'`
+        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
+            printf &quot;\033[0;32m&quot;;
+        fi;
+        printf &quot;%-15s %s\n&quot; &quot;$branch    [$lastcommitdate]   $description&quot;
+        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
+            printf &quot;\033[0m&quot;;
+        fi;
+    done &lt;&lt;&lt; &quot;$branches&quot;
+}
+</code></pre><p>Useful if you use branch per task, like in GitFlow. You can pass <code>git branch</code> attributes to this function as usual</p>
+<p>Example</p>
+<pre><code>gitbranches --no-merged
+</code></pre><h3 id="init-envvars-for-my-current-projects">Init envvars for my current projects</h3>
+<pre><code>initmyenv() {
+    if ! [[ &quot;$PATH&quot; =~ &quot;$HOME//scripts:&quot; ]]
+    then
+        PATH=&quot;$HOME//scripts:$PATH&quot;
+    fi
+    export PATH
+    export PROJECT1_DBCONNECT=&quot;Server=localhost;Database=project1;User Id=sa;Password=somepw;&quot;
+    export PROJECT2_DBCONNECT=&quot;Server=localhost;Database=project2;User Id=sa;Password=somepw;&quot;
+    ...
+}
+</code></pre><p>Btw, whis way you do not leak you db password to git. Search 12factor for more )</p>
+<h3 id="show-git-graph-in-text-mode">Show git graph in text mode</h3>
+<pre><code>gitgraph() {
+    git log --graph --full-history --all --color --pretty=format:&quot;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&quot;
+}
+</code></pre><h3 id="help-for-my-ustom-commands">Help for my ustom commands</h3>
+<pre><code>helb() {
+    echo &quot;.. i need sombody, heeeelb&quot;;
+    echo &quot;
+        parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
+        gitgraph                - display git log in nice form, with branch tree
+        gitbranches             - display git branch with descriptions
+        capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+    &quot;;
+    # also show my custom scripts
+    ls -1 ~/scripts
+}
+</code></pre><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
+That&rsquo;s it )</p></div>
+				
+			</article>
+		</div>
+	</main>
+	
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/snowyurik">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2022 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+<script src="/js/menu.js"></script>
+</body>
+</html>
