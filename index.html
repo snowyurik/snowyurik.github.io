@@ -14,6 +14,7 @@
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Snowyurik's Blog">
 		
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </head>
 <body class="body kind-home">
 	<header class="header">
@@ -43,6 +44,56 @@
 	
 	<main class="main">
 			<div class="cards">
+					<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/hugo-feedback-problem/">Hugo feedback problem</a></h1>
+	<div class="entry__content"><p>Ok I have this static blog now, it&rsquo;s kind of useful for myslef, but I have no idea if anyone else read it.
+I can use some 3rd party js based tracker, but adblockers will cancel them and I that&rsquo;s feels right.
+As for this blog is static website and hosted on github pages I can&rsquo;t count visitors myself on server side.</p>
+<p>So there is no obvious solution. So, let&rsquo;s get a stap back and view bigger picture</p>
+<h3 id="what-is-the-purpose-of-counting-visitors">What is the purpose of counting visitors?</h3>
+<ol>
+<li>I need some feedback for psychological comfort. Actually, this is main reason. Pointless work lead to depression, so it should be avoided.
+1.1. The blog itself is a feedback for finding solution for some complicated situations.</li>
+<li>I want to know what pasts are good and what posts are bullshit.</li>
+<li>In crisis times I want to use every opprotunity to earn something, do I have any opprtunities here?</li>
+<li>In wealthy times I want to help other people to become wealthy, because <code>economy of scale</code> magical effect on infrastructure which I use. More digital nomads -&gt; cheaper flights, you know.</li>
+</ol>
+<h3 id="how-can-i-achieve-this-goals-without-counting-visitors">How can I achieve this goals <em>without</em> counting visitors?</h3>
+<p>A few raw ideas:</p>
+<ul>
+<li>Donations might be better metric. Bots do not donate, you know. I do not think I will ever receive much, but donation require some effort, so I will be sure that people really like something. Even if it&rsquo;s 0.0000000000000000001 cents.</li>
+<li>
+<ul>
+<li>Hmm, maybe paid comments will be nice? At least I will have resources to moderate them and to answer questions in time.</li>
+</ul>
+</li>
+<li>Mention of my blog on other websites. However, if I will post link to my blog somewhere that will ruin the metric.</li>
+<li>&ldquo;Hireme&rdquo; is there, but it would be rare case anyway.</li>
+<li>I can see traffic for my github projects, that can be affected by blog indirectly, but.. too indirectly</li>
+</ul>
+<p>Donations looks like the best option for now&hellip;</p>
+<p>.. sounds of investigation process &hellip;</p>
+<p>Ok, I&rsquo;ve registred on &ldquo;Buy me a coffee&rdquo;. Here is the link <a href="https://www.buymeacoffee.com/snowyurik">https://www.buymeacoffee.com/snowyurik</a></p>
+<h3 id="how-to-add-buy-me-a-coffe-to-hugo-website">How to add &ldquo;buy me a coffe&rdquo; to hugo website?</h3>
+<p>Let&rsquo;s see..</p>
+<p>Maybe for other themes it will be different, but at lease for <code>binario</code> theme:</p>
+<ul>
+<li>Go to <code>themes/binario/layouts/_default/baseof.html</code></li>
+<li>Add <code>&lt;script&gt;..</code> from Buy me a coffee there, widget will appear on all pages.</li>
+</ul>
+<p>Ok, done with that.</p>
+<h3 id="custom-color-for--buy-me-a-coffee-widget">Custom color for  &ldquo;buy me a coffee&rdquo; widget</h3>
+<p><code>&lt;script &gt;..</code> has a parameter <code>data-color</code>, lets change it and see what happen.. that affects only the circle and it&rsquo;s iframe. As for as I remember we can access iframe, but I do not want to dig it righ now. So lets leave it as is.</p>
+<h3 id="can-i-make-the-coffee-cost-less">Can I make <em>the coffee</em> cost less?</h3>
+<p>I do not really care about money here, I will better receive more frequent feedback. Let&rsquo;s see if I can change minimal donation..</p>
+<p>It&rsquo;s here (<a href="http://www.buymeacoffee.com/page-settings)%5Bhttps://www.buymeacoffee.com/page-settings%5D,">www.buymeacoffee.com/page-settings)[https://www.buymeacoffee.com/page-settings],</a> so I&rsquo;m switching from 5$ (which is default) to 1$(which is minimal). Checking if it works.. nice 😊</p>
+<p>Ok, if you want to say something about it - feel free to add comment to 1$ donation using the widget in right bottom corner 😅</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-09T02:38:59&#43;07:00">November 09, 2022</time>
+	</div>
+</article>
+					</div>
 					<div class="card card--1col">
 					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/just-a-few-useful-bashrc/">Just a few useful .bashrc changes</a></h1>

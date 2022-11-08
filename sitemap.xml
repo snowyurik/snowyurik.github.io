@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/post/just-a-few-useful-bashrc/</loc>
-    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+    <loc>http://example.org/post/hugo-feedback-problem/</loc>
+    <lastmod>2022-11-09T02:38:59+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/post/</loc>
-    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+    <lastmod>2022-11-09T02:38:59+07:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.org/</loc>
+    <lastmod>2022-11-09T02:38:59+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/just-a-few-useful-bashrc/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
   </url>
   
