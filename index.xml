@@ -43,7 +43,7 @@ As for this blog is static website and hosted on github pages I can&amp;rsquo;t 
 &lt;p&gt;Ok, I&amp;rsquo;ve registred on &amp;ldquo;Buy me a coffee&amp;rdquo;. Here is the link &lt;a href=&#34;https://www.buymeacoffee.com/snowyurik&#34;&gt;https://www.buymeacoffee.com/snowyurik&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;how-to-add-buy-me-a-coffee-to-hugo-website&#34;&gt;How to add &amp;ldquo;buy me a coffee&amp;rdquo; to hugo website?&lt;/h3&gt;
 &lt;p&gt;Let&amp;rsquo;s see..&lt;/p&gt;
-&lt;p&gt;Maybe for other themes it will be different, but at lease for &lt;code&gt;binario&lt;/code&gt; theme:&lt;/p&gt;
+&lt;p&gt;Maybe for other themes it will be different, but at least for &lt;code&gt;binario&lt;/code&gt; theme:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Go to &lt;code&gt;themes/binario/layouts/_default/baseof.html&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Add &lt;code&gt;&amp;lt;script&amp;gt;..&lt;/code&gt; from Buy me a coffee there, widget will appear on all pages.&lt;/li&gt;
