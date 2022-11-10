@@ -40,11 +40,11 @@ So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&g
         String jsonString = result.getResponse().getContentAsString();
         List&amp;lt;MyItem&amp;gt; storedMyItemList = objectMapper.readValue(jsonString, 
                                             new TypeReference&amp;lt;List&amp;lt;MyItem&amp;gt;&amp;gt;(){});
-        for( Contour storedItem : storedMyItemList) {
+        for( MyItem storedItem : storedMyItemList) {
             myItemList.stream().filter( x -&amp;gt; storedItem.title.equals(x.title))
                 .findFirst().orElseThrow(
                     () -&amp;gt; { // lambda for exception
-                        throw new AssertionError(&amp;quot;Contour not found, expected: \n&amp;quot;
+                        throw new AssertionError(&amp;quot;MyItem not found, expected: \n&amp;quot;
                             + myItemListAsJsonString + &amp;quot;\nactual: \n&amp;quot; + jsonString
                             + &amp;quot;myitem.id field is ignored&amp;quot;
                         );
