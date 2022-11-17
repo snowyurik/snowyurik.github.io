@@ -6,7 +6,260 @@
     <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 15:37:13 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to start with unit testing in python</title>
+      <link>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</link>
+      <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
+      
+      <guid>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Sponsored repty to Vasilina and Nazar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;general-sequence-for-anything-in-test-driving-development&#34;&gt;General sequence for &lt;em&gt;anything&lt;/em&gt; in Test Driving Development&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Try and Fail&lt;/li&gt;
+&lt;li&gt;Fix and Confirm&lt;/li&gt;
+&lt;li&gt;Polish&lt;/li&gt;
+&lt;li&gt;Repeat&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Also knows as:&lt;/p&gt;
+&lt;p&gt;Red - Green - Refactoring - Repeat
+(Red/Green refer to test frameworks colored output)&lt;/p&gt;
+&lt;h3 id=&#34;so-lets-try-and-fail-first&#34;&gt;So lets try and fail first&lt;/h3&gt;
+&lt;p&gt;We start withnothing: no tests, no code. Just &lt;em&gt;&lt;strong&gt;empty&lt;/strong&gt;&lt;/em&gt; project folder.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s run tests. What we expect from running tests in empty folder?
+We expect message that there are zero tests and there is nothing to run. If we get this message - that count as success.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s try:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And the output is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pytest: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We are at &lt;code&gt;RED&lt;/code&gt; state here, we tried and failed.&lt;/p&gt;
+&lt;h3 id=&#34;lets-fix-that-and-get-green-state&#34;&gt;Let&amp;rsquo;s fix that and get GREEN state&lt;/h3&gt;
+&lt;p&gt;Install pytest:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pip install pytest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Installing collected packages: pytest
+Successfully installed pytest-7.2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;confirm-green-state&#34;&gt;Confirm green state&lt;/h3&gt;
+&lt;p&gt;Now, lets run tests again&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And now we get&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+============================== test session starts ==============================
+platform linux -- Python 3.10.1, pytest-7.2.0, pluggy-1.0.0
+rootdir: /home/snowyurik/tmp/10
+asyncio: mode=strict
+collected 0 items                                                               
+
+============================= no tests ran in 0.00s =============================
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;polish&#34;&gt;Polish&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s look into our code: do we have any &lt;em&gt;Code Smells&lt;/em&gt;?&lt;br&gt;
+(&amp;ldquo;code smells&amp;rdquo; or &amp;ldquo;antipatterns&amp;rdquo; are rules to detect bad code, most notable are &amp;ldquo;duplicated code&amp;rdquo; and &amp;ldquo;magic&amp;rdquo; aka &amp;ldquo;hardcode&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;No code = no code smells, excellent!&lt;br&gt;
+Refactoring is done 😎&lt;/p&gt;
+&lt;h3 id=&#34;repeat&#34;&gt;Repeat&lt;/h3&gt;
+&lt;p&gt;To start next &lt;em&gt;iteration&lt;/em&gt; we have to change our expectations.&lt;br&gt;
+Let&amp;rsquo;s expect now, that we run at least one test&lt;/p&gt;
+&lt;h3 id=&#34;try-and-fail&#34;&gt;Try and fail&lt;/h3&gt;
+&lt;p&gt;Btw, I advice you to really do so and I&amp;rsquo;m actually doing such &amp;ldquo;pointless&amp;rdquo; actions on everyday basis.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And we get&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+============================== test session starts ==============================
+platform linux -- Python 3.10.1, pytest-7.2.0, pluggy-1.0.0
+rootdir: /home/snowyurik/tmp/10
+collected 0 items                                                               
+
+============================= no tests ran in 0.00s =============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Same message, but as for as our expectation changed, we can&amp;rsquo;t be satisfied with it anymore.
+From now we will interpret &lt;code&gt; no tests ran in 0.00s&lt;/code&gt; as &lt;code&gt;RED&lt;/code&gt; state.&lt;/p&gt;
+&lt;h3 id=&#34;lets-fix-that-and-confirm-the-fix-&#34;&gt;Lets fix that and confirm the fix 😊&lt;/h3&gt;
+&lt;p&gt;Add simplest possible test.&lt;br&gt;
+Here are some official docs &lt;a href=&#34;https://docs.pytest.org/en/7.2.x/getting-started.html&#34;&gt;https://docs.pytest.org/en/7.2.x/getting-started.html&lt;/a&gt; but who have time to read everything?&lt;br&gt;
+That will be just empty file, test.py (by the way, that&amp;rsquo;s not correct name)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ touch test.py
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Does it work?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+============================== test session starts ==============================
+..
+collected 0 items                                                               
+
+============================= no tests ran in 0.00s =============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;No&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s have a quick look at the docs&amp;hellip; maybe our test file was not found automatically, so lets rename it exactly like in example:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mv test.py test_sample.py
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run &lt;code&gt;pytest&lt;/code&gt; again, does it work now? No. So we need more, let&amp;rsquo;s copy-paste code from tutorial, this will be our &lt;code&gt;test_sample.py&lt;/code&gt; content&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# content of test_sample.py&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What does this code mean? &lt;em&gt;&lt;strong&gt;We don&amp;rsquo;t care&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+Right now all we want is to get message from &lt;code&gt;pytest&lt;/code&gt; that at least one test was executed, no more, no less.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+============================= test session starts ==============================
+...
+collected 1 item                                                               
+
+test_sample.py F                                                         [100%]
+
+=================================== FAILURES ===================================
+_________________________________ test_answer __________________________________
+
+    def test_answer():
+&amp;gt;       assert func(3) == 5
+E       assert 4 == 5
+E        +  where 4 = func(3)
+
+test_sample.py:7: AssertionError
+=========================== short test summary info ============================
+FAILED test_sample.py::test_answer - assert 4 == 5
+============================== 1 failed in 0.05s ===============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Success!&lt;br&gt;
+Yep, it&amp;rsquo;s colored red, but we see that tests are executed.&lt;br&gt;
+And pytest shows us where exactly test failed.&lt;/p&gt;
+&lt;h3 id=&#34;lets-polish-that-and-make-our-green-state-actually-green&#34;&gt;Let&amp;rsquo;s polish that and make our green state actually green&lt;/h3&gt;
+&lt;p&gt;Here is our test&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What&amp;rsquo;s going on here?&lt;br&gt;
+Pytest (by the way, unittest for python act the same) will find functions which started with &lt;code&gt;test_&lt;/code&gt; and execute them.&lt;/p&gt;
+&lt;p&gt;Ok, what is &lt;code&gt;assert&lt;/code&gt;?&lt;br&gt;
+&lt;code&gt;assert&lt;/code&gt; equals &amp;ldquo;we excepect that the following statement is true&amp;rdquo;. So &lt;code&gt;assert func(3) == 5&lt;/code&gt; mean &amp;ldquo;we expect that &lt;code&gt;func(3)&lt;/code&gt; will return 5&amp;rdquo;.&lt;br&gt;
+But it does not. So lets modify &lt;code&gt;func()&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And run pytest again&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ pytest
+============================== test session starts ==============================
+...
+collected 1 item                                                                
+
+test_sample.py .                                                          [100%]
+
+=============================== 1 passed in 0.01s ==============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now our green state is actually green, nice 🙂&lt;/p&gt;
+&lt;p&gt;Lets see if we have some code smells here and mark them with &lt;code&gt;/// TODO&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;///&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TODO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;does&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;describe&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;function&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;///&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TODO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hardcoded&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;///&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TODO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hardcoded&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;values&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can&amp;rsquo;t leave it like that. Why do we have this code at first place? We just copied example. It make no sense in our project and it should not.&lt;br&gt;
+What are we testing at first place?&lt;br&gt;
+We are testing ability to run tests. Let&amp;rsquo;s modify the test so it will server only intendent purpose:&lt;br&gt;
+We do not need &lt;code&gt;def func(x)&lt;/code&gt; at all, so we remove that and run pytest again:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E       NameError: name &#39;func&#39; is not defined
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Hmm.. let&amp;rsquo;s replace &lt;code&gt;func(3)&lt;/code&gt; with it&amp;rsquo;s result:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Green state. But we still have hardcoded 5. Lets just use &lt;code&gt;True&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_answer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And make test name self-explanatory&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_ifWeCanExecuteTests&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Run pytest. State is green. What else we have? Oh yes, filename. As you remember, test.py did not work, but was it filename issue or it was lack of test functions inside? We can check:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mv test_sample.py test.py
+$ pytest
+...
+============================= no tests ran in 0.00s =============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Looks like filename should be like &lt;code&gt;test&amp;lt;undescore&amp;gt;&amp;lt;something&amp;gt;.py&lt;/code&gt;. Let&amp;rsquo;s try and make is self-explanatory&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mv test.py test_application.py
+$ pytest
+...                                                                        [100%]
+=============================== 1 passed in 0.00s ===============================
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Refactoring done 🙄&lt;/p&gt;
+&lt;h3 id=&#34;repeat-&#34;&gt;Repeat 😅&lt;/h3&gt;
+&lt;p&gt;Now we are ready to implement something real. For that we need the task.&lt;br&gt;
+Let it be:&lt;br&gt;
+&amp;ldquo;Create validator for phone number&amp;rdquo;\&lt;/p&gt;
+&lt;h3 id=&#34;try-and-fail-1&#34;&gt;Try and fail&lt;/h3&gt;
+&lt;p&gt;We start from wring another test &lt;em&gt;&lt;strong&gt;before&lt;/strong&gt;&lt;/em&gt; any implementation&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_validatePhome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1(111)11-11-111&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And run test&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E       NameError: name &#39;isValid&#39; is not defined
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We are at &lt;code&gt;RED&lt;/code&gt; state.&lt;/p&gt;
+&lt;h3 id=&#34;fix-and-confirm&#34;&gt;Fix and confirm&lt;/h3&gt;
+&lt;p&gt;Now our goal is to achieve GREEN state in the simplest possible way.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+    
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_validatePhome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1(111)11-11-111&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now it&amp;rsquo;s green.&lt;/p&gt;
+&lt;h3 id=&#34;refactor&#34;&gt;Refactor&lt;/h3&gt;
+&lt;p&gt;Yep, we can do that, but let&amp;rsquo;s assume we are lazy and see if TDD will force use to do that.&lt;/p&gt;
+&lt;h3 id=&#34;repeat-1&#34;&gt;Repeat&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s add another test, we need &lt;code&gt;RED&lt;/code&gt; state, remember.&lt;/p&gt;
+&lt;h3 id=&#34;try-and-fail-2&#34;&gt;Try and fail&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_validatePhome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1(111)11-11-111&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+2(222)22-22-222&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Pytest and.. still green. We need &lt;code&gt;red&lt;/code&gt;. ANY new test make no sence. As for we need &lt;code&gt;red&lt;/code&gt; we have to write test which will fail.&lt;br&gt;
+How about that one&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_validatePhome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1(111)11-11-111&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;this is definitely not valid phone number&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Pytest:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FAILED test_application.py::test_validatePhome - AssertionError: assert True == False
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nice, &lt;code&gt;RED&lt;/code&gt; state&lt;/p&gt;
+&lt;h3 id=&#34;fix-and-confirm-1&#34;&gt;Fix and confirm&lt;/h3&gt;
+&lt;p&gt;Why second &amp;ldquo;phone number&amp;rdquo; is not correct? There are many answers. Let&amp;rsquo;s say it&amp;rsquo;s too long. Looks like valid phone numbers can contain maximum 15 digits.
+So let&amp;rsquo;s check that inside &lt;code&gt;isValid&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And.. our first asserting failed. Because &lt;code&gt;len(&amp;quot;+1(111)11-11-111&amp;quot;)&lt;/code&gt; is actually 16. So we see that we can&amp;rsquo;t just count symbols. We need to count digits.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isdigit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Does it work? First assertion is passed, but &amp;ldquo;this is definitely not valid phone number&amp;rdquo; actually has zero digits. Which is also not correct, so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isdigit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;minimal&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now its green 🤗&lt;/p&gt;
+&lt;h3 id=&#34;polish-1&#34;&gt;Polish&lt;/h3&gt;
+&lt;p&gt;Obviously 15 and 6 are &amp;ldquo;magic numbers&amp;rdquo; aka &amp;ldquo;hardcode&amp;rdquo;. We can turm them into constants with self-explanatory names:
+And also move them to separate file together with isValid function, because it&amp;rsquo;s a mess now. Let&amp;rsquo;s say &lt;code&gt;phoneValidator.py&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;MIN_PHONE_NUMBER_LENGTH&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;MAX_PHONE_NUMBER_LENGTH&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isdigit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;symbol&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MAX_PHONE_NUMBER_LENGTH&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;digits&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MIN_PHONE_NUMBER_LENGTH&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And for our test to work we need import it, so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;phoneValidator&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_ifWeCanExecuteTests&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+    
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_validatePhome&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1(111)11-11-111&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;assert&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isValid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;this is definitely not valid phone number&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Pytest.. green 🥳&lt;/p&gt;
+&lt;h3 id=&#34;continue-like-that&#34;&gt;Continue like that&lt;/h3&gt;
+&lt;p&gt;Can you imagine another wrong phone number which will pass the test? Create the test and change implementation.&lt;br&gt;
+No? Can you imagine correct phone number which won&amp;rsquo;t pass the test? Crete the test for false-negative result and change implementation.&lt;/p&gt;
+&lt;p&gt;With iterative process like that, you will get closer and closer to ideal solution.&lt;/p&gt;
+&lt;p&gt;Can you do it faster on-sight? Maybe. If you are good at regular expressions and phone standarts you might not need tests.&lt;/p&gt;
+&lt;p&gt;But to create something with test you do not have to be good at anything including test themselfves!&lt;br&gt;
+Just keep it simple, keep it iterative, do small steps, always refactor old code and you will create &lt;em&gt;&lt;strong&gt;anything&lt;/strong&gt;&lt;/em&gt;. There is no limit.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</title>
       <link>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
