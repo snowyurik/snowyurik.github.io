@@ -27,7 +27,7 @@
 &lt;p&gt;Red - Green - Refactoring - Repeat
 (Red/Green refer to test frameworks colored output)&lt;/p&gt;
 &lt;h3 id=&#34;so-lets-try-and-fail-first&#34;&gt;So lets try and fail first&lt;/h3&gt;
-&lt;p&gt;We start withnothing: no tests, no code. Just &lt;em&gt;&lt;strong&gt;empty&lt;/strong&gt;&lt;/em&gt; project folder.&lt;/p&gt;
+&lt;p&gt;We start with nothing: no tests, no code. Just &lt;em&gt;&lt;strong&gt;empty&lt;/strong&gt;&lt;/em&gt; project folder.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s run tests. What we expect from running tests in empty folder?
 We expect message that there are zero tests and there is nothing to run. If we get this message - that count as success.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s try:&lt;/p&gt;
