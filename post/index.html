@@ -13,6 +13,7 @@
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
 	<link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="Snowyurik's Blog">
 		
+	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 	
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-15855473-1"></script>
@@ -57,6 +58,106 @@
 			
 		</div>
 		<div class="cards">
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/">Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</a></h1>
+	<div class="entry__content"><p>If you are using ReactJS with Typescript there are 2 alternative code styles: class based components and function based components.</p>
+<p><code>useState</code> and <code>useEffect</code> belong to function component style only.</p>
+<p>For object-oriented style we use <code>state interface</code> instead of <code>useState</code> and <code>componentDidUpdate</code> instead of <code>useEffect</code>.</p>
+<h1 id="example">Example</h1>
+<h2 id="function-based-component">Function based component</h2>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">MyFunctionComponentProps</span> <span class="p">{</span>
+    <span class="nx">text</span>:<span class="kt">string</span><span class="p">;</span>
+    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">MyFunctionComponent</span>: <span class="kt">React.FC</span><span class="p">&lt;</span><span class="nt">MyFunctionComponentProps</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">({})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">setItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">number</span><span class="err">[]</span><span class="p">&gt;([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">title</span><span class="p">,</span> <span class="nx">setTitle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;(</span><span class="s2">&#34;default title&#34;</span><span class="p">);</span>
+    
+    <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// fires if entire state changed
+</span><span class="c1"></span>    <span class="p">});</span>
+    
+    <span class="nx">useEffect</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="c1">// fires only if title changed
+</span><span class="c1"></span>    <span class="p">},[</span><span class="nx">title</span><span class="p">]);</span>
+    
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>See also:</p>
+<ul>
+<li>useEffect <a href="https://reactjs.org/docs/hooks-reference.html#useeffect">https://reactjs.org/docs/hooks-reference.html#useeffect</a></li>
+<li>useState <a href="https://reactjs.org/docs/hooks-reference.html#usestate">https://reactjs.org/docs/hooks-reference.html#usestate</a></li>
+<li>functional components and hooks general info <a href="https://reactjs.org/docs/hooks-overview.html">https://reactjs.org/docs/hooks-overview.html</a></li>
+</ul>
+<h2 id="class-based-component">Class based component</h2>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">from</span> <span class="s2">&#34;react-konva&#34;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">MyClassComponentProps</span> <span class="p">{</span>
+    <span class="nx">text</span>:<span class="kt">string</span><span class="p">;</span>
+    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// this is useState hook alternative for class component
+</span><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">MyClassComponentState</span> <span class="p">{</span>
+    <span class="nx">items</span>: <span class="kt">number</span><span class="p">[];</span>
+    <span class="nx">title</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">MyClassComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">&lt;</span><span class="nt">MyClassComponentProps</span><span class="err">,</span> <span class="na">MyClassComponentState</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="c1">// default values for props
+</span><span class="c1"></span>    <span class="kr">public</span> <span class="kr">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nx">x</span>: <span class="kt">0</span><span class="p">,</span>
+        <span class="nx">y</span>: <span class="kt">0</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kr">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="c1">// initial component state
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">items</span><span class="o">:</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// this is useEffect alternative for class component
+</span><span class="c1"></span>    <span class="kr">public</span> <span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// do something if props or state is changed
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span> <span class="nx">prevState</span><span class="p">.</span><span class="nx">title</span> <span class="o">!==</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// do something if title is changed
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="nx">render() {</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>See also <a href="https://reactjs.org/docs/react-component.html">https://reactjs.org/docs/react-component.html</a></p>
+<h2 id="pros-and-cons">Pros and cons</h2>
+<p>As you can see, functional component code is much shorted and more clear.. in this particular case. Anyway, there is no reason to switch from classes to functions just because of useState/useEffect hooks.</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-17T15:37:13&#43;07:00">November 17, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/typescript/" rel="tag">Typescript</a>, 
+		<a class="meta-tags__link" href="/tags/reactjs/" rel="tag">ReactJS</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
@@ -119,69 +220,69 @@ As for this blog is static website and hosted on github pages I can&rsquo;t coun
 </ul>
 <h2 id="here-are-some">Here are some:</h2>
 <h3 id="start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</h3>
-<pre><code>parallel() {
-    nohup $@ &gt; /dev/null 2&gt;&amp;1 &amp;  
-}
-</code></pre><p>Usage</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">parallel<span class="o">()</span> <span class="o">{</span>
+    nohup <span class="nv">$@</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>  
+<span class="o">}</span>
+</code></pre></div><p>Usage</p>
 <pre><code>parallel command arg1 arg2 arg3 ...
 </code></pre><p>Example</p>
 <pre><code>parallel kate .
 </code></pre><p>This will open current folder in kate editor.</p>
 <h3 id="record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</h3>
-<pre><code>capturescreen() {
-    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 $1
-}
-</code></pre><p>Usage</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">capturescreen<span class="o">()</span> <span class="o">{</span>
+    ffmpeg -video_size 1920x1080 -framerate <span class="m">25</span> -f x11grab -i :0.0+0,0 <span class="nv">$1</span>
+<span class="o">}</span>
+</code></pre></div><p>Usage</p>
 <pre><code>capturescreen outfile.mp4
 </code></pre><h3 id="git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</h3>
-<pre><code>gitbranches() {
-    branch=&quot;&quot;
-    branches=`git branch $@`
-    while read -r branch; do
-        clean_branch_name=${branch//\*\ /}
-        description=`git config branch.$clean_branch_name.description`
-        lastcommitdate=`git for-each-ref --sort=committerdate &quot;refs/heads/**/${clean_branch_name}&quot; --format='%(committerdate:short)'`
-        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
-            printf &quot;\033[0;32m&quot;;
-        fi;
-        printf &quot;%-15s %s\n&quot; &quot;$branch    [$lastcommitdate]   $description&quot;
-        if [ &quot;$clean_branch_name&quot; != &quot;$branch&quot; ]; then
-            printf &quot;\033[0m&quot;;
-        fi;
-    done &lt;&lt;&lt; &quot;$branches&quot;
-}
-</code></pre><p>Useful if you use branch per task, like in GitFlow. You can pass <code>git branch</code> attributes to this function as usual</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gitbranches<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">branch</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+    <span class="nv">branches</span><span class="o">=</span><span class="sb">`</span>git branch <span class="nv">$@</span><span class="sb">`</span>
+    <span class="k">while</span> <span class="nb">read</span> -r branch<span class="p">;</span> <span class="k">do</span>
+        <span class="nv">clean_branch_name</span><span class="o">=</span><span class="si">${</span><span class="nv">branch</span><span class="p">//</span><span class="se">\*\ </span><span class="p">/</span><span class="si">}</span>
+        <span class="nv">description</span><span class="o">=</span><span class="sb">`</span>git config branch.<span class="nv">$clean_branch_name</span>.description<span class="sb">`</span>
+        <span class="nv">lastcommitdate</span><span class="o">=</span><span class="sb">`</span>git <span class="k">for</span>-each-ref --sort<span class="o">=</span>committerdate <span class="s2">&#34;refs/heads/**/</span><span class="si">${</span><span class="nv">clean_branch_name</span><span class="si">}</span><span class="s2">&#34;</span> --format<span class="o">=</span><span class="s1">&#39;%(committerdate:short)&#39;</span><span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$clean_branch_name</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">printf</span> <span class="s2">&#34;\033[0;32m&#34;</span><span class="p">;</span>
+        <span class="k">fi</span><span class="p">;</span>
+        <span class="nb">printf</span> <span class="s2">&#34;%-15s %s\n&#34;</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">    [</span><span class="nv">$lastcommitdate</span><span class="s2">]   </span><span class="nv">$description</span><span class="s2">&#34;</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$clean_branch_name</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">printf</span> <span class="s2">&#34;\033[0m&#34;</span><span class="p">;</span>
+        <span class="k">fi</span><span class="p">;</span>
+    <span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="nv">$branches</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+</code></pre></div><p>Useful if you use branch per task, like in GitFlow. You can pass <code>git branch</code> attributes to this function as usual</p>
 <p>Example</p>
 <pre><code>gitbranches --no-merged
 </code></pre><h3 id="init-envvars-for-my-current-projects">Init envvars for my current projects</h3>
-<pre><code>initmyenv() {
-    if ! [[ &quot;$PATH&quot; =~ &quot;$HOME//scripts:&quot; ]]
-    then
-        PATH=&quot;$HOME//scripts:$PATH&quot;
-    fi
-    export PATH
-    export PROJECT1_DBCONNECT=&quot;Server=localhost;Database=project1;User Id=sa;Password=somepw;&quot;
-    export PROJECT2_DBCONNECT=&quot;Server=localhost;Database=project2;User Id=sa;Password=somepw;&quot;
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">initmyenv<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> ! <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$PATH</span><span class="s2">&#34;</span> <span class="o">=</span>~ <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">//scripts:&#34;</span> <span class="o">]]</span>
+    <span class="k">then</span>
+        <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">//scripts:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+    <span class="k">fi</span>
+    <span class="nb">export</span> PATH
+    <span class="nb">export</span> <span class="nv">PROJECT1_DBCONNECT</span><span class="o">=</span><span class="s2">&#34;Server=localhost;Database=project1;User Id=sa;Password=somepw;&#34;</span>
+    <span class="nb">export</span> <span class="nv">PROJECT2_DBCONNECT</span><span class="o">=</span><span class="s2">&#34;Server=localhost;Database=project2;User Id=sa;Password=somepw;&#34;</span>
     ...
-}
-</code></pre><p>Btw, whis way you do not leak you db password to git. Search 12factor for more )</p>
+<span class="o">}</span>
+</code></pre></div><p>Btw, whis way you do not leak you db password to git. Search 12factor for more )</p>
 <h3 id="show-git-graph-in-text-mode">Show git graph in text mode</h3>
-<pre><code>gitgraph() {
-    git log --graph --full-history --all --color --pretty=format:&quot;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&quot;
-}
-</code></pre><h3 id="help-for-my-ustom-commands">Help for my ustom commands</h3>
-<pre><code>helb() {
-    echo &quot;.. i need sombody, heeeelb&quot;;
-    echo &quot;
-        parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
-        gitgraph                - display git log in nice form, with branch tree
-        gitbranches             - display git branch with descriptions
-        capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
-    &quot;;
-    # also show my custom scripts
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gitgraph<span class="o">()</span> <span class="o">{</span>
+    git log --graph --full-history --all --color --pretty<span class="o">=</span>format:<span class="s2">&#34;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&#34;</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="help-for-my-ustom-commands">Help for my ustom commands</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helb<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&#34;.. i need sombody, heeeelb&#34;</span><span class="p">;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;
+</span><span class="s2">        parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
+</span><span class="s2">        gitgraph                - display git log in nice form, with branch tree
+</span><span class="s2">        gitbranches             - display git branch with descriptions
+</span><span class="s2">        capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+</span><span class="s2">    &#34;</span><span class="p">;</span>
+    <span class="c1"># also show my custom scripts</span>
     ls -1 ~/scripts
-}
-</code></pre><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
+<span class="o">}</span>
+</code></pre></div><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
 That&rsquo;s it )</p></div>
 	<div class="entry__meta meta mt tar">
 	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
@@ -194,44 +295,44 @@ That&rsquo;s it )</p></div>
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/webmvctest-custom-add-expect-result-matcher/">ResultMatcher for .addExpect</a></h1>
 	<div class="entry__content"><p>Let&rsquo;s say we save some list of items and then read it back.
 Here is our original list:</p>
-<pre><code>List&lt;MyItem&gt; myItemList = new ArrayList&lt;MyItem&gt;() {{
-        add( new MyItem() {{
-            title = &quot;Test Item 1&quot;;
-        }});
-        add( ... );
-        ...
-    }};
-</code></pre><p>And we have mockMvc defined like:</p>
-<pre><code>@Autowired MockMvc mvc;
-</code></pre><p>We can store the list with <code>mvc.perform( put(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;</span> <span class="n">myItemList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;()</span> <span class="o">{{</span>
+        <span class="n">add</span><span class="o">(</span> <span class="k">new</span> <span class="n">MyItem</span><span class="o">()</span> <span class="o">{{</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Test Item 1&#34;</span><span class="o">;</span>
+        <span class="o">}});</span>
+        <span class="n">add</span><span class="o">(</span> <span class="o">...</span> <span class="o">);</span>
+        <span class="o">...</span>
+    <span class="o">}};</span>
+</code></pre></div><p>And we have mockMvc defined like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span> <span class="n">MockMvc</span> <span class="n">mvc</span><span class="o">;</span>
+</code></pre></div><p>We can store the list with <code>mvc.perform( put(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.</p>
 <p>We can read the list with <code>mvc.perform( get(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.
 But!</p>
 <h3 id="the-problem">The problem</h3>
 <p>We do not have database ids in our original list.
 So <code>.andExpect( content().json( myItemListAsJsonString ) )</code> will give us false-negative result.</p>
 <h3 id="solution---use-lambda-callback-for-comparison">Solution - use lambda callback for comparison</h3>
-<pre><code>this.mvc.perform(get(&quot;/api/myitem/list&quot;))
-    .andExpect( status().isOk() )
-    .andExpect( (result)-&gt;{ // lambda for ResultMatcher
-                            // return void
-                            // if result not match expectation - we should throw exception
-    
-        String jsonString = result.getResponse().getContentAsString();
-        List&lt;MyItem&gt; storedMyItemList = objectMapper.readValue(jsonString, 
-                                            new TypeReference&lt;List&lt;MyItem&gt;&gt;(){});
-        for( MyItem storedItem : storedMyItemList) {
-            myItemList.stream().filter( x -&gt; storedItem.title.equals(x.title))
-                .findFirst().orElseThrow(
-                    () -&gt; { // lambda for exception
-                        throw new AssertionError(&quot;MyItem not found, expected: \n&quot;
-                            + myItemListAsJsonString + &quot;\nactual: \n&quot; + jsonString
-                            + &quot;myitem.id field is ignored&quot;
-                        );
-                    }
-                );
-        }
-    });
-</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">this</span><span class="o">.</span><span class="na">mvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/api/myitem/list&#34;</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span> <span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span> <span class="o">(</span><span class="n">result</span><span class="o">)-&gt;{</span> <span class="c1">// lambda for ResultMatcher
+</span><span class="c1"></span>                            <span class="c1">// return void
+</span><span class="c1"></span>                            <span class="c1">// if result not match expectation - we should throw exception
+</span><span class="c1"></span>    
+        <span class="n">String</span> <span class="n">jsonString</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getContentAsString</span><span class="o">();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;</span> <span class="n">storedMyItemList</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">jsonString</span><span class="o">,</span> 
+                                            <span class="k">new</span> <span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;&gt;(){});</span>
+        <span class="k">for</span><span class="o">(</span> <span class="n">MyItem</span> <span class="n">storedItem</span> <span class="o">:</span> <span class="n">storedMyItemList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">myItemList</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">storedItem</span><span class="o">.</span><span class="na">title</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">x</span><span class="o">.</span><span class="na">title</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">findFirst</span><span class="o">().</span><span class="na">orElseThrow</span><span class="o">(</span>
+                    <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">// lambda for exception
+</span><span class="c1"></span>                        <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">(</span><span class="s">&#34;MyItem not found, expected: \n&#34;</span>
+                            <span class="o">+</span> <span class="n">myItemListAsJsonString</span> <span class="o">+</span> <span class="s">&#34;\nactual: \n&#34;</span> <span class="o">+</span> <span class="n">jsonString</span>
+                            <span class="o">+</span> <span class="s">&#34;myitem.id field is ignored&#34;</span>
+                        <span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+</code></pre></div></div>
 	<div class="entry__meta meta mt tar">
 	<time class="entry__meta-published meta-published" datetime="2022-11-06T00:49:22&#43;07:00">November 06, 2022</time>
 <div class="entry__meta-tags meta-tags">
@@ -266,51 +367,51 @@ Both will work with same data, so we need 3rd project which will be linked as de
 <p>Package name aka namespace has to be the same for rootProject and submodules.</p>
 <h3 id="groupid">GroupID</h3>
 <p><code>project/groupId</code> also has to be the same for rootProject and submodules, like this:</p>
-<pre><code>&lt;project ..&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
   ...
-  &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+  <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
   ...
-&lt;/project&gt;
-</code></pre><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
 <p>file: rootProject/pom.xml</p>
-<pre><code>&lt;project ..&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
   ...
-  &lt;!-- modules --&gt;
-  &lt;modules&gt;
-    &lt;module&gt;web&lt;/module&gt;
-    &lt;module&gt;cli&lt;/module&gt;
-    &lt;module&gt;datalib&lt;/module&gt;
-  &lt;/modules&gt;
-</code></pre><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
+  <span class="c">&lt;!-- modules --&gt;</span>
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>web<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>cli<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>datalib<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+</code></pre></div><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
 <p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml</p>
-<pre><code>&lt;project&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
     ...
-    &lt;parent&gt;
-        &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
-        &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;/parent&gt;
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
 <p>Obviously, we can&rsquo;t have 2 parants for the module.
 So we have to move spring reference to rootProject/pom.xml.</p>
-<pre><code>&lt;project&gt;
-    &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-    &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
-    &lt;packaging&gt;pom&lt;/packaging&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;rootProject&lt;/name&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;name&gt;</span>rootProject<span class="nt">&lt;/name&gt;</span>
     
-    &lt;parent&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-        &lt;version&gt;2.7.4&lt;/version&gt;
-        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
-    &lt;/parent&gt;
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.7.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;relativePath/&gt;</span> <span class="c">&lt;!-- lookup parent from repository --&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><p>Hierarhy is like this:</p>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><p>Hierarhy is like this:</p>
 <ul>
 <li>Spring Boot</li>
 <li>
@@ -349,21 +450,21 @@ So we have to move spring reference to rootProject/pom.xml.</p>
 <h3 id="using-one-module-from-another">Using one module from another</h3>
 <p>Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:</p>
 <p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml</p>
-<pre><code>&lt;project&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
     ...
-    &lt;dependencies&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-			&lt;artifactId&gt;datalib&lt;/artifactId&gt;
-			&lt;version&gt;${project.version}&lt;/version&gt;
-			&lt;scope&gt;provided&lt;/scope&gt;
-			&lt;type&gt;jar&lt;/type&gt;
-		&lt;/dependency&gt;
+    <span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>datalib<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+			<span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
 		...
-    &lt;/dependencies&gt;
+    <span class="nt">&lt;/dependencies&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><h3 id="build-commands">Build commands</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="build-commands">Build commands</h3>
 <p>That&rsquo;s a bit counterintuitive. You need 2 commands:</p>
 <p>From rootProject/</p>
 <pre><code>mvn clean install

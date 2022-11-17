@@ -12,6 +12,7 @@
 	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
 		
+	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 	
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-15855473-1"></script>
@@ -94,51 +95,51 @@ Both will work with same data, so we need 3rd project which will be linked as de
 <p>Package name aka namespace has to be the same for rootProject and submodules.</p>
 <h3 id="groupid">GroupID</h3>
 <p><code>project/groupId</code> also has to be the same for rootProject and submodules, like this:</p>
-<pre><code>&lt;project ..&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
   ...
-  &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
+  <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
   ...
-&lt;/project&gt;
-</code></pre><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
 <p>file: rootProject/pom.xml</p>
-<pre><code>&lt;project ..&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
   ...
-  &lt;!-- modules --&gt;
-  &lt;modules&gt;
-    &lt;module&gt;web&lt;/module&gt;
-    &lt;module&gt;cli&lt;/module&gt;
-    &lt;module&gt;datalib&lt;/module&gt;
-  &lt;/modules&gt;
-</code></pre><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
+  <span class="c">&lt;!-- modules --&gt;</span>
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>web<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>cli<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>datalib<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+</code></pre></div><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
 <p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml</p>
-<pre><code>&lt;project&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
     ...
-    &lt;parent&gt;
-        &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
-        &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;/parent&gt;
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
 <p>Obviously, we can&rsquo;t have 2 parants for the module.
 So we have to move spring reference to rootProject/pom.xml.</p>
-<pre><code>&lt;project&gt;
-    &lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-    &lt;artifactId&gt;rootProject&lt;/artifactId&gt;
-    &lt;packaging&gt;pom&lt;/packaging&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;rootProject&lt;/name&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;name&gt;</span>rootProject<span class="nt">&lt;/name&gt;</span>
     
-    &lt;parent&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-        &lt;version&gt;2.7.4&lt;/version&gt;
-        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
-    &lt;/parent&gt;
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.7.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;relativePath/&gt;</span> <span class="c">&lt;!-- lookup parent from repository --&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><p>Hierarhy is like this:</p>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><p>Hierarhy is like this:</p>
 <ul>
 <li>Spring Boot</li>
 <li>
@@ -177,21 +178,21 @@ So we have to move spring reference to rootProject/pom.xml.</p>
 <h3 id="using-one-module-from-another">Using one module from another</h3>
 <p>Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:</p>
 <p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml</p>
-<pre><code>&lt;project&gt;
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
     ...
-    &lt;dependencies&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.rootProject&lt;/groupId&gt;
-			&lt;artifactId&gt;datalib&lt;/artifactId&gt;
-			&lt;version&gt;${project.version}&lt;/version&gt;
-			&lt;scope&gt;provided&lt;/scope&gt;
-			&lt;type&gt;jar&lt;/type&gt;
-		&lt;/dependency&gt;
+    <span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>datalib<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+			<span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
 		...
-    &lt;/dependencies&gt;
+    <span class="nt">&lt;/dependencies&gt;</span>
     ...
-&lt;/project&gt;
-</code></pre><h3 id="build-commands">Build commands</h3>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="build-commands">Build commands</h3>
 <p>That&rsquo;s a bit counterintuitive. You need 2 commands:</p>
 <p>From rootProject/</p>
 <pre><code>mvn clean install

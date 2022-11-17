@@ -13,6 +13,7 @@
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
 	<link rel="alternate" type="application/rss+xml" href="/tags/unittest/index.xml" title="Snowyurik's Blog">
 		
+	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 	
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-15855473-1"></script>
@@ -63,44 +64,44 @@
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/webmvctest-custom-add-expect-result-matcher/">ResultMatcher for .addExpect</a></h1>
 	<div class="entry__content"><p>Let&rsquo;s say we save some list of items and then read it back.
 Here is our original list:</p>
-<pre><code>List&lt;MyItem&gt; myItemList = new ArrayList&lt;MyItem&gt;() {{
-        add( new MyItem() {{
-            title = &quot;Test Item 1&quot;;
-        }});
-        add( ... );
-        ...
-    }};
-</code></pre><p>And we have mockMvc defined like:</p>
-<pre><code>@Autowired MockMvc mvc;
-</code></pre><p>We can store the list with <code>mvc.perform( put(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;</span> <span class="n">myItemList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;()</span> <span class="o">{{</span>
+        <span class="n">add</span><span class="o">(</span> <span class="k">new</span> <span class="n">MyItem</span><span class="o">()</span> <span class="o">{{</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Test Item 1&#34;</span><span class="o">;</span>
+        <span class="o">}});</span>
+        <span class="n">add</span><span class="o">(</span> <span class="o">...</span> <span class="o">);</span>
+        <span class="o">...</span>
+    <span class="o">}};</span>
+</code></pre></div><p>And we have mockMvc defined like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span> <span class="n">MockMvc</span> <span class="n">mvc</span><span class="o">;</span>
+</code></pre></div><p>We can store the list with <code>mvc.perform( put(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.</p>
 <p>We can read the list with <code>mvc.perform( get(&quot;/api/myitem/list&quot; )).andExpect( status().isOk() )</code>.
 But!</p>
 <h3 id="the-problem">The problem</h3>
 <p>We do not have database ids in our original list.
 So <code>.andExpect( content().json( myItemListAsJsonString ) )</code> will give us false-negative result.</p>
 <h3 id="solution---use-lambda-callback-for-comparison">Solution - use lambda callback for comparison</h3>
-<pre><code>this.mvc.perform(get(&quot;/api/myitem/list&quot;))
-    .andExpect( status().isOk() )
-    .andExpect( (result)-&gt;{ // lambda for ResultMatcher
-                            // return void
-                            // if result not match expectation - we should throw exception
-    
-        String jsonString = result.getResponse().getContentAsString();
-        List&lt;MyItem&gt; storedMyItemList = objectMapper.readValue(jsonString, 
-                                            new TypeReference&lt;List&lt;MyItem&gt;&gt;(){});
-        for( MyItem storedItem : storedMyItemList) {
-            myItemList.stream().filter( x -&gt; storedItem.title.equals(x.title))
-                .findFirst().orElseThrow(
-                    () -&gt; { // lambda for exception
-                        throw new AssertionError(&quot;MyItem not found, expected: \n&quot;
-                            + myItemListAsJsonString + &quot;\nactual: \n&quot; + jsonString
-                            + &quot;myitem.id field is ignored&quot;
-                        );
-                    }
-                );
-        }
-    });
-</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">this</span><span class="o">.</span><span class="na">mvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/api/myitem/list&#34;</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span> <span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">()</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span> <span class="o">(</span><span class="n">result</span><span class="o">)-&gt;{</span> <span class="c1">// lambda for ResultMatcher
+</span><span class="c1"></span>                            <span class="c1">// return void
+</span><span class="c1"></span>                            <span class="c1">// if result not match expectation - we should throw exception
+</span><span class="c1"></span>    
+        <span class="n">String</span> <span class="n">jsonString</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getContentAsString</span><span class="o">();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;</span> <span class="n">storedMyItemList</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">jsonString</span><span class="o">,</span> 
+                                            <span class="k">new</span> <span class="n">TypeReference</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MyItem</span><span class="o">&gt;&gt;(){});</span>
+        <span class="k">for</span><span class="o">(</span> <span class="n">MyItem</span> <span class="n">storedItem</span> <span class="o">:</span> <span class="n">storedMyItemList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">myItemList</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">storedItem</span><span class="o">.</span><span class="na">title</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">x</span><span class="o">.</span><span class="na">title</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">findFirst</span><span class="o">().</span><span class="na">orElseThrow</span><span class="o">(</span>
+                    <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">// lambda for exception
+</span><span class="c1"></span>                        <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="o">(</span><span class="s">&#34;MyItem not found, expected: \n&#34;</span>
+                            <span class="o">+</span> <span class="n">myItemListAsJsonString</span> <span class="o">+</span> <span class="s">&#34;\nactual: \n&#34;</span> <span class="o">+</span> <span class="n">jsonString</span>
+                            <span class="o">+</span> <span class="s">&#34;myitem.id field is ignored&#34;</span>
+                        <span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+</code></pre></div></div>
 	<div class="entry__meta meta mt tar">
 	<time class="entry__meta-published meta-published" datetime="2022-11-06T00:49:22&#43;07:00">November 06, 2022</time>
 <div class="entry__meta-tags meta-tags">

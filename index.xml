@@ -6,7 +6,100 @@
     <description>Recent content on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Nov 2022 02:38:59 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 15:37:13 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</title>
+      <link>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
+      <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
+      
+      <guid>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</guid>
+      <description>&lt;p&gt;If you are using ReactJS with Typescript there are 2 alternative code styles: class based components and function based components.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;useEffect&lt;/code&gt; belong to function component style only.&lt;/p&gt;
+&lt;p&gt;For object-oriented style we use &lt;code&gt;state interface&lt;/code&gt; instead of &lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;componentDidUpdate&lt;/code&gt; instead of &lt;code&gt;useEffect&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+&lt;h2 id=&#34;function-based-component&#34;&gt;Function based component&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useEffect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;react&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MyFunctionComponentProps&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;text&lt;/span&gt;:&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MyFunctionComponent&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;React.FC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;MyFunctionComponentProps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;({})&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;items&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setItems&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;([&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;default title&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&#34;nx&#34;&gt;useEffect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// fires if entire state changed
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+    
+    &lt;span class=&#34;nx&#34;&gt;useEffect&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// fires only if title changed
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;},[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+    
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;className&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;title&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;useEffect &lt;a href=&#34;https://reactjs.org/docs/hooks-reference.html#useeffect&#34;&gt;https://reactjs.org/docs/hooks-reference.html#useeffect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;useState &lt;a href=&#34;https://reactjs.org/docs/hooks-reference.html#usestate&#34;&gt;https://reactjs.org/docs/hooks-reference.html#usestate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;functional components and hooks general info &lt;a href=&#34;https://reactjs.org/docs/hooks-overview.html&#34;&gt;https://reactjs.org/docs/hooks-overview.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;class-based-component&#34;&gt;Class based component&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;react&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;react-konva&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MyClassComponentProps&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;text&lt;/span&gt;:&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// this is useState hook alternative for class component
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MyClassComponentState&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;items&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[];&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;MyClassComponent&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Component&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;MyClassComponentProps&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;MyClassComponentState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// default values for props
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;defaultProps&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;: &lt;span class=&#34;kt&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;constructor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kr&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;props&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// initial component state
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;items&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&#34;c1&#34;&gt;// this is useEffect alternative for class component
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;componentDidUpdate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;prevProps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;prevState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;snapshot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// do something if props or state is changed
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;prevState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;c1&#34;&gt;// do something if title is changed
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;render() {&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;className&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;title&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See also &lt;a href=&#34;https://reactjs.org/docs/react-component.html&#34;&gt;https://reactjs.org/docs/react-component.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pros-and-cons&#34;&gt;Pros and cons&lt;/h2&gt;
+&lt;p&gt;As you can see, functional component code is much shorted and more clear.. in this particular case. Anyway, there is no reason to switch from classes to functions just because of useState/useEffect hooks.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Hugo feedback problem</title>
       <link>https://snowyurik.github.io/post/hugo-feedback-problem/</link>
@@ -70,69 +163,69 @@ As for this blog is static website and hosted on github pages I can&amp;rsquo;t 
 &lt;/ul&gt;
 &lt;h2 id=&#34;here-are-some&#34;&gt;Here are some:&lt;/h2&gt;
 &lt;h3 id=&#34;start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console&#34;&gt;Start new process in parallel, suppress stdout/stderr and unlink from current console&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;parallel() {
-    nohup $@ &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;  
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Usage&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;parallel&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    nohup &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt; &amp;gt; /dev/null 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;  
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Usage&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;parallel command arg1 arg2 arg3 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;parallel kate .
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will open current folder in kate editor.&lt;/p&gt;
 &lt;h3 id=&#34;record-video-from-screen-with-ffmpeg&#34;&gt;Record video from screen with ffmpeg&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;capturescreen() {
-    ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 $1
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Usage&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;capturescreen&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    ffmpeg -video_size 1920x1080 -framerate &lt;span class=&#34;m&#34;&gt;25&lt;/span&gt; -f x11grab -i :0.0+0,0 &lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Usage&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;capturescreen outfile.mp4
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;git-branch-but-sorted-by-last-commit-date-and-with-description&#34;&gt;git branch, but sorted by last commit date and with description&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;gitbranches() {
-    branch=&amp;quot;&amp;quot;
-    branches=`git branch $@`
-    while read -r branch; do
-        clean_branch_name=${branch//\*\ /}
-        description=`git config branch.$clean_branch_name.description`
-        lastcommitdate=`git for-each-ref --sort=committerdate &amp;quot;refs/heads/**/${clean_branch_name}&amp;quot; --format=&#39;%(committerdate:short)&#39;`
-        if [ &amp;quot;$clean_branch_name&amp;quot; != &amp;quot;$branch&amp;quot; ]; then
-            printf &amp;quot;\033[0;32m&amp;quot;;
-        fi;
-        printf &amp;quot;%-15s %s\n&amp;quot; &amp;quot;$branch    [$lastcommitdate]   $description&amp;quot;
-        if [ &amp;quot;$clean_branch_name&amp;quot; != &amp;quot;$branch&amp;quot; ]; then
-            printf &amp;quot;\033[0m&amp;quot;;
-        fi;
-    done &amp;lt;&amp;lt;&amp;lt; &amp;quot;$branches&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Useful if you use branch per task, like in GitFlow. You can pass &lt;code&gt;git branch&lt;/code&gt; attributes to this function as usual&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gitbranches&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nv&#34;&gt;branch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;nv&#34;&gt;branches&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;git branch &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt; -r branch&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;clean_branch_name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;branch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\*\ &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;git config branch.&lt;span class=&#34;nv&#34;&gt;$clean_branch_name&lt;/span&gt;.description&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;lastcommitdate&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;git &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;-each-ref --sort&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;committerdate &lt;span class=&#34;s2&#34;&gt;&amp;#34;refs/heads/**/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;clean_branch_name&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; --format&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%(committerdate:short)&amp;#39;&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$clean_branch_name&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branch&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+            &lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;\033[0;32m&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;%-15s %s\n&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branch&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    [&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$lastcommitdate&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;]   &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$description&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$clean_branch_name&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branch&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+            &lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;\033[0m&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$branches&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Useful if you use branch per task, like in GitFlow. You can pass &lt;code&gt;git branch&lt;/code&gt; attributes to this function as usual&lt;/p&gt;
 &lt;p&gt;Example&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;gitbranches --no-merged
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;init-envvars-for-my-current-projects&#34;&gt;Init envvars for my current projects&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;initmyenv() {
-    if ! [[ &amp;quot;$PATH&amp;quot; =~ &amp;quot;$HOME//scripts:&amp;quot; ]]
-    then
-        PATH=&amp;quot;$HOME//scripts:$PATH&amp;quot;
-    fi
-    export PATH
-    export PROJECT1_DBCONNECT=&amp;quot;Server=localhost;Database=project1;User Id=sa;Password=somepw;&amp;quot;
-    export PROJECT2_DBCONNECT=&amp;quot;Server=localhost;Database=project2;User Id=sa;Password=somepw;&amp;quot;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;initmyenv&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; ! &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;~ &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;//scripts:&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;//scripts:&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; PATH
+    &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PROJECT1_DBCONNECT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Server=localhost;Database=project1;User Id=sa;Password=somepw;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PROJECT2_DBCONNECT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Server=localhost;Database=project2;User Id=sa;Password=somepw;&amp;#34;&lt;/span&gt;
     ...
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Btw, whis way you do not leak you db password to git. Search 12factor for more )&lt;/p&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Btw, whis way you do not leak you db password to git. Search 12factor for more )&lt;/p&gt;
 &lt;h3 id=&#34;show-git-graph-in-text-mode&#34;&gt;Show git graph in text mode&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;gitgraph() {
-    git log --graph --full-history --all --color --pretty=format:&amp;quot;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;help-for-my-ustom-commands&#34;&gt;Help for my ustom commands&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;helb() {
-    echo &amp;quot;.. i need sombody, heeeelb&amp;quot;;
-    echo &amp;quot;
-        parallel &amp;lt;cmd&amp;gt; &amp;lt;args&amp;gt;   - run command in parallel and forward stderr and stdout to /dev/null
-        gitgraph                - display git log in nice form, with branch tree
-        gitbranches             - display git branch with descriptions
-        capturescreen   &amp;lt;outfile&amp;gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
-    &amp;quot;;
-    # also show my custom scripts
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gitgraph&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    git log --graph --full-history --all --color --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;format:&lt;span class=&#34;s2&#34;&gt;&amp;#34;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;help-for-my-ustom-commands&#34;&gt;Help for my ustom commands&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helb&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;.. i need sombody, heeeelb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;        parallel &amp;lt;cmd&amp;gt; &amp;lt;args&amp;gt;   - run command in parallel and forward stderr and stdout to /dev/null
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;        gitgraph                - display git log in nice form, with branch tree
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;        gitbranches             - display git branch with descriptions
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;        capturescreen   &amp;lt;outfile&amp;gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;# also show my custom scripts&lt;/span&gt;
     ls -1 ~/scripts
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I put call to  &lt;code&gt;helb&lt;/code&gt; at the end of .bashrc, so every time I run new console I can see it.
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I put call to  &lt;code&gt;helb&lt;/code&gt; at the end of .bashrc, so every time I run new console I can see it.
 That&amp;rsquo;s it )&lt;/p&gt;</description>
     </item>
     
@@ -144,44 +237,44 @@ That&amp;rsquo;s it )&lt;/p&gt;</description>
       <guid>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s say we save some list of items and then read it back.
 Here is our original list:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;List&amp;lt;MyItem&amp;gt; myItemList = new ArrayList&amp;lt;MyItem&amp;gt;() {{
-        add( new MyItem() {{
-            title = &amp;quot;Test Item 1&amp;quot;;
-        }});
-        add( ... );
-        ...
-    }};
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And we have mockMvc defined like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Autowired MockMvc mvc;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can store the list with &lt;code&gt;mvc.perform( put(&amp;quot;/api/myitem/list&amp;quot; )).andExpect( status().isOk() )&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;myItemList&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Test Item 1&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;}});&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we have mockMvc defined like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@Autowired&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MockMvc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mvc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can store the list with &lt;code&gt;mvc.perform( put(&amp;quot;/api/myitem/list&amp;quot; )).andExpect( status().isOk() )&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;We can read the list with &lt;code&gt;mvc.perform( get(&amp;quot;/api/myitem/list&amp;quot; )).andExpect( status().isOk() )&lt;/code&gt;.
 But!&lt;/p&gt;
 &lt;h3 id=&#34;the-problem&#34;&gt;The problem&lt;/h3&gt;
 &lt;p&gt;We do not have database ids in our original list.
 So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&gt; will give us false-negative result.&lt;/p&gt;
 &lt;h3 id=&#34;solution---use-lambda-callback-for-comparison&#34;&gt;Solution - use lambda callback for comparison&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;this.mvc.perform(get(&amp;quot;/api/myitem/list&amp;quot;))
-    .andExpect( status().isOk() )
-    .andExpect( (result)-&amp;gt;{ // lambda for ResultMatcher
-                            // return void
-                            // if result not match expectation - we should throw exception
-    
-        String jsonString = result.getResponse().getContentAsString();
-        List&amp;lt;MyItem&amp;gt; storedMyItemList = objectMapper.readValue(jsonString, 
-                                            new TypeReference&amp;lt;List&amp;lt;MyItem&amp;gt;&amp;gt;(){});
-        for( MyItem storedItem : storedMyItemList) {
-            myItemList.stream().filter( x -&amp;gt; storedItem.title.equals(x.title))
-                .findFirst().orElseThrow(
-                    () -&amp;gt; { // lambda for exception
-                        throw new AssertionError(&amp;quot;MyItem not found, expected: \n&amp;quot;
-                            + myItemListAsJsonString + &amp;quot;\nactual: \n&amp;quot; + jsonString
-                            + &amp;quot;myitem.id field is ignored&amp;quot;
-                        );
-                    }
-                );
-        }
-    });
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;mvc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;perform&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/api/myitem/list&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;andExpect&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;isOk&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;andExpect&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)-&amp;gt;{&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// lambda for ResultMatcher
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                            &lt;span class=&#34;c1&#34;&gt;// return void
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                            &lt;span class=&#34;c1&#34;&gt;// if result not match expectation - we should throw exception
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    
+        &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;jsonString&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getResponse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getContentAsString&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storedMyItemList&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;objectMapper&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;readValue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;jsonString&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; 
+                                            &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TypeReference&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;(){});&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storedItem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storedMyItemList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;myItemList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;stream&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;filter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storedItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;findFirst&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;orElseThrow&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
+                    &lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// lambda for exception
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                        &lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AssertionError&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;MyItem not found, expected: \n&amp;#34;&lt;/span&gt;
+                            &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;myItemListAsJsonString&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;\nactual: \n&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;jsonString&lt;/span&gt;
+                            &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;myitem.id field is ignored&amp;#34;&lt;/span&gt;
+                        &lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+                    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -225,51 +318,51 @@ Both will work with same data, so we need 3rd project which will be linked as de
 &lt;p&gt;Package name aka namespace has to be the same for rootProject and submodules.&lt;/p&gt;
 &lt;h3 id=&#34;groupid&#34;&gt;GroupID&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;project/groupId&lt;/code&gt; also has to be the same for rootProject and submodules, like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;project ..&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;project&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
   ...
-  &amp;lt;groupId&amp;gt;org.rootProject&amp;lt;/groupId&amp;gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
   ...
-&amp;lt;/project&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;rootproject-has-to-link-to-all-modules&#34;&gt;RootProject has to link to all modules:&lt;/h3&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/project&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;rootproject-has-to-link-to-all-modules&#34;&gt;RootProject has to link to all modules:&lt;/h3&gt;
 &lt;p&gt;file: rootProject/pom.xml&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;project ..&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;project&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
   ...
-  &amp;lt;!-- modules --&amp;gt;
-  &amp;lt;modules&amp;gt;
-    &amp;lt;module&amp;gt;web&amp;lt;/module&amp;gt;
-    &amp;lt;module&amp;gt;cli&amp;lt;/module&amp;gt;
-    &amp;lt;module&amp;gt;datalib&amp;lt;/module&amp;gt;
-  &amp;lt;/modules&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;modules-has-to-link-rootproject-as-a-parent&#34;&gt;Modules has to link rootProject as a parent&lt;/h3&gt;
+  &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- modules --&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;lt;modules&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;module&amp;gt;&lt;/span&gt;web&lt;span class=&#34;nt&#34;&gt;&amp;lt;/module&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;module&amp;gt;&lt;/span&gt;cli&lt;span class=&#34;nt&#34;&gt;&amp;lt;/module&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;module&amp;gt;&lt;/span&gt;datalib&lt;span class=&#34;nt&#34;&gt;&amp;lt;/module&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/modules&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;modules-has-to-link-rootproject-as-a-parent&#34;&gt;Modules has to link rootProject as a parent&lt;/h3&gt;
 &lt;p&gt;files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;project&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;project&amp;gt;&lt;/span&gt;
     ...
-    &amp;lt;parent&amp;gt;
-        &amp;lt;artifactId&amp;gt;rootProject&amp;lt;/artifactId&amp;gt;
-        &amp;lt;groupId&amp;gt;org.rootProject&amp;lt;/groupId&amp;gt;
-        &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
-    &amp;lt;/parent&amp;gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;parent&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.0-SNAPSHOT&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/parent&amp;gt;&lt;/span&gt;
     ...
-&amp;lt;/project&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;but-wait-spring-has-to-be-parent-project-too&#34;&gt;But wait! Spring has to be parent project too!&lt;/h3&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/project&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;but-wait-spring-has-to-be-parent-project-too&#34;&gt;But wait! Spring has to be parent project too!&lt;/h3&gt;
 &lt;p&gt;Obviously, we can&amp;rsquo;t have 2 parants for the module.
 So we have to move spring reference to rootProject/pom.xml.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;project&amp;gt;
-    &amp;lt;groupId&amp;gt;org.rootProject&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;rootProject&amp;lt;/artifactId&amp;gt;
-    &amp;lt;packaging&amp;gt;pom&amp;lt;/packaging&amp;gt;
-    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
-    &amp;lt;name&amp;gt;rootProject&amp;lt;/name&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;project&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;packaging&amp;gt;&lt;/span&gt;pom&lt;span class=&#34;nt&#34;&gt;&amp;lt;/packaging&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.0-SNAPSHOT&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
     
-    &amp;lt;parent&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;2.7.4&amp;lt;/version&amp;gt;
-        &amp;lt;relativePath/&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt;
-    &amp;lt;/parent&amp;gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;parent&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-boot-starter-parent&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;2.7.4&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;relativePath/&amp;gt;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- lookup parent from repository --&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/parent&amp;gt;&lt;/span&gt;
     ...
-&amp;lt;/project&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Hierarhy is like this:&lt;/p&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/project&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hierarhy is like this:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Spring Boot&lt;/li&gt;
 &lt;li&gt;
@@ -308,21 +401,21 @@ So we have to move spring reference to rootProject/pom.xml.&lt;/p&gt;
 &lt;h3 id=&#34;using-one-module-from-another&#34;&gt;Using one module from another&lt;/h3&gt;
 &lt;p&gt;Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:&lt;/p&gt;
 &lt;p&gt;files: rootProject/cli/pom.xml, rootProject/web/pom.xml&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;project&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;project&amp;gt;&lt;/span&gt;
     ...
-    &amp;lt;dependencies&amp;gt;
-		&amp;lt;dependency&amp;gt;
-			&amp;lt;groupId&amp;gt;org.rootProject&amp;lt;/groupId&amp;gt;
-			&amp;lt;artifactId&amp;gt;datalib&amp;lt;/artifactId&amp;gt;
-			&amp;lt;version&amp;gt;${project.version}&amp;lt;/version&amp;gt;
-			&amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-			&amp;lt;type&amp;gt;jar&amp;lt;/type&amp;gt;
-		&amp;lt;/dependency&amp;gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+		&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+			&lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.rootProject&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+			&lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;datalib&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+			&lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;${project.version}&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+			&lt;span class=&#34;nt&#34;&gt;&amp;lt;scope&amp;gt;&lt;/span&gt;provided&lt;span class=&#34;nt&#34;&gt;&amp;lt;/scope&amp;gt;&lt;/span&gt;
+			&lt;span class=&#34;nt&#34;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;jar&lt;span class=&#34;nt&#34;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+		&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
 		...
-    &amp;lt;/dependencies&amp;gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
     ...
-&amp;lt;/project&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;build-commands&#34;&gt;Build commands&lt;/h3&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/project&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;build-commands&#34;&gt;Build commands&lt;/h3&gt;
 &lt;p&gt;That&amp;rsquo;s a bit counterintuitive. You need 2 commands:&lt;/p&gt;
 &lt;p&gt;From rootProject/&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mvn clean install

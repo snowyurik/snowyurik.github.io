@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Typescript | Snowyurik&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+	<link rel="alternate" type="application/rss+xml" href="/tags/typescript/index.xml" title="Snowyurik's Blog">
+		
+	<link rel="stylesheet" href="/highlight-api-smooth.css">
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-15855473-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-15855473-1');
+	</script>
+</head>
+<body class="body kind-term">
+	<header class="header">
+	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
+	
+<nav class="main-nav" role="navigation">
+	<button id="toggle" class="main-nav__btn" aria-label="Menu toggle" aria-expanded="false" tabindex="0">
+		<div class="main-nav__btn-box" tabindex="-1">
+			<svg class="main-nav__icon icon-menu" width="18" height="18" viewBox="0 0 18 18">
+				<path class="icon-menu__burger" d="M18 0v3.6H0V0h18zM0 10.8h18V7.2H0v3.6zM0 18h18v-3.6H0V18z"/>
+				<path class="icon-menu__x" d="M11.55 9L18 15.45 15.45 18 9 11.55 2.55 18 0 15.45 6.45 9 0 2.55 2.55 0 9 6.45 15.45 0 18 2.55 11.55 9z"/>
+			</svg>
+		</div>
+	</button>
+	<ul id="menu" class="main-nav__list">
+			<li class="main-nav__item">
+				<a class="main-nav__link" href="/hireme/">
+					
+					<span class="main-nav__text">Contacts (hire me!)</span>
+					
+				</a>
+			</li>
+	</ul>
+</nav>
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+		<div class="page block">
+			<h1 class="page__title">Typescript</h1>
+			
+		</div>
+		<div class="cards">
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/">Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</a></h1>
+	<div class="entry__content"><p>If you are using ReactJS with Typescript there are 2 alternative code styles: class based components and function based components.</p>
+<p><code>useState</code> and <code>useEffect</code> belong to function component style only.</p>
+<p>For object-oriented style we use <code>state interface</code> instead of <code>useState</code> and <code>componentDidUpdate</code> instead of <code>useEffect</code>.</p>
+<h1 id="example">Example</h1>
+<h2 id="function-based-component">Function based component</h2>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">MyFunctionComponentProps</span> <span class="p">{</span>
+    <span class="nx">text</span>:<span class="kt">string</span><span class="p">;</span>
+    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">MyFunctionComponent</span>: <span class="kt">React.FC</span><span class="p">&lt;</span><span class="nt">MyFunctionComponentProps</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">({})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">setItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">number</span><span class="err">[]</span><span class="p">&gt;([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">title</span><span class="p">,</span> <span class="nx">setTitle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;(</span><span class="s2">&#34;default title&#34;</span><span class="p">);</span>
+    
+    <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// fires if entire state changed
+</span><span class="c1"></span>    <span class="p">});</span>
+    
+    <span class="nx">useEffect</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+        <span class="c1">// fires only if title changed
+</span><span class="c1"></span>    <span class="p">},[</span><span class="nx">title</span><span class="p">]);</span>
+    
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>See also:</p>
+<ul>
+<li>useEffect <a href="https://reactjs.org/docs/hooks-reference.html#useeffect">https://reactjs.org/docs/hooks-reference.html#useeffect</a></li>
+<li>useState <a href="https://reactjs.org/docs/hooks-reference.html#usestate">https://reactjs.org/docs/hooks-reference.html#usestate</a></li>
+<li>functional components and hooks general info <a href="https://reactjs.org/docs/hooks-overview.html">https://reactjs.org/docs/hooks-overview.html</a></li>
+</ul>
+<h2 id="class-based-component">Class based component</h2>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">from</span> <span class="s2">&#34;react-konva&#34;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">MyClassComponentProps</span> <span class="p">{</span>
+    <span class="nx">text</span>:<span class="kt">string</span><span class="p">;</span>
+    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// this is useState hook alternative for class component
+</span><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">MyClassComponentState</span> <span class="p">{</span>
+    <span class="nx">items</span>: <span class="kt">number</span><span class="p">[];</span>
+    <span class="nx">title</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">MyClassComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">&lt;</span><span class="nt">MyClassComponentProps</span><span class="err">,</span> <span class="na">MyClassComponentState</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="c1">// default values for props
+</span><span class="c1"></span>    <span class="kr">public</span> <span class="kr">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nx">x</span>: <span class="kt">0</span><span class="p">,</span>
+        <span class="nx">y</span>: <span class="kt">0</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="kr">public</span> <span class="kr">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="c1">// initial component state
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">items</span><span class="o">:</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// this is useEffect alternative for class component
+</span><span class="c1"></span>    <span class="kr">public</span> <span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// do something if props or state is changed
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span> <span class="nx">prevState</span><span class="p">.</span><span class="nx">title</span> <span class="o">!==</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// do something if title is changed
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kr">public</span> <span class="nx">render() {</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>See also <a href="https://reactjs.org/docs/react-component.html">https://reactjs.org/docs/react-component.html</a></p>
+<h2 id="pros-and-cons">Pros and cons</h2>
+<p>As you can see, functional component code is much shorted and more clear.. in this particular case. Anyway, there is no reason to switch from classes to functions just because of useState/useEffect hooks.</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-17T15:37:13&#43;07:00">November 17, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/typescript/" rel="tag">Typescript</a>, 
+		<a class="meta-tags__link" href="/tags/reactjs/" rel="tag">ReactJS</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+		</div>
+	</main>
+	
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/snowyurik">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2022 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+<script src="/js/menu.js"></script>
+</body>
+</html>
