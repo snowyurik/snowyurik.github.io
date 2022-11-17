@@ -74,7 +74,7 @@ collected 0 items
 ============================= no tests ran in 0.00s =============================
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Same message, but as for as our expectation changed, we can&amp;rsquo;t be satisfied with it anymore.
 From now we will interpret &lt;code&gt; no tests ran in 0.00s&lt;/code&gt; as &lt;code&gt;RED&lt;/code&gt; state.&lt;/p&gt;
-&lt;h3 id=&#34;lets-fix-that-and-confirm-the-fix-&#34;&gt;Lets fix that and confirm the fix 😊&lt;/h3&gt;
+&lt;h3 id=&#34;lets-fix-that-and-confirm-the-fix-&#34;&gt;Let&amp;rsquo;s fix that and confirm the fix 😊&lt;/h3&gt;
 &lt;p&gt;Add simplest possible test.&lt;br&gt;
 Here are some official docs &lt;a href=&#34;https://docs.pytest.org/en/7.2.x/getting-started.html&#34;&gt;https://docs.pytest.org/en/7.2.x/getting-started.html&lt;/a&gt; but who have time to read everything?&lt;br&gt;
 That will be just empty file, test.py (by the way, that&amp;rsquo;s not correct name)&lt;/p&gt;
