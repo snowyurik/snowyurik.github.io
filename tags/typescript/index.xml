@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Typescript on Snowyurik&#39;s Blog</title>
-    <link>https://snowyurik.github.io/tags/typescript/</link>
+    <link>https://snowyurik.vihv.org/tags/typescript/</link>
     <description>Recent content in Typescript on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 15:37:13 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 15:37:13 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</title>
-      <link>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
+      <link>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
       <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</guid>
+      <guid>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</guid>
       <description>&lt;p&gt;If you are using ReactJS with Typescript there are 2 alternative code styles: class based components and function based components.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;useEffect&lt;/code&gt; belong to function component style only.&lt;/p&gt;
 &lt;p&gt;For object-oriented style we use &lt;code&gt;state interface&lt;/code&gt; instead of &lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;componentDidUpdate&lt;/code&gt; instead of &lt;code&gt;useEffect&lt;/code&gt;.&lt;/p&gt;

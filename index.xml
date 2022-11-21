@@ -2,17 +2,148 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Snowyurik&#39;s Blog</title>
-    <link>https://snowyurik.github.io/</link>
+    <link>https://snowyurik.vihv.org/</link>
     <description>Recent content on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Nov 2022 10:20:49 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Boot Multimodule App to Kubernetes</title>
+      <link>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</link>
+      <pubDate>Sun, 20 Nov 2022 10:20:49 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Previously on the series: /post/mvn.spring.boot.multimodule/
+(I will use same setup)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;create-docker-image&#34;&gt;Create docker image&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;mvn -am -pl web spring-boot:build-image
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Where &lt;code&gt;web&lt;/code&gt; is subproject name. According to 12factor we have to use enviromnemt variables for connections, and we will propbably have at least jdbc connection to database,
+so it becomes:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DATASOURCE_URL=&amp;quot;jdbc:mysql://localhost:3306/dbname&amp;quot; \
+DATASOURCE_USERNAME=&amp;quot;username&amp;quot; \
+DATASOURCE_PASSWORD=&amp;quot;password&amp;quot; \
+mvn -am -pl web spring-boot:build-image
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(If it&amp;rsquo;s not multimodule, just skip &lt;code&gt;-am -pl web&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;When build is finished, we should get in the output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Successfully built image &#39;docker.io/library/projectName:1.0-SNAPSHOT&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Whis image name can be used to run docker container&lt;/p&gt;
+&lt;h2 id=&#34;run-in-docker&#34;&gt;Run in docker&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;docker run --network=&amp;quot;host&amp;quot; \
+    -e DATASOURCE_URL=&amp;quot;jdbc:mysql://localhost:3306/dbname&amp;quot; \
+    -e DATASOURCE_USERNAME=&amp;quot;username&amp;quot; \
+    -e DATASOURCE_PASSWORD=&amp;quot;password&amp;quot; \
+    -p 8080:8080 \
+    projectName:1.0-SNAPSHOT
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now we have the image, but kubernetes can&amp;rsquo;t access it yet. Image has to be pushed to some &lt;code&gt;registry&lt;/code&gt; or loaded into minikube directly like this:&lt;/p&gt;
+&lt;h2 id=&#34;load-image-to-minikube&#34;&gt;Load image to minikube&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;minikube image load projectName:1.0-SNAPSHOT
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;generate-yaml-for-kubernetes-deployment&#34;&gt;Generate .yaml for kubernetes deployment&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;kubectl create deployment \
+    --image=projectName:1.0-SNAPSHOT \
+    --dry-run=client \
+    -o=yaml projectName &amp;gt; projectName.yaml
+echo --- &amp;gt;&amp;gt; projectName.yaml
+kubectl create service clusterip projectName \
+    --tcp=8080:8080 \
+    --dry-run=client \
+    -o=yaml &amp;gt;&amp;gt; projectName.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;adjust-spectemplatespeccontainers&#34;&gt;Adjust spec/template/spec/containers&lt;/h2&gt;
+&lt;h3 id=&#34;disable-image-pull&#34;&gt;Disable image pull&lt;/h3&gt;
+&lt;p&gt;As for we use local image we do not need kubernetes to pull it from Docker public registry.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;imagePullPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Never&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;connection-to-external-database-on-localhost&#34;&gt;Connection to external database on localhost&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_URL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;jdbc:mysql://host.minikube.internal:3306/projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_USERNAME&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_PASSWORD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Notice &lt;code&gt;host.minikube.internal&lt;/code&gt; this is host name for your host machine, localhost will point to the pod itself (to guest vm).&lt;/p&gt;
+&lt;h3 id=&#34;result-should-look-like-this&#34;&gt;Result should look like this&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;apiVersion&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;apps/v1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;kind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Deployment&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;creationTimestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;spec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replicas&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;selector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;matchLabels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;strategy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{}&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;creationTimestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;spec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;containers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName:1.0-SNAPSHOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;imagePullPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Never&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_URL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;jdbc:mysql://host.minikube.internal:3306/projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_USERNAME&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;DATASOURCE_PASSWORD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;projectName&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;resources&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{}&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;---&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;apiVersion&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;v1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;kind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Service&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;creationTimestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;labels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;spec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8080-8080&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8080&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;TCP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;targetPort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8080&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;selector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;projectName&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ClusterIP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;loadBalancer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{}&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;apply-projectnameyaml&#34;&gt;Apply projectName.yaml&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;kubectl apply -f projectName.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After that &lt;code&gt;kubectl get pods&lt;/code&gt; should return list of pods with state &lt;code&gt;Running&lt;/code&gt; next to &lt;code&gt;projectName-XXXXXXX-XXX&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;view-logs&#34;&gt;View logs&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;kubectl logs POD_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Will shouw you console output, like&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  .   ____          _            __ _ _
+ /\\ / ___&#39;_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | &#39;_ | &#39;_| | &#39;_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  &#39;  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+...
+2022-11-20 06:00:24.718  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path &#39;&#39;
+2022-11-20 06:00:24.730  INFO 1 --- [           main] org.Application       : Started Application in 4.718 seconds (JVM running for 4.967)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Or some errors if any.&lt;/p&gt;
+&lt;p&gt;Now pod is running, but it lives iside the cluster, so we need to get access from the outside.&lt;/p&gt;
+&lt;h2 id=&#34;access-service-through-proxy&#34;&gt;Access service through proxy&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;kubectl port-forward svc/projectName 8080:8080
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now you should be able to connect to your spring-boot application using http://localhost:8080&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>How to start with unit testing in python</title>
-      <link>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</link>
+      <link>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</link>
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</guid>
+      <guid>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Sponsored repty to Vasilina and Nazar&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -262,10 +393,10 @@ Just keep it simple, keep it iterative, do small steps, always refactor old code
     
     <item>
       <title>Typescript&#43;ReactJS: useState/useEffect vs component state interface/componentDidUpdate</title>
-      <link>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
+      <link>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</link>
       <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</guid>
+      <guid>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</guid>
       <description>&lt;p&gt;If you are using ReactJS with Typescript there are 2 alternative code styles: class based components and function based components.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;useEffect&lt;/code&gt; belong to function component style only.&lt;/p&gt;
 &lt;p&gt;For object-oriented style we use &lt;code&gt;state interface&lt;/code&gt; instead of &lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;componentDidUpdate&lt;/code&gt; instead of &lt;code&gt;useEffect&lt;/code&gt;.&lt;/p&gt;
@@ -355,10 +486,10 @@ Just keep it simple, keep it iterative, do small steps, always refactor old code
     
     <item>
       <title>Hugo feedback problem</title>
-      <link>https://snowyurik.github.io/post/hugo-feedback-problem/</link>
+      <link>https://snowyurik.vihv.org/post/hugo-feedback-problem/</link>
       <pubDate>Wed, 09 Nov 2022 02:38:59 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/hugo-feedback-problem/</guid>
+      <guid>https://snowyurik.vihv.org/post/hugo-feedback-problem/</guid>
       <description>&lt;p&gt;Ok I have this static blog now, it&amp;rsquo;s kind of useful for myslef, but I have no idea if anyone else read it.
 I can use some 3rd party js based tracker, but adblockers will cancel them and I that&amp;rsquo;s feels right.
 As for this blog is static website and hosted on github pages I can&amp;rsquo;t count visitors myself on server side.&lt;/p&gt;
@@ -405,10 +536,10 @@ As for this blog is static website and hosted on github pages I can&amp;rsquo;t 
     
     <item>
       <title>Just a few useful .bashrc changes</title>
-      <link>https://snowyurik.github.io/post/just-a-few-useful-bashrc/</link>
+      <link>https://snowyurik.vihv.org/post/just-a-few-useful-bashrc/</link>
       <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/just-a-few-useful-bashrc/</guid>
+      <guid>https://snowyurik.vihv.org/post/just-a-few-useful-bashrc/</guid>
       <description>&lt;p&gt;I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If command is too long to memorise&lt;/li&gt;
@@ -484,10 +615,10 @@ That&amp;rsquo;s it )&lt;/p&gt;</description>
     
     <item>
       <title>ResultMatcher for .addExpect</title>
-      <link>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</link>
+      <link>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</guid>
+      <guid>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s say we save some list of items and then read it back.
 Here is our original list:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;myItemList&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt;
@@ -532,10 +663,10 @@ So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&g
     
     <item>
       <title>Hire me</title>
-      <link>https://snowyurik.github.io/hireme/</link>
+      <link>https://snowyurik.vihv.org/hireme/</link>
       <pubDate>Fri, 28 Oct 2022 22:47:20 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/hireme/</guid>
+      <guid>https://snowyurik.vihv.org/hireme/</guid>
       <description>&lt;h2 id=&#34;contacts&#34;&gt;Contacts&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;email: &lt;a href=&#34;mailto:yuriy@vihv.org&#34;&gt;yuriy@vihv.org&lt;/a&gt;&lt;/li&gt;
@@ -551,10 +682,10 @@ So &lt;code&gt;.andExpect( content().json( myItemListAsJsonString ) )&lt;/code&g
     
     <item>
       <title>Maven multimodule project with Spring Boot</title>
-      <link>https://snowyurik.github.io/post/mvn.spring.boot.multimodule/</link>
+      <link>https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/</link>
       <pubDate>Fri, 28 Oct 2022 18:30:30 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/mvn.spring.boot.multimodule/</guid>
+      <guid>https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/</guid>
       <description>&lt;p&gt;I will try to be close to real task here.
 Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
 Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.&lt;/p&gt;
@@ -685,10 +816,10 @@ To run maven commands on subproject, you need to use -pl and -am, like this:&lt;
     
     <item>
       <title>A bit of everyday hugo commands</title>
-      <link>https://snowyurik.github.io/post/hugocommands/</link>
+      <link>https://snowyurik.vihv.org/post/hugocommands/</link>
       <pubDate>Fri, 28 Oct 2022 01:44:42 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/hugocommands/</guid>
+      <guid>https://snowyurik.vihv.org/post/hugocommands/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m using Hugo as blog engine. So, here is a bit of cli commands&lt;/p&gt;
 &lt;h3 id=&#34;create-new-post&#34;&gt;Create new post&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;hugo new post/postname.md
@@ -730,10 +861,10 @@ draft: false
     
     <item>
       <title>So, it&#39;s crisis time</title>
-      <link>https://snowyurik.github.io/post/initblog/</link>
+      <link>https://snowyurik.vihv.org/post/initblog/</link>
       <pubDate>Fri, 28 Oct 2022 01:28:11 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/initblog/</guid>
+      <guid>https://snowyurik.vihv.org/post/initblog/</guid>
       <description>&lt;p&gt;Hosting services become unpredictable this days. The fact is: you can loose access to your content.
 Using &amp;ldquo;discipline&amp;rdquo; for content backup does not work long term, even if backups are automated.
 But there is solution:&lt;/p&gt;

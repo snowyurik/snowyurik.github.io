@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pyhton on Snowyurik&#39;s Blog</title>
-    <link>https://snowyurik.github.io/tags/pyhton/</link>
+    <link>https://snowyurik.vihv.org/tags/pyhton/</link>
     <description>Recent content in Pyhton on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/pyhton/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/pyhton/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to start with unit testing in python</title>
-      <link>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</link>
+      <link>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</link>
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</guid>
+      <guid>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Sponsored repty to Vasilina and Nazar&lt;/p&gt;
 &lt;/blockquote&gt;

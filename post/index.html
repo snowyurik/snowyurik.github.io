@@ -62,6 +62,138 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/spring-boot-app-to-kubernetes/">Spring Boot Multimodule App to Kubernetes</a></h1>
+	<div class="entry__content"><blockquote>
+<p>Previously on the series: /post/mvn.spring.boot.multimodule/
+(I will use same setup)</p>
+</blockquote>
+<h2 id="create-docker-image">Create docker image</h2>
+<pre><code>mvn -am -pl web spring-boot:build-image
+</code></pre><p>Where <code>web</code> is subproject name. According to 12factor we have to use enviromnemt variables for connections, and we will propbably have at least jdbc connection to database,
+so it becomes:</p>
+<pre><code>DATASOURCE_URL=&quot;jdbc:mysql://localhost:3306/dbname&quot; \
+DATASOURCE_USERNAME=&quot;username&quot; \
+DATASOURCE_PASSWORD=&quot;password&quot; \
+mvn -am -pl web spring-boot:build-image
+</code></pre><p>(If it&rsquo;s not multimodule, just skip <code>-am -pl web</code>)</p>
+<p>When build is finished, we should get in the output:</p>
+<pre><code>Successfully built image 'docker.io/library/projectName:1.0-SNAPSHOT'
+</code></pre><p>Whis image name can be used to run docker container</p>
+<h2 id="run-in-docker">Run in docker</h2>
+<pre><code>docker run --network=&quot;host&quot; \
+    -e DATASOURCE_URL=&quot;jdbc:mysql://localhost:3306/dbname&quot; \
+    -e DATASOURCE_USERNAME=&quot;username&quot; \
+    -e DATASOURCE_PASSWORD=&quot;password&quot; \
+    -p 8080:8080 \
+    projectName:1.0-SNAPSHOT
+</code></pre><p>Now we have the image, but kubernetes can&rsquo;t access it yet. Image has to be pushed to some <code>registry</code> or loaded into minikube directly like this:</p>
+<h2 id="load-image-to-minikube">Load image to minikube</h2>
+<pre><code>minikube image load projectName:1.0-SNAPSHOT
+</code></pre><h2 id="generate-yaml-for-kubernetes-deployment">Generate .yaml for kubernetes deployment</h2>
+<pre><code>kubectl create deployment \
+    --image=projectName:1.0-SNAPSHOT \
+    --dry-run=client \
+    -o=yaml projectName &gt; projectName.yaml
+echo --- &gt;&gt; projectName.yaml
+kubectl create service clusterip projectName \
+    --tcp=8080:8080 \
+    --dry-run=client \
+    -o=yaml &gt;&gt; projectName.yaml
+</code></pre><h2 id="adjust-spectemplatespeccontainers">Adjust spec/template/spec/containers</h2>
+<h3 id="disable-image-pull">Disable image pull</h3>
+<p>As for we use local image we do not need kubernetes to pull it from Docker public registry.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span></code></pre></div><h3 id="connection-to-external-database-on-localhost">Connection to external database on localhost</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_URL</span><span class="w">
+</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;jdbc:mysql://host.minikube.internal:3306/projectName&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_USERNAME</span><span class="w">
+</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_PASSWORD</span><span class="w">
+</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
+</span></code></pre></div><p>Notice <code>host.minikube.internal</code> this is host name for your host machine, localhost will point to the pod itself (to guest vm).</p>
+<h3 id="result-should-look-like-this">Result should look like this</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">projectName:1.0-SNAPSHOT</span><span class="w">
+</span><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_URL</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;jdbc:mysql://host.minikube.internal:3306/projectName&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_USERNAME</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_PASSWORD</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span>}<span class="w">
+</span><span class="w"></span><span class="nt">status</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="m">8080-8080</span><span class="w">
+</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
+</span><span class="w"></span><span class="nt">status</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">loadBalancer</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></code></pre></div><h2 id="apply-projectnameyaml">Apply projectName.yaml</h2>
+<pre><code>kubectl apply -f projectName.yaml
+</code></pre><p>After that <code>kubectl get pods</code> should return list of pods with state <code>Running</code> next to <code>projectName-XXXXXXX-XXX</code></p>
+<h2 id="view-logs">View logs</h2>
+<pre><code>kubectl logs POD_NAME
+</code></pre><p>Will shouw you console output, like</p>
+<pre><code>  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.4)
+
+...
+2022-11-20 06:00:24.718  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-20 06:00:24.730  INFO 1 --- [           main] org.Application       : Started Application in 4.718 seconds (JVM running for 4.967)
+</code></pre><p>Or some errors if any.</p>
+<p>Now pod is running, but it lives iside the cluster, so we need to get access from the outside.</p>
+<h2 id="access-service-through-proxy">Access service through proxy</h2>
+<pre><code>kubectl port-forward svc/projectName 8080:8080
+</code></pre><p>Now you should be able to connect to your spring-boot application using http://localhost:8080</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-20T10:20:49&#43;07:00">November 20, 2022</time>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/how-to-start-with-unittesting-python/">How to start with unit testing in python</a></h1>
 	<div class="entry__content"><blockquote>
 <p>Sponsored repty to Vasilina and Nazar</p>

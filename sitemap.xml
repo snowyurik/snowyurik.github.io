@@ -3,117 +3,122 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://snowyurik.github.io/post/how-to-start-with-unittesting-python/</loc>
+    <loc>https://snowyurik.vihv.org/post/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/</loc>
+    <loc>https://snowyurik.vihv.org/tags/pyhton/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/pyhton/</loc>
+    <loc>https://snowyurik.vihv.org/tags/pytest/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/pytest/</loc>
+    <loc>https://snowyurik.vihv.org/tags/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/</loc>
+    <loc>https://snowyurik.vihv.org/tags/test-driving-development/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/</loc>
-    <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.github.io/tags/test-driving-development/</loc>
-    <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.github.io/tags/reactjs/</loc>
+    <loc>https://snowyurik.vihv.org/tags/reactjs/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/typescript/</loc>
+    <loc>https://snowyurik.vihv.org/tags/typescript/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</loc>
+    <loc>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/hugo-feedback-problem/</loc>
+    <loc>https://snowyurik.vihv.org/post/hugo-feedback-problem/</loc>
     <lastmod>2022-11-09T02:38:59+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/just-a-few-useful-bashrc/</loc>
+    <loc>https://snowyurik.vihv.org/post/just-a-few-useful-bashrc/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/java/</loc>
+    <loc>https://snowyurik.vihv.org/tags/java/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/rest/</loc>
+    <loc>https://snowyurik.vihv.org/tags/rest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</loc>
+    <loc>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/springboottest/</loc>
+    <loc>https://snowyurik.vihv.org/tags/springboottest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/unittest/</loc>
+    <loc>https://snowyurik.vihv.org/tags/unittest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/tags/webmvctest/</loc>
+    <loc>https://snowyurik.vihv.org/tags/webmvctest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/hireme/</loc>
+    <loc>https://snowyurik.vihv.org/hireme/</loc>
     <lastmod>2022-10-28T22:47:20+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/mvn.spring.boot.multimodule/</loc>
+    <loc>https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/hugocommands/</loc>
+    <loc>https://snowyurik.vihv.org/post/hugocommands/</loc>
     <lastmod>2022-10-28T01:44:42+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/post/initblog/</loc>
+    <loc>https://snowyurik.vihv.org/post/initblog/</loc>
     <lastmod>2022-10-28T01:28:11+07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://snowyurik.github.io/categories/</loc>
+    <loc>https://snowyurik.vihv.org/categories/</loc>
   </url>
   
 </urlset>

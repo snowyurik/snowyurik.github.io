@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on Snowyurik&#39;s Blog</title>
-    <link>https://snowyurik.github.io/tags/java/</link>
+    <link>https://snowyurik.vihv.org/tags/java/</link>
     <description>Recent content in Java on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Nov 2022 00:49:22 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ResultMatcher for .addExpect</title>
-      <link>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</link>
+      <link>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/post/webmvctest-custom-add-expect-result-matcher/</guid>
+      <guid>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s say we save some list of items and then read it back.
 Here is our original list:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;myItemList&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MyItem&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{{&lt;/span&gt;

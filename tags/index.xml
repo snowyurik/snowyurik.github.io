@@ -2,98 +2,98 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Snowyurik&#39;s Blog</title>
-    <link>https://snowyurik.github.io/tags/</link>
+    <link>https://snowyurik.vihv.org/tags/</link>
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pyhton</title>
-      <link>https://snowyurik.github.io/tags/pyhton/</link>
+      <link>https://snowyurik.vihv.org/tags/pyhton/</link>
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/pyhton/</guid>
+      <guid>https://snowyurik.vihv.org/tags/pyhton/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pytest</title>
-      <link>https://snowyurik.github.io/tags/pytest/</link>
+      <link>https://snowyurik.vihv.org/tags/pytest/</link>
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/pytest/</guid>
+      <guid>https://snowyurik.vihv.org/tags/pytest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test Driving Development</title>
-      <link>https://snowyurik.github.io/tags/test-driving-development/</link>
+      <link>https://snowyurik.vihv.org/tags/test-driving-development/</link>
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/test-driving-development/</guid>
+      <guid>https://snowyurik.vihv.org/tags/test-driving-development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ReactJS</title>
-      <link>https://snowyurik.github.io/tags/reactjs/</link>
+      <link>https://snowyurik.vihv.org/tags/reactjs/</link>
       <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/reactjs/</guid>
+      <guid>https://snowyurik.vihv.org/tags/reactjs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Typescript</title>
-      <link>https://snowyurik.github.io/tags/typescript/</link>
+      <link>https://snowyurik.vihv.org/tags/typescript/</link>
       <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/typescript/</guid>
+      <guid>https://snowyurik.vihv.org/tags/typescript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://snowyurik.github.io/tags/java/</link>
+      <link>https://snowyurik.vihv.org/tags/java/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/java/</guid>
+      <guid>https://snowyurik.vihv.org/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>REST</title>
-      <link>https://snowyurik.github.io/tags/rest/</link>
+      <link>https://snowyurik.vihv.org/tags/rest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/rest/</guid>
+      <guid>https://snowyurik.vihv.org/tags/rest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SpringBootTest</title>
-      <link>https://snowyurik.github.io/tags/springboottest/</link>
+      <link>https://snowyurik.vihv.org/tags/springboottest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/springboottest/</guid>
+      <guid>https://snowyurik.vihv.org/tags/springboottest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>UnitTest</title>
-      <link>https://snowyurik.github.io/tags/unittest/</link>
+      <link>https://snowyurik.vihv.org/tags/unittest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/unittest/</guid>
+      <guid>https://snowyurik.vihv.org/tags/unittest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WebMvcTest</title>
-      <link>https://snowyurik.github.io/tags/webmvctest/</link>
+      <link>https://snowyurik.vihv.org/tags/webmvctest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
-      <guid>https://snowyurik.github.io/tags/webmvctest/</guid>
+      <guid>https://snowyurik.vihv.org/tags/webmvctest/</guid>
       <description></description>
     </item>
     
