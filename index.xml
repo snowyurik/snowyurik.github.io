@@ -14,7 +14,7 @@
       
       <guid>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;Previously on the series: /post/mvn.spring.boot.multimodule/
+&lt;p&gt;&lt;a href=&#34;https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/&#34;&gt;Previously on the series&lt;/a&gt;
 (I will use same setup)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;create-docker-image&#34;&gt;Create docker image&lt;/h2&gt;

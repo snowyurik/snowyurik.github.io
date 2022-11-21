@@ -5,13 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>Maven multimodule project with Spring Boot | Snowyurik&#39;s Blog</title>
+	<title>SpringBoot | Snowyurik&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="yandex-verification" content="11817d5c29245445" />
 	<meta name="description" content="">
 	<link rel="stylesheet" href="/css/bundle.css">
 	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+	<link rel="alternate" type="application/rss+xml" href="/tags/springboot/index.xml" title="Snowyurik's Blog">
 		
 	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
@@ -25,7 +26,7 @@
 	gtag('config', 'UA-15855473-1');
 	</script>
 </head>
-<body class="body kind-page">
+<body class="body kind-term">
 	<header class="header">
 	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
 	
@@ -53,43 +54,16 @@
 	
 	<main class="main">
 		
-		<div class="single block">
-			<article class="entry">
-	<div class="entry__meta meta mb">
-	<time class="entry__meta-published meta-published" datetime="2022-10-28T18:30:30&#43;07:00">October 28, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
-		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
-		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
-		<a class="meta-tags__link" href="/tags/springboot/" rel="tag">SpringBoot</a>, 
-		<a class="meta-tags__link" href="/tags/multimodule/" rel="tag">Multimodule</a>
-	</span>
-</div>
-	</div>
-				<h1 class="entry__title">Maven multimodule project with Spring Boot</h1>
-<details class="entry__toc toc" open>
-	<summary class="toc__title">Table of Contents</summary>
-	<nav id="TableOfContents">
-  <ul>
-    <li><a href="#folder-structure">Folder structure</a></li>
-    <li><a href="#project-types">Project types</a></li>
-    <li><a href="#linking-everything-together">Linking everything together</a>
-      <ul>
-        <li><a href="#package-name">Package name</a></li>
-        <li><a href="#groupid">GroupID</a></li>
-        <li><a href="#rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</a></li>
-        <li><a href="#modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</a></li>
-        <li><a href="#but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</a></li>
-        <li><a href="#using-one-module-from-another">Using one module from another</a></li>
-        <li><a href="#build-commands">Build commands</a></li>
-        <li><a href="#spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-</details>
-				<div class="entry__content"><p>I will try to be close to real task here.
+		<div class="page block">
+			<h1 class="page__title">SpringBoot</h1>
+			
+		</div>
+		<div class="cards">
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/mvn.spring.boot.multimodule/">Maven multimodule project with Spring Boot</a></h1>
+	<div class="entry__content"><p>I will try to be close to real task here.
 Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
 Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.</p>
 <h2 id="folder-structure">Folder structure</h2>
@@ -215,27 +189,23 @@ To run maven commands on subproject, you need to use -pl and -am, like this:</p>
 <p><code>-pl</code> just short for &ndash;project and thats just set context to module.</p>
 <h3 id="spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</h3>
 <p>You king of can use spring only for web module, but you will need to create wrapper components for datalib classes. And I don&rsquo;t think it&rsquo;s possible to use Spring based datalib in cli if cli is not Spring based. But I might be wrong.</p></div>
-				
-				<footer class="entry__footer">
-					
-<div class="entry__tags">
-			<a class="entry__tag btn" href="/tags/kubernetes/">Kubernetes</a>
-			<a class="entry__tag btn" href="/tags/java/">Java</a>
-			<a class="entry__tag btn" href="/tags/spring/">Spring</a>
-			<a class="entry__tag btn" href="/tags/springboot/">SpringBoot</a>
-			<a class="entry__tag btn" href="/tags/multimodule/">Multimodule</a>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-10-28T18:30:30&#43;07:00">October 28, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
+		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
+		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
+		<a class="meta-tags__link" href="/tags/springboot/" rel="tag">SpringBoot</a>, 
+		<a class="meta-tags__link" href="/tags/multimodule/" rel="tag">Multimodule</a>
+	</span>
 </div>
-					
-				</footer>
-				
-			</article>
+	</div>
+</article>
+				</div>
+			
 		</div>
 	</main>
-	
-	
-
-
-
 	
 
 	</div>

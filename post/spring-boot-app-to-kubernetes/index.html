@@ -57,6 +57,14 @@
 			<article class="entry">
 	<div class="entry__meta meta mb">
 	<time class="entry__meta-published meta-published" datetime="2022-11-20T10:20:49&#43;07:00">November 20, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
+		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
+		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
+		<a class="meta-tags__link" href="/tags/microservice/" rel="tag">Microservice</a>
+	</span>
+</div>
 	</div>
 				<h1 class="entry__title">Spring Boot Multimodule App to Kubernetes</h1>
 <details class="entry__toc toc" open>
@@ -81,7 +89,7 @@
 </nav>
 </details>
 				<div class="entry__content"><blockquote>
-<p>Previously on the series: /post/mvn.spring.boot.multimodule/
+<p><a href="/post/mvn.spring.boot.multimodule/">Previously on the series</a>
 (I will use same setup)</p>
 </blockquote>
 <h2 id="create-docker-image">Create docker image</h2>
@@ -203,6 +211,17 @@ kubectl create service clusterip projectName \
 <h2 id="access-service-through-proxy">Access service through proxy</h2>
 <pre><code>kubectl port-forward svc/projectName 8080:8080
 </code></pre><p>Now you should be able to connect to your spring-boot application using http://localhost:8080</p></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/kubernetes/">Kubernetes</a>
+			<a class="entry__tag btn" href="/tags/java/">Java</a>
+			<a class="entry__tag btn" href="/tags/spring/">Spring</a>
+			<a class="entry__tag btn" href="/tags/microservice/">Microservice</a>
+</div>
+					
+				</footer>
 				
 			</article>
 		</div>

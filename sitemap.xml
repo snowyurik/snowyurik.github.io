@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://snowyurik.vihv.org/tags/java/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/kubernetes/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/microservice/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://snowyurik.vihv.org/post/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
   </url>
@@ -13,7 +28,17 @@
   </url>
   
   <url>
+    <loc>https://snowyurik.vihv.org/tags/spring/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</loc>
+    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
   </url>
   
@@ -29,11 +54,6 @@
   
   <url>
     <loc>https://snowyurik.vihv.org/tags/pytest/</loc>
-    <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/tags/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   
@@ -68,11 +88,6 @@
   </url>
   
   <url>
-    <loc>https://snowyurik.vihv.org/tags/java/</loc>
-    <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://snowyurik.vihv.org/tags/rest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
   </url>
@@ -104,6 +119,16 @@
   
   <url>
     <loc>https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/</loc>
+    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/multimodule/</loc>
+    <lastmod>2022-10-28T18:30:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/springboot/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
   </url>
   

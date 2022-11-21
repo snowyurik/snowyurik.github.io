@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Nov 2022 10:20:49 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java</title>
+      <link>https://snowyurik.vihv.org/tags/java/</link>
+      <pubDate>Sun, 20 Nov 2022 10:20:49 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://snowyurik.vihv.org/tags/kubernetes/</link>
+      <pubDate>Sun, 20 Nov 2022 10:20:49 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microservice</title>
+      <link>https://snowyurik.vihv.org/tags/microservice/</link>
+      <pubDate>Sun, 20 Nov 2022 10:20:49 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/microservice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>https://snowyurik.vihv.org/tags/spring/</link>
+      <pubDate>Sun, 20 Nov 2022 10:20:49 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/spring/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Pyhton</title>
       <link>https://snowyurik.vihv.org/tags/pyhton/</link>
@@ -53,15 +89,6 @@
     </item>
     
     <item>
-      <title>Java</title>
-      <link>https://snowyurik.vihv.org/tags/java/</link>
-      <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
-      
-      <guid>https://snowyurik.vihv.org/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>REST</title>
       <link>https://snowyurik.vihv.org/tags/rest/</link>
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
@@ -94,6 +121,24 @@
       <pubDate>Sun, 06 Nov 2022 00:49:22 +0700</pubDate>
       
       <guid>https://snowyurik.vihv.org/tags/webmvctest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multimodule</title>
+      <link>https://snowyurik.vihv.org/tags/multimodule/</link>
+      <pubDate>Fri, 28 Oct 2022 18:30:30 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/multimodule/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringBoot</title>
+      <link>https://snowyurik.vihv.org/tags/springboot/</link>
+      <pubDate>Fri, 28 Oct 2022 18:30:30 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/springboot/</guid>
       <description></description>
     </item>
     
