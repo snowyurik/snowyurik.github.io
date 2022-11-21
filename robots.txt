@@ -1,4 +1,4 @@
-Sitemap: https://snowyurik.github.io/sitemap.xml
 
 User-agent: *
 Disallow:
+Sitemap: https://snowyurik.vihv.org/sitemap.xml
