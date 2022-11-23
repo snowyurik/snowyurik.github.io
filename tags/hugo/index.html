@@ -5,13 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>A bit of everyday hugo commands | Snowyurik&#39;s Blog</title>
+	<title>Hugo | Snowyurik&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="yandex-verification" content="11817d5c29245445" />
-	<meta name="description" content="I&#39;m using Hugo as blog engine. So, here is a bit of cli commands:
-- hugo new post/postname.md
-- hugo server -D // server in dev mode
-- hugo server // server in prod mode ">
+	<meta name="description" content="">
 	<link rel="alternate"
       type="application/rss+xml"
       href="https://snowyurik.vihv.org//index.xml"
@@ -19,6 +16,7 @@
 	<link rel="stylesheet" href="/css/bundle.css">
 	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+	<link rel="alternate" type="application/rss+xml" href="/tags/hugo/index.xml" title="Snowyurik's Blog">
 		
 	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
@@ -32,7 +30,7 @@
 	gtag('config', 'UA-15855473-1');
 	</script>
 </head>
-<body class="body kind-page">
+<body class="body kind-term">
 	<header class="header">
 	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
 	
@@ -60,34 +58,39 @@
 	
 	<main class="main">
 		
-		<div class="single block">
-			<article class="entry">
-	<div class="entry__meta meta mb">
-	<time class="entry__meta-published meta-published" datetime="2022-10-28T01:44:42&#43;07:00">October 28, 2022</time>
+		<div class="page block">
+			<h1 class="page__title">Hugo</h1>
+			
+		</div>
+		<div class="cards">
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/unexpected-usefulness-of-hugo-offline-editing/">Unexpected usefulness of offline blogging with Hugo</a></h1>
+	<div class="entry__content"><p>Life in changing. Internet evolve and become available everywhere.. suddenly, we are more and more offline.</p>
+<p>When you have cable connection and expect to be online only in the office or at home - you are always online, always with good (or at least the same) speed. Then, mobile internet shine and at first it had affected only content reading, but not content creation.</p>
+<p>But now, lifestyle itself changed and people become more mobile. More and more professions become remote. That lead to more travel. And more travel lead to more time offline. Quite often: unexpectedly offline. But you still have to do your remote work in time.</p>
+<blockquote>
+<p>Right now I&rsquo;m writing this post from airport. I don&rsquo;t have local sim yet, and airport wifi disconnects every hour.</p>
+</blockquote>
+<p>With Hugo I stll can work with my website. Local server let me check everything, I can fix elder posts, can work around SEO, can write new.</p>
+<p>What can I do with oldschool CMS which require me to be online and with stable connection? Only teke some notes to copy-paste them into CMS and edit their look later. And even copy-paste can be harmful for website layout, as for lot&rsquo;s of CMS themes do not provide html validation and rely on WYSIWYG editors.</p>
+<p>My flight was rescheduled twice and so back in Wordpress days I will lose 27 hours of working time. That&rsquo;s a lot!</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-23T14:21:51&#43;07:00">November 23, 2022</time>
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
 	</span>
 </div>
 	</div>
-				<h1 class="entry__title">A bit of everyday hugo commands</h1>
-<details class="entry__toc toc" open>
-	<summary class="toc__title">Table of Contents</summary>
-	<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#create-new-post">Create new post</a></li>
-        <li><a href="#formatting-in-summary">Formatting in summary</a></li>
-        <li><a href="#publish-post">Publish post</a></li>
-        <li><a href="#run-locally">Run locally</a></li>
-        <li><a href="#deploy">Deploy</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-</details>
-				<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/hugocommands/">A bit of everyday hugo commands</a></h1>
+	<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
 <h3 id="create-new-post">Create new post</h3>
 <pre><code>hugo new post/postname.md
 </code></pre><h3 id="formatting-in-summary">Formatting in summary</h3>
@@ -124,23 +127,19 @@ draft: false
 <li><code>cd public &amp;&amp; git add . &amp;&amp; git commit -m 'whatever' &amp;&amp; git push</code></li>
 </ul>
 <p>Also: README.md has a priority over index.html, so, remove it if you had added it during project creation.</p></div>
-				
-				<footer class="entry__footer">
-					
-<div class="entry__tags">
-			<a class="entry__tag btn" href="/tags/hugo/">Hugo</a>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-10-28T01:44:42&#43;07:00">October 28, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
+	</span>
 </div>
-					
-				</footer>
-				
-			</article>
+	</div>
+</article>
+				</div>
+			
 		</div>
 	</main>
-	
-	
-
-
-
 	
 
 	</div>

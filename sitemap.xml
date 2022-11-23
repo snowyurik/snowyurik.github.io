@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://snowyurik.vihv.org/tags/hugo/</loc>
+    <lastmod>2022-11-23T14:21:51+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/</loc>
+    <lastmod>2022-11-23T14:21:51+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/</loc>
+    <lastmod>2022-11-23T14:21:51+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/</loc>
+    <lastmod>2022-11-23T14:21:51+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/unexpected-usefulness-of-hugo-offline-editing/</loc>
+    <lastmod>2022-11-23T14:21:51+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://snowyurik.vihv.org/tags/java/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
   </url>
@@ -18,27 +43,12 @@
   </url>
   
   <url>
-    <loc>https://snowyurik.vihv.org/post/</loc>
-    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/</loc>
-    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://snowyurik.vihv.org/tags/spring/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
   </url>
   
   <url>
     <loc>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</loc>
-    <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/tags/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
   </url>
   
@@ -78,12 +88,37 @@
   </url>
   
   <url>
+    <loc>https://snowyurik.vihv.org/tags/buy-me-a-coffee/</loc>
+    <lastmod>2022-11-09T02:38:59+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/hogo/</loc>
+    <lastmod>2022-11-09T02:38:59+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://snowyurik.vihv.org/post/hugo-feedback-problem/</loc>
     <lastmod>2022-11-09T02:38:59+07:00</lastmod>
   </url>
   
   <url>
+    <loc>https://snowyurik.vihv.org/tags/.bashrc/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/bash/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://snowyurik.vihv.org/post/just-a-few-useful-bashrc/</loc>
+    <lastmod>2022-11-09T01:47:19+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/linux/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
   </url>
   

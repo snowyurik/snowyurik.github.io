@@ -6,7 +6,24 @@
     <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Nov 2022 10:20:49 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Nov 2022 14:21:51 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unexpected usefulness of offline blogging with Hugo</title>
+      <link>https://snowyurik.vihv.org/post/unexpected-usefulness-of-hugo-offline-editing/</link>
+      <pubDate>Wed, 23 Nov 2022 14:21:51 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/unexpected-usefulness-of-hugo-offline-editing/</guid>
+      <description>&lt;p&gt;Life in changing. Internet evolve and become available everywhere.. suddenly, we are more and more offline.&lt;/p&gt;
+&lt;p&gt;When you have cable connection and expect to be online only in the office or at home - you are always online, always with good (or at least the same) speed. Then, mobile internet shine and at first it had affected only content reading, but not content creation.&lt;/p&gt;
+&lt;p&gt;But now, lifestyle itself changed and people become more mobile. More and more professions become remote. That lead to more travel. And more travel lead to more time offline. Quite often: unexpectedly offline. But you still have to do your remote work in time.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Right now I&amp;rsquo;m writing this post from airport. I don&amp;rsquo;t have local sim yet, and airport wifi disconnects every hour.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With Hugo I stll can work with my website. Local server let me check everything, I can fix elder posts, can work around SEO, can write new.&lt;/p&gt;
+&lt;p&gt;What can I do with oldschool CMS which require me to be online and with stable connection? Only teke some notes to copy-paste them into CMS and edit their look later. And even copy-paste can be harmful for website layout, as for lot&amp;rsquo;s of CMS themes do not provide html validation and rely on WYSIWYG editors.&lt;/p&gt;
+&lt;p&gt;My flight was rescheduled twice and so back in Wordpress days I will lose 27 hours of working time. That&amp;rsquo;s a lot!&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Spring Boot Multimodule App to Kubernetes</title>
       <link>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</link>

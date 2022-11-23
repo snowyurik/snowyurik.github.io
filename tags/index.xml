@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Nov 2022 10:20:49 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Nov 2022 14:21:51 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo</title>
+      <link>https://snowyurik.vihv.org/tags/hugo/</link>
+      <pubDate>Wed, 23 Nov 2022 14:21:51 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Java</title>
       <link>https://snowyurik.vihv.org/tags/java/</link>
@@ -85,6 +94,51 @@
       <pubDate>Thu, 17 Nov 2022 15:37:13 +0700</pubDate>
       
       <guid>https://snowyurik.vihv.org/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Buy me a coffee</title>
+      <link>https://snowyurik.vihv.org/tags/buy-me-a-coffee/</link>
+      <pubDate>Wed, 09 Nov 2022 02:38:59 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/buy-me-a-coffee/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hogo</title>
+      <link>https://snowyurik.vihv.org/tags/hogo/</link>
+      <pubDate>Wed, 09 Nov 2022 02:38:59 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/hogo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>.bashrc</title>
+      <link>https://snowyurik.vihv.org/tags/.bashrc/</link>
+      <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/.bashrc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://snowyurik.vihv.org/tags/bash/</link>
+      <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://snowyurik.vihv.org/tags/linux/</link>
+      <pubDate>Wed, 09 Nov 2022 01:47:19 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/linux/</guid>
       <description></description>
     </item>
     

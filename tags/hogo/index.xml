@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hogo on Snowyurik&#39;s Blog</title>
+    <link>https://snowyurik.vihv.org/tags/hogo/</link>
+    <description>Recent content in Hogo on Snowyurik&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Nov 2022 02:38:59 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/hogo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo feedback problem</title>
+      <link>https://snowyurik.vihv.org/post/hugo-feedback-problem/</link>
+      <pubDate>Wed, 09 Nov 2022 02:38:59 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/hugo-feedback-problem/</guid>
+      <description>&lt;p&gt;Ok I have this static blog now, it&amp;rsquo;s kind of useful for myslef, but I have no idea if anyone else read it.
+I can use some 3rd party js based tracker, but adblockers will cancel them and I that&amp;rsquo;s feels right.
+As for this blog is static website and hosted on github pages I can&amp;rsquo;t count visitors myself on server side.&lt;/p&gt;
+&lt;p&gt;So there is no obvious solution. So, let&amp;rsquo;s get a stap back and view bigger picture&lt;/p&gt;
+&lt;h3 id=&#34;what-is-the-purpose-of-counting-visitors&#34;&gt;What is the purpose of counting visitors?&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;I need some feedback for psychological comfort. Actually, this is main reason. Pointless work lead to depression, so it should be avoided.
+1.1. The blog itself is a feedback for finding solution for some complicated situations.&lt;/li&gt;
+&lt;li&gt;I want to know what pasts are good and what posts are bullshit.&lt;/li&gt;
+&lt;li&gt;In crisis times I want to use every opprotunity to earn something, do I have any opprtunities here?&lt;/li&gt;
+&lt;li&gt;In wealthy times I want to help other people to become wealthy, because &lt;code&gt;economy of scale&lt;/code&gt; magical effect on infrastructure which I use. More digital nomads -&amp;gt; cheaper flights, you know.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;how-can-i-achieve-this-goals-without-counting-visitors&#34;&gt;How can I achieve this goals &lt;em&gt;without&lt;/em&gt; counting visitors?&lt;/h3&gt;
+&lt;p&gt;A few raw ideas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Donations might be better metric. Bots do not donate, you know. I do not think I will ever receive much, but donation require some effort, so I will be sure that people really like something. Even if it&amp;rsquo;s 0.0000000000000000001 cents.&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;Hmm, maybe paid comments will be nice? At least I will have resources to moderate them and to answer questions in time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Mention of my blog on other websites. However, if I will post link to my blog somewhere that will ruin the metric.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Hireme&amp;rdquo; is there, but it would be rare case anyway.&lt;/li&gt;
+&lt;li&gt;I can see traffic for my github projects, that can be affected by blog indirectly, but.. too indirectly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Donations looks like the best option for now&amp;hellip;&lt;/p&gt;
+&lt;p&gt;.. sounds of investigation process &amp;hellip;&lt;/p&gt;
+&lt;p&gt;Ok, I&amp;rsquo;ve registred on &amp;ldquo;Buy me a coffee&amp;rdquo;. Here is the link &lt;a href=&#34;https://www.buymeacoffee.com/snowyurik&#34;&gt;https://www.buymeacoffee.com/snowyurik&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;how-to-add-buy-me-a-coffee-to-hugo-website&#34;&gt;How to add &amp;ldquo;buy me a coffee&amp;rdquo; to hugo website?&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s see..&lt;/p&gt;
+&lt;p&gt;Maybe for other themes it will be different, but at least for &lt;code&gt;binario&lt;/code&gt; theme:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;code&gt;themes/binario/layouts/_default/baseof.html&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;&amp;lt;script&amp;gt;..&lt;/code&gt; from Buy me a coffee there, widget will appear on all pages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ok, done with that.&lt;/p&gt;
+&lt;h3 id=&#34;custom-color-for--buy-me-a-coffee-widget&#34;&gt;Custom color for  &amp;ldquo;buy me a coffee&amp;rdquo; widget&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;script &amp;gt;..&lt;/code&gt; has a parameter &lt;code&gt;data-color&lt;/code&gt;, lets change it and see what happen.. that affects only the circle and it&amp;rsquo;s iframe. As for as I remember we can access iframe, but I do not want to dig it righ now. So lets leave it as is.&lt;/p&gt;
+&lt;h3 id=&#34;can-i-make-the-coffee-cost-less&#34;&gt;Can I make &lt;em&gt;the coffee&lt;/em&gt; cost less?&lt;/h3&gt;
+&lt;p&gt;I do not really care about money here, I will better receive more frequent feedback. Let&amp;rsquo;s see if I can change minimal donation..&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s here &lt;a href=&#34;https://www.buymeacoffee.com/page-settings,&#34;&gt;https://www.buymeacoffee.com/page-settings,&lt;/a&gt; so I&amp;rsquo;m switching from 5$ (which is default) to 1$(which is minimal). Checking if it works.. nice 😊&lt;/p&gt;
+&lt;p&gt;Ok, if you want to say something about it - feel free to add comment to 1$ donation using the widget in right bottom corner 😅&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

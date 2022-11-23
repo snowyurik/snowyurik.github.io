@@ -5,14 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>Just a few useful .bashrc changes | Snowyurik&#39;s Blog</title>
+	<title>Linux | Snowyurik&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="yandex-verification" content="11817d5c29245445" />
-	<meta name="description" content="I found it useful to write wrappers for some commands and put them in ~/.bashrc:
-parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
-gitgraph                - display git log in nice form, with branch tree
-gitbranches             - display git branch with descriptions
-capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0&#43;0,0 file.mp4 ">
+	<meta name="description" content="">
 	<link rel="alternate"
       type="application/rss+xml"
       href="https://snowyurik.vihv.org//index.xml"
@@ -20,6 +16,7 @@ capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -fram
 	<link rel="stylesheet" href="/css/bundle.css">
 	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
 	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+	<link rel="alternate" type="application/rss+xml" href="/tags/linux/index.xml" title="Snowyurik's Blog">
 		
 	<link rel="stylesheet" href="/highlight-api-smooth.css">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
@@ -33,7 +30,7 @@ capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -fram
 	gtag('config', 'UA-15855473-1');
 	</script>
 </head>
-<body class="body kind-page">
+<body class="body kind-term">
 	<header class="header">
 	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
 	
@@ -61,37 +58,16 @@ capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -fram
 	
 	<main class="main">
 		
-		<div class="single block">
-			<article class="entry">
-	<div class="entry__meta meta mb">
-	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/linux/" rel="tag">Linux</a>, 
-		<a class="meta-tags__link" href="/tags/bash/" rel="tag">bash</a>, 
-		<a class="meta-tags__link" href="/tags/.bashrc/" rel="tag">.bashrc</a>
-	</span>
-</div>
-	</div>
-				<h1 class="entry__title">Just a few useful .bashrc changes</h1>
-<details class="entry__toc toc" open>
-	<summary class="toc__title">Table of Contents</summary>
-	<nav id="TableOfContents">
-  <ul>
-    <li><a href="#here-are-some">Here are some:</a>
-      <ul>
-        <li><a href="#start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</a></li>
-        <li><a href="#record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</a></li>
-        <li><a href="#git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</a></li>
-        <li><a href="#init-envvars-for-my-current-projects">Init envvars for my current projects</a></li>
-        <li><a href="#show-git-graph-in-text-mode">Show git graph in text mode</a></li>
-        <li><a href="#help-for-my-ustom-commands">Help for my ustom commands</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-</details>
-				<div class="entry__content"><p>I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:</p>
+		<div class="page block">
+			<h1 class="page__title">Linux</h1>
+			
+		</div>
+		<div class="cards">
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/just-a-few-useful-bashrc/">Just a few useful .bashrc changes</a></h1>
+	<div class="entry__content"><p>I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:</p>
 <ul>
 <li>If command is too long to memorise</li>
 <li>If command is not self-explainary</li>
@@ -162,25 +138,21 @@ capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -fram
 <span class="o">}</span>
 </code></pre></div><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
 That&rsquo;s it )</p></div>
-				
-				<footer class="entry__footer">
-					
-<div class="entry__tags">
-			<a class="entry__tag btn" href="/tags/linux/">Linux</a>
-			<a class="entry__tag btn" href="/tags/bash/">bash</a>
-			<a class="entry__tag btn" href="/tags/.bashrc/">.bashrc</a>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/linux/" rel="tag">Linux</a>, 
+		<a class="meta-tags__link" href="/tags/bash/" rel="tag">bash</a>, 
+		<a class="meta-tags__link" href="/tags/.bashrc/" rel="tag">.bashrc</a>
+	</span>
 </div>
-					
-				</footer>
-				
-			</article>
+	</div>
+</article>
+				</div>
+			
 		</div>
 	</main>
-	
-	
-
-
-
 	
 
 	</div>

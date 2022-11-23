@@ -5,13 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#1b1b1b">
-	<title>A bit of everyday hugo commands | Snowyurik&#39;s Blog</title>
+	<title>Unexpected usefulness of offline blogging with Hugo | Snowyurik&#39;s Blog</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="yandex-verification" content="11817d5c29245445" />
-	<meta name="description" content="I&#39;m using Hugo as blog engine. So, here is a bit of cli commands:
-- hugo new post/postname.md
-- hugo server -D // server in dev mode
-- hugo server // server in prod mode ">
+	<meta name="description" content="My flight was rescheduled twice and so back in Wordpress days I will lose 27 hours of working time. That&#39;s a lot! But with Hugo I can work offline.">
 	<link rel="alternate"
       type="application/rss+xml"
       href="https://snowyurik.vihv.org//index.xml"
@@ -63,67 +60,27 @@
 		<div class="single block">
 			<article class="entry">
 	<div class="entry__meta meta mb">
-	<time class="entry__meta-published meta-published" datetime="2022-10-28T01:44:42&#43;07:00">October 28, 2022</time>
+	<time class="entry__meta-published meta-published" datetime="2022-11-23T14:21:51&#43;07:00">November 23, 2022</time>
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
 	</span>
 </div>
 	</div>
-				<h1 class="entry__title">A bit of everyday hugo commands</h1>
+				<h1 class="entry__title">Unexpected usefulness of offline blogging with Hugo</h1>
 <details class="entry__toc toc" open>
 	<summary class="toc__title">Table of Contents</summary>
-	<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#create-new-post">Create new post</a></li>
-        <li><a href="#formatting-in-summary">Formatting in summary</a></li>
-        <li><a href="#publish-post">Publish post</a></li>
-        <li><a href="#run-locally">Run locally</a></li>
-        <li><a href="#deploy">Deploy</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+	<nav id="TableOfContents"></nav>
 </details>
-				<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
-<h3 id="create-new-post">Create new post</h3>
-<pre><code>hugo new post/postname.md
-</code></pre><h3 id="formatting-in-summary">Formatting in summary</h3>
-<p>By default summary is plain text, soo.. just use <code>&lt;!--mоre--&gt;</code> and formatting will work in summary.
-I&rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add <code>&lt;!--mоre--&gt;</code> automatically?</p>
-<p>Lets try..</p>
-<p>Yes, I can change <code>archetypes/default.md</code>.
-And I also want draft to be false by default.. here we go:</p>
-<pre><code>---
-title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
-date: {{ .Date }}
-draft: false
----
-
-&lt;!--mоre--&gt;
-</code></pre><p>Btw: I used Cyrillic &lsquo;o&rsquo; in &lsquo;more&rsquo;, otherwise it breaks layout. Maybe there is better solution, but I do not think I will need to talk about <code>&lt;!--mоre--&gt;</code> again any time soon.</p>
-<h3 id="publish-post">Publish post</h3>
-<ul>
-<li>Go to post header section (top of .md file)</li>
-<li>Remove <code>draft: true</code> or replace it with <code>draft:false</code></li>
-</ul>
-<h3 id="run-locally">Run locally</h3>
-<pre><code>hugo server -D
-</code></pre><p>Will run hugo server in &ldquo;development&rdquo; mode, draft blogs are visible</p>
-<pre><code>hugo server
-</code></pre><p>will run it in &ldquo;release&rdquo; mode</p>
-<h3 id="deploy">Deploy</h3>
-<ul>
-<li>We need 2 repositories:
-&ndash; One is our root repository with themes and all raw data
-&ndash; Subproject liked to <code>%blogname%.github.io</code></li>
-<li>So <code>git add %ssh.link.to.blogname.project.on.github% public</code></li>
-<li><code>hugo</code> command will compile static html content to <code>public</code> folder</li>
-<li><code>cd public &amp;&amp; git add . &amp;&amp; git commit -m 'whatever' &amp;&amp; git push</code></li>
-</ul>
-<p>Also: README.md has a priority over index.html, so, remove it if you had added it during project creation.</p></div>
+				<div class="entry__content"><p>Life in changing. Internet evolve and become available everywhere.. suddenly, we are more and more offline.</p>
+<p>When you have cable connection and expect to be online only in the office or at home - you are always online, always with good (or at least the same) speed. Then, mobile internet shine and at first it had affected only content reading, but not content creation.</p>
+<p>But now, lifestyle itself changed and people become more mobile. More and more professions become remote. That lead to more travel. And more travel lead to more time offline. Quite often: unexpectedly offline. But you still have to do your remote work in time.</p>
+<blockquote>
+<p>Right now I&rsquo;m writing this post from airport. I don&rsquo;t have local sim yet, and airport wifi disconnects every hour.</p>
+</blockquote>
+<p>With Hugo I stll can work with my website. Local server let me check everything, I can fix elder posts, can work around SEO, can write new.</p>
+<p>What can I do with oldschool CMS which require me to be online and with stable connection? Only teke some notes to copy-paste them into CMS and edit their look later. And even copy-paste can be harmful for website layout, as for lot&rsquo;s of CMS themes do not provide html validation and rely on WYSIWYG editors.</p>
+<p>My flight was rescheduled twice and so back in Wordpress days I will lose 27 hours of working time. That&rsquo;s a lot!</p></div>
 				
 				<footer class="entry__footer">
 					
