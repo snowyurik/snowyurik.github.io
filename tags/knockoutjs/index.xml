@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Knockoutjs on Snowyurik&#39;s Blog</title>
+    <link>https://snowyurik.vihv.org/tags/knockoutjs/</link>
+    <description>Recent content in Knockoutjs on Snowyurik&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Dec 2022 03:00:00 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/knockoutjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Knockoutjs Is Nice</title>
+      <link>https://snowyurik.vihv.org/post/knockoutjs-is-nice/</link>
+      <pubDate>Fri, 23 Dec 2022 03:00:00 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/knockoutjs-is-nice/</guid>
+      <description>&lt;p&gt;I used that a while ago, but looks like it still alive 😊&lt;/p&gt;
+&lt;p&gt;Actually, I still think it&amp;rsquo;s the best js UI framework, at least for a browser.&lt;/p&gt;
+&lt;p&gt;Why:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MVVM is great, much better than &amp;ldquo;state&amp;rdquo; variable like in ReactJS or Vue.&lt;/li&gt;
+&lt;li&gt;It has nice publisher-subscriber implementation inside to serve data to controls, like &amp;ldquo;normal&amp;rdquo; ui applications for desktop.&lt;/li&gt;
+&lt;li&gt;Controls are louse coupled, almost independant from each other, yet can communicate&lt;/li&gt;
+&lt;li&gt;It&amp;rsquo;s tiny!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Latest realse is 2019-11-05, though.. 3 years ago, but just before covid lockdowns.&lt;/p&gt;
+&lt;p&gt;Link (mostly note for myself): &lt;a href=&#34;https://knockoutjs.com/&#34;&gt;https://knockoutjs.com/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
