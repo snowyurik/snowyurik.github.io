@@ -61,6 +61,57 @@
 			<div class="cards">
 					<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/instant-jun/">Instant Jun</a></h1>
+	<div class="entry__content"><blockquote>
+<p>It&rsquo;s possible to create artificial junior developer, but does it make any sence?</p>
+</blockquote>
+<h2 id="artificial-solution-for-artificial-problem">Artificial solution for artificial problem</h2>
+<p>Recruiring agencies and recruits stuck in the dillema:</p>
+<ul>
+<li>Agencies tend to record as much recruis as possible, and ask them to compete for the job.</li>
+<li>Recruits tend to apply to as much jobs as possible, and ask them to compete for the employee.</li>
+</ul>
+<p>Yes, that problem can be easily avoided by &ldquo;not doing that&rdquo;, but here we are.</p>
+<p>Recruiting agencies try to create at least some funnel for the flood of applications, preferably, automated.
+And now we have a lot of test systems which make no sence in terms of real IT tasks.</p>
+<blockquote>
+<p>Because, in real life, coding is the tiniest part of software development. Biggest part is interaction with the customer: defining the task details, working with feedback, analysis of limitations etc.</p>
+</blockquote>
+<p>But you are supposed to pass that useless tests anyway, just to reach someone compitent.</p>
+<p>So, we have a task defined as a test case. Even more: we are absolutely sure that test is correct.</p>
+<blockquote>
+<p>If the task can be defined as a test case - it can be solved automatically.</p>
+</blockquote>
+<p>Developing tests and developing code is interchangable. We use <em>both</em> in Test Driven Development, because we might have an error in the test itself. We use code to check tests and tests to check the code. And push both parties forward in small steps.</p>
+<p>But for recruiting tests thats not the case. We don&rsquo;t care about bugs in recruiting tests. We can&rsquo;t fix them anyway.
+However, that means we should be able to solve that tests automatically.</p>
+<h2 id="how">How?</h2>
+<p>So let&rsquo;s check several approaches:</p>
+<h3 id="bruteforce">Bruteforce</h3>
+<p>We can just check all possible combinations of symbols, that will work, but it will take crazy amount of time. My solutions for tests like that are about 500 symbols in size, English alphabet + special symbols will be about 80 letters, so we have 80^500, combinations, thats approximately 3.5*10^931. Build and run tiny test program on my laptop will take about 0.5 second, so that&rsquo;s not acceptable solution.
+If I will create a dictionary of words used in actual programs, that can be reduced to, like 10^200 seconds, but that&rsquo;s too much anyway.</p>
+<h3 id="algorithmic-approach">Algorithmic approach</h3>
+<p>We can reduce choises on each step of generations. For example, if we have <code>{</code> we have to have <code>}</code> later. Also, we can remove some operators like <code>goto</code> or <code>else</code>, as for we do not need them anyway. This way we will have a set of templates, which can be called recursively. That looks more promising, at least if we won&rsquo;t need to take all possible libraries in consideration.</p>
+<h3 id="neural-net">Neural net</h3>
+<p>Enter the elephant in the room: <a href="https://openai.com/blog/chatgpt/">https://openai.com/blog/chatgpt/</a></p>
+<p>We can use GAN + additional automated tests (buid + run + check if results match). In GAN we have descriminator, but it has to output &ldquo;alikeness&rdquo; of generated solution, which is float, actual tests will gave us boolean. So we need to learn AI by set of examples. Luckely, we have a lot of opensource code everywhere.</p>
+<h2 id="should-we">Should we?</h2>
+<p>We definitely can, but should we waste our time on that stupidity? Yes, we can create AI to pass every test that recruiting agency can imagine, and we will bypass all time limitations smoothly and all attempts to check that we are &lsquo;real human beings&rsquo; including screen share and cameras etc etc. Because IT is our world, recruiters are aliens here.</p>
+<p>But maybe we should teach them how to become native. How to rewiew the code. Learn them to look for methods, not instruments. Make the world better together.
+Nope, that wont work )</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2023-01-02T12:56:17&#43;07:00">January 02, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/ai/" rel="tag">AI</a>, 
+		<a class="meta-tags__link" href="/tags/code-generation/" rel="tag">Code generation</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/knockoutjs-is-nice/">Knockoutjs Is Nice</a></h1>
 	<div class="entry__content"><p>I used that a while ago, but looks like it still alive 😊</p>
 <p>Actually, I still think it&rsquo;s the best js UI framework, at least for a browser.</p>
@@ -948,56 +999,6 @@ To run maven commands on subproject, you need to use -pl and -am, like this:</p>
 	</div>
 </article>
 					</div>
-					<div class="card card--1col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/hugocommands/">A bit of everyday hugo commands</a></h1>
-	<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
-<h3 id="create-new-post">Create new post</h3>
-<pre><code>hugo new post/postname.md
-</code></pre><h3 id="formatting-in-summary">Formatting in summary</h3>
-<p>By default summary is plain text, soo.. just use <code>&lt;!--mоre--&gt;</code> and formatting will work in summary.
-I&rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add <code>&lt;!--mоre--&gt;</code> automatically?</p>
-<p>Lets try..</p>
-<p>Yes, I can change <code>archetypes/default.md</code>.
-And I also want draft to be false by default.. here we go:</p>
-<pre><code>---
-title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
-date: {{ .Date }}
-draft: false
----
-
-&lt;!--mоre--&gt;
-</code></pre><p>Btw: I used Cyrillic &lsquo;o&rsquo; in &lsquo;more&rsquo;, otherwise it breaks layout. Maybe there is better solution, but I do not think I will need to talk about <code>&lt;!--mоre--&gt;</code> again any time soon.</p>
-<h3 id="publish-post">Publish post</h3>
-<ul>
-<li>Go to post header section (top of .md file)</li>
-<li>Remove <code>draft: true</code> or replace it with <code>draft:false</code></li>
-</ul>
-<h3 id="run-locally">Run locally</h3>
-<pre><code>hugo server -D
-</code></pre><p>Will run hugo server in &ldquo;development&rdquo; mode, draft blogs are visible</p>
-<pre><code>hugo server
-</code></pre><p>will run it in &ldquo;release&rdquo; mode</p>
-<h3 id="deploy">Deploy</h3>
-<ul>
-<li>We need 2 repositories:
-&ndash; One is our root repository with themes and all raw data
-&ndash; Subproject liked to <code>%blogname%.github.io</code></li>
-<li>So <code>git add %ssh.link.to.blogname.project.on.github% public</code></li>
-<li><code>hugo</code> command will compile static html content to <code>public</code> folder</li>
-<li><code>cd public &amp;&amp; git add . &amp;&amp; git commit -m 'whatever' &amp;&amp; git push</code></li>
-</ul>
-<p>Also: README.md has a priority over index.html, so, remove it if you had added it during project creation.</p></div>
-	<div class="entry__meta meta mt tar">
-	<time class="entry__meta-published meta-published" datetime="2022-10-28T01:44:42&#43;07:00">October 28, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
-	</span>
-</div>
-	</div>
-</article>
-					</div>
 			</div>
 	</main>
 	
@@ -1013,7 +1014,7 @@ draft: false
 			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
 		</a>
 </div>
-	<div class="footer__copyright">© 2022 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+	<div class="footer__copyright">© 2023 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
 </footer>
 <script src="/js/menu.js"></script>
 </body>

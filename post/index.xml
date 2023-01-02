@@ -6,7 +6,52 @@
     <description>Recent content in Posts on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 03:00:00 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Jan 2023 12:56:17 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Instant Jun</title>
+      <link>https://snowyurik.vihv.org/post/instant-jun/</link>
+      <pubDate>Mon, 02 Jan 2023 12:56:17 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/instant-jun/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s possible to create artificial junior developer, but does it make any sence?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;artificial-solution-for-artificial-problem&#34;&gt;Artificial solution for artificial problem&lt;/h2&gt;
+&lt;p&gt;Recruiring agencies and recruits stuck in the dillema:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Agencies tend to record as much recruis as possible, and ask them to compete for the job.&lt;/li&gt;
+&lt;li&gt;Recruits tend to apply to as much jobs as possible, and ask them to compete for the employee.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes, that problem can be easily avoided by &amp;ldquo;not doing that&amp;rdquo;, but here we are.&lt;/p&gt;
+&lt;p&gt;Recruiting agencies try to create at least some funnel for the flood of applications, preferably, automated.
+And now we have a lot of test systems which make no sence in terms of real IT tasks.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Because, in real life, coding is the tiniest part of software development. Biggest part is interaction with the customer: defining the task details, working with feedback, analysis of limitations etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But you are supposed to pass that useless tests anyway, just to reach someone compitent.&lt;/p&gt;
+&lt;p&gt;So, we have a task defined as a test case. Even more: we are absolutely sure that test is correct.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If the task can be defined as a test case - it can be solved automatically.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Developing tests and developing code is interchangable. We use &lt;em&gt;both&lt;/em&gt; in Test Driven Development, because we might have an error in the test itself. We use code to check tests and tests to check the code. And push both parties forward in small steps.&lt;/p&gt;
+&lt;p&gt;But for recruiting tests thats not the case. We don&amp;rsquo;t care about bugs in recruiting tests. We can&amp;rsquo;t fix them anyway.
+However, that means we should be able to solve that tests automatically.&lt;/p&gt;
+&lt;h2 id=&#34;how&#34;&gt;How?&lt;/h2&gt;
+&lt;p&gt;So let&amp;rsquo;s check several approaches:&lt;/p&gt;
+&lt;h3 id=&#34;bruteforce&#34;&gt;Bruteforce&lt;/h3&gt;
+&lt;p&gt;We can just check all possible combinations of symbols, that will work, but it will take crazy amount of time. My solutions for tests like that are about 500 symbols in size, English alphabet + special symbols will be about 80 letters, so we have 80^500, combinations, thats approximately 3.5*10^931. Build and run tiny test program on my laptop will take about 0.5 second, so that&amp;rsquo;s not acceptable solution.
+If I will create a dictionary of words used in actual programs, that can be reduced to, like 10^200 seconds, but that&amp;rsquo;s too much anyway.&lt;/p&gt;
+&lt;h3 id=&#34;algorithmic-approach&#34;&gt;Algorithmic approach&lt;/h3&gt;
+&lt;p&gt;We can reduce choises on each step of generations. For example, if we have &lt;code&gt;{&lt;/code&gt; we have to have &lt;code&gt;}&lt;/code&gt; later. Also, we can remove some operators like &lt;code&gt;goto&lt;/code&gt; or &lt;code&gt;else&lt;/code&gt;, as for we do not need them anyway. This way we will have a set of templates, which can be called recursively. That looks more promising, at least if we won&amp;rsquo;t need to take all possible libraries in consideration.&lt;/p&gt;
+&lt;h3 id=&#34;neural-net&#34;&gt;Neural net&lt;/h3&gt;
+&lt;p&gt;Enter the elephant in the room: &lt;a href=&#34;https://openai.com/blog/chatgpt/&#34;&gt;https://openai.com/blog/chatgpt/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We can use GAN + additional automated tests (buid + run + check if results match). In GAN we have descriminator, but it has to output &amp;ldquo;alikeness&amp;rdquo; of generated solution, which is float, actual tests will gave us boolean. So we need to learn AI by set of examples. Luckely, we have a lot of opensource code everywhere.&lt;/p&gt;
+&lt;h2 id=&#34;should-we&#34;&gt;Should we?&lt;/h2&gt;
+&lt;p&gt;We definitely can, but should we waste our time on that stupidity? Yes, we can create AI to pass every test that recruiting agency can imagine, and we will bypass all time limitations smoothly and all attempts to check that we are &amp;lsquo;real human beings&amp;rsquo; including screen share and cameras etc etc. Because IT is our world, recruiters are aliens here.&lt;/p&gt;
+&lt;p&gt;But maybe we should teach them how to become native. How to rewiew the code. Learn them to look for methods, not instruments. Make the world better together.
+Nope, that wont work )&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Knockoutjs Is Nice</title>
       <link>https://snowyurik.vihv.org/post/knockoutjs-is-nice/</link>
