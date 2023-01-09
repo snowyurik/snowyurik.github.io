@@ -66,6 +66,109 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/php-cli-how-to-draw-table/">Php CLI how to draw table</a></h1>
+	<div class="entry__content"><h2 id="the-goal">The goal</h2>
+<p>Php shine whenever you work with a lot of text data. So php-cli applications are quite demandable.
+But for cli (<strong>c</strong>ommand <strong>l</strong>ine <strong>i</strong>nterface) we do not have all this fancy html tags and css3 styles.
+Cli applications are intendent for advanced users, who often want output as stream, which can be directed to next tool in chain.
+So, in most cases writing results with simple <em>echo</em> works just fine.. unless you need to add a <em>table</em> to the output.</p>
+<h2 id="solution">Solution</h2>
+<p>My first idea was to use ncurses, but.. there is much simpler solution.</p>
+<blockquote>
+<p>All you need is <code>str_repeat()</code></p>
+</blockquote>
+<p>It&rsquo;s also possible to use <code>str_pad()</code> in some cases. But, unfortunately, <code>str_pad()</code> does not support unicode.</p>
+<p>The idea is to calculate max width for every column, and than fill all cells to this width with spaces.
+After that, just concatenate array with <code>implode</code> to display each table row.</p>
+<p>Example of the following <em>drawTable()</em> function output:</p>
+<p><img src="/img/2023-01-10/table.png" alt="php-cli table"></p>
+<p>Source code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="sd">/**
+</span><span class="sd"> @param Array data - array of table rows
+</span><span class="sd"> @return String representing the table
+</span><span class="sd"> @example echo drawTable([
+</span><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
+</span><span class="sd"> ]);
+</span><span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+    <span class="c1">// sanity check
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
+    <span class="c1">// get column names
+</span><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
+    <span class="c1">// calculate maximum width for each column
+</span><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// fill column titles with spaces
+</span><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
+        <span class="c1">// prepare horisontal lines
+</span><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
+    <span class="p">}</span>
+    <span class="c1">// fill every cell to max column width
+</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
+            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
+    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="nx">ob_start</span><span class="p">();</span>
+    <span class="c1">// draw table header
+</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="c1">// draw lines
+</span><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
+    <span class="p">}</span>
+    <span class="c1">// draw bottom line
+</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
+<span class="p">}</span>
+
+</code></pre></div><blockquote>
+<p>Note: This solution draw to string buffer, not stdout. For actual display use <code>echo drawTable(...)</code></p>
+</blockquote>
+<p>Of cause, you can just print it to stdout directly, without <code>ob_start()</code>, <code>ob_get_clean()</code> and use different symbols for table borders.</p>
+<p>Here, take some:</p>
+<pre><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
+    ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
+    ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
+    ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿
+    ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏
+    ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟
+    ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯
+    ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿
+</code></pre></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2023-01-10T03:13:15&#43;07:00">January 10, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/php/" rel="tag">Php</a>, 
+		<a class="meta-tags__link" href="/tags/command-line/" rel="tag">Command line</a>, 
+		<a class="meta-tags__link" href="/tags/preudographics/" rel="tag">Preudographics</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/instant-jun/">Instant Jun</a></h1>
 	<div class="entry__content"><blockquote>
 <p>It&rsquo;s possible to create artificial junior developer, but does it make any sence?</p>
@@ -864,150 +967,6 @@ So <code>.andExpect( content().json( myItemListAsJsonString ) )</code> will give
 		<a class="meta-tags__link" href="/tags/unittest/" rel="tag">UnitTest</a>, 
 		<a class="meta-tags__link" href="/tags/rest/" rel="tag">REST</a>, 
 		<a class="meta-tags__link" href="/tags/webmvctest/" rel="tag">WebMvcTest</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--1col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/mvn.spring.boot.multimodule/">Maven multimodule project with Spring Boot</a></h1>
-	<div class="entry__content"><p>I will try to be close to real task here.
-Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
-Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.</p>
-<h2 id="folder-structure">Folder structure</h2>
-<pre><code>rootProject
- -&gt; datalib
- -&gt; cli
- -&gt; web
-</code></pre><h2 id="project-types">Project types</h2>
-<p><code>rootProject/pom.xml</code> should refer to type <code>pom</code>. Type <code>pom</code> means that rootProject is just a place for references from the other projects. There is no <code>target</code>, no .jar files for the rooProject, it&rsquo;s used by subprojects (aka modules) to find each other, plus if you have same dependensy in different subprojects you can only mention them once in <code>rootProject/pom.xml</code>.</p>
-<p>All subprojects / modules will have type <code>jar</code> in our case. So build will produce .jar files.</p>
-<h2 id="linking-everything-together">Linking everything together</h2>
-<h3 id="package-name">Package name</h3>
-<p>Package name aka namespace has to be the same for rootProject and submodules.</p>
-<h3 id="groupid">GroupID</h3>
-<p><code>project/groupId</code> also has to be the same for rootProject and submodules, like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
-  ...
-<span class="nt">&lt;/project&gt;</span>
-</code></pre></div><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
-<p>file: rootProject/pom.xml</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
-  ...
-  <span class="c">&lt;!-- modules --&gt;</span>
-  <span class="nt">&lt;modules&gt;</span>
-    <span class="nt">&lt;module&gt;</span>web<span class="nt">&lt;/module&gt;</span>
-    <span class="nt">&lt;module&gt;</span>cli<span class="nt">&lt;/module&gt;</span>
-    <span class="nt">&lt;module&gt;</span>datalib<span class="nt">&lt;/module&gt;</span>
-  <span class="nt">&lt;/modules&gt;</span>
-</code></pre></div><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
-<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
-    ...
-    <span class="nt">&lt;parent&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/parent&gt;</span>
-    ...
-<span class="nt">&lt;/project&gt;</span>
-</code></pre></div><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
-<p>Obviously, we can&rsquo;t have 2 parants for the module.
-So we have to move spring reference to rootProject/pom.xml.</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
-    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;name&gt;</span>rootProject<span class="nt">&lt;/name&gt;</span>
-    
-    <span class="nt">&lt;parent&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>2.7.4<span class="nt">&lt;/version&gt;</span>
-        <span class="nt">&lt;relativePath/&gt;</span> <span class="c">&lt;!-- lookup parent from repository --&gt;</span>
-    <span class="nt">&lt;/parent&gt;</span>
-    ...
-<span class="nt">&lt;/project&gt;</span>
-</code></pre></div><p>Hierarhy is like this:</p>
-<ul>
-<li>Spring Boot</li>
-<li>
-<ul>
-<li>rootProject</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>web</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>cli</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>datalib</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="using-one-module-from-another">Using one module from another</h3>
-<p>Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:</p>
-<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
-    ...
-    <span class="nt">&lt;dependencies&gt;</span>
-		<span class="nt">&lt;dependency&gt;</span>
-			<span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
-			<span class="nt">&lt;artifactId&gt;</span>datalib<span class="nt">&lt;/artifactId&gt;</span>
-			<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
-			<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
-			<span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
-		<span class="nt">&lt;/dependency&gt;</span>
-		...
-    <span class="nt">&lt;/dependencies&gt;</span>
-    ...
-<span class="nt">&lt;/project&gt;</span>
-</code></pre></div><h3 id="build-commands">Build commands</h3>
-<p>That&rsquo;s a bit counterintuitive. You need 2 commands:</p>
-<p>From rootProject/</p>
-<pre><code>mvn clean install
-</code></pre><p>will build all projects in correct order and place relusting .jar files in local storage, where java will be able to find them.
-To run maven commands on subproject, you need to use -pl and -am, like this:</p>
-<pre><code>mvn -am -pl web spring-boot:run
-</code></pre><p>or</p>
-<pre><code>mvn -am -pl cli test
-</code></pre><p><code>-am</code> means &ldquo;take dependencies into consideration&rdquo; without that you might get <code>symbol not found</code> error.</p>
-<p><code>-pl</code> just short for &ndash;project and thats just set context to module.</p>
-<h3 id="spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</h3>
-<p>You king of can use spring only for web module, but you will need to create wrapper components for datalib classes. And I don&rsquo;t think it&rsquo;s possible to use Spring based datalib in cli if cli is not Spring based. But I might be wrong.</p></div>
-	<div class="entry__meta meta mt tar">
-	<time class="entry__meta-published meta-published" datetime="2022-10-28T18:30:30&#43;07:00">October 28, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
-		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
-		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
-		<a class="meta-tags__link" href="/tags/springboot/" rel="tag">SpringBoot</a>, 
-		<a class="meta-tags__link" href="/tags/multimodule/" rel="tag">Multimodule</a>
 	</span>
 </div>
 	</div>

@@ -61,6 +61,149 @@
 			<div class="cards">
 					<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/mvn.spring.boot.multimodule/">Maven multimodule project with Spring Boot</a></h1>
+	<div class="entry__content"><p>I will try to be close to real task here.
+Lets say we have RestAPI web application, command line application for manupulating with secure data (installation, initial user creation, etc).
+Both will work with same data, so we need 3rd project which will be linked as dependency from cli and web.</p>
+<h2 id="folder-structure">Folder structure</h2>
+<pre><code>rootProject
+ -&gt; datalib
+ -&gt; cli
+ -&gt; web
+</code></pre><h2 id="project-types">Project types</h2>
+<p><code>rootProject/pom.xml</code> should refer to type <code>pom</code>. Type <code>pom</code> means that rootProject is just a place for references from the other projects. There is no <code>target</code>, no .jar files for the rooProject, it&rsquo;s used by subprojects (aka modules) to find each other, plus if you have same dependensy in different subprojects you can only mention them once in <code>rootProject/pom.xml</code>.</p>
+<p>All subprojects / modules will have type <code>jar</code> in our case. So build will produce .jar files.</p>
+<h2 id="linking-everything-together">Linking everything together</h2>
+<h3 id="package-name">Package name</h3>
+<p>Package name aka namespace has to be the same for rootProject and submodules.</p>
+<h3 id="groupid">GroupID</h3>
+<p><code>project/groupId</code> also has to be the same for rootProject and submodules, like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="rootproject-has-to-link-to-all-modules">RootProject has to link to all modules:</h3>
+<p>file: rootProject/pom.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="err">..</span><span class="nt">&gt;</span>
+  ...
+  <span class="c">&lt;!-- modules --&gt;</span>
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>web<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>cli<span class="nt">&lt;/module&gt;</span>
+    <span class="nt">&lt;module&gt;</span>datalib<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+</code></pre></div><h3 id="modules-has-to-link-rootproject-as-a-parent">Modules has to link rootProject as a parent</h3>
+<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml, rootProject/datalib/pom.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+    ...
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="but-wait-spring-has-to-be-parent-project-too">But wait! Spring has to be parent project too!</h3>
+<p>Obviously, we can&rsquo;t have 2 parants for the module.
+So we have to move spring reference to rootProject/pom.xml.</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>rootProject<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;name&gt;</span>rootProject<span class="nt">&lt;/name&gt;</span>
+    
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.7.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;relativePath/&gt;</span> <span class="c">&lt;!-- lookup parent from repository --&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><p>Hierarhy is like this:</p>
+<ul>
+<li>Spring Boot</li>
+<li>
+<ul>
+<li>rootProject</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>web</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>cli</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>datalib</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="using-one-module-from-another">Using one module from another</h3>
+<p>Right now, our modules know about rootProject but they do not know about each other. Datalib will be used in cli and web, so we need to add dependency:</p>
+<p>files: rootProject/cli/pom.xml, rootProject/web/pom.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+    ...
+    <span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.rootProject<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>datalib<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+			<span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		...
+    <span class="nt">&lt;/dependencies&gt;</span>
+    ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div><h3 id="build-commands">Build commands</h3>
+<p>That&rsquo;s a bit counterintuitive. You need 2 commands:</p>
+<p>From rootProject/</p>
+<pre><code>mvn clean install
+</code></pre><p>will build all projects in correct order and place relusting .jar files in local storage, where java will be able to find them.
+To run maven commands on subproject, you need to use -pl and -am, like this:</p>
+<pre><code>mvn -am -pl web spring-boot:run
+</code></pre><p>or</p>
+<pre><code>mvn -am -pl cli test
+</code></pre><p><code>-am</code> means &ldquo;take dependencies into consideration&rdquo; without that you might get <code>symbol not found</code> error.</p>
+<p><code>-pl</code> just short for &ndash;project and thats just set context to module.</p>
+<h3 id="spring-is-this-loose-coupled-not-that-loose-coupled">Spring is this loose coupled, not that loose coupled</h3>
+<p>You king of can use spring only for web module, but you will need to create wrapper components for datalib classes. And I don&rsquo;t think it&rsquo;s possible to use Spring based datalib in cli if cli is not Spring based. But I might be wrong.</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-10-28T18:30:30&#43;07:00">October 28, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
+		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
+		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
+		<a class="meta-tags__link" href="/tags/springboot/" rel="tag">SpringBoot</a>, 
+		<a class="meta-tags__link" href="/tags/multimodule/" rel="tag">Multimodule</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/hugocommands/">A bit of everyday hugo commands</a></h1>
 	<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
 <h3 id="create-new-post">Create new post</h3>

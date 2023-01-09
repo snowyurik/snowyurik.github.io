@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1b1b1b">
+	<title>Php CLI how to draw table | Snowyurik&#39;s Blog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="yandex-verification" content="11817d5c29245445" />
+	<meta name="description" content="Use str_pad() or str_repeat() if you want to support unicode. Here is example of drawTable function, which will return string buffer, containing the table with unified column width and borders">
+	<link rel="alternate"
+      type="application/rss+xml"
+      href="https://snowyurik.vihv.org//index.xml"
+      title="Snowyurik&#39;s Blog">
+	<link rel="stylesheet" href="/css/bundle.css">
+	<link rel="icon" href="/icons/16.png" sizes="16x16" type="image/png">
+	<link rel="icon" href="/icons/32.png" sizes="32x32" type="image/png">
+		
+	<link rel="stylesheet" href="/highlight-api-smooth.css">
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="snowyurik" data-description="Support me on Buy me a coffee!" data-message="Questions / Comments / Feedback / Donate" data-color="#d89700" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-15855473-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-15855473-1');
+	</script>
+</head>
+<body class="body kind-page">
+	<header class="header">
+	<a class="logo" href="/">Snowyurik&#39;s Blog</a>
+	
+<nav class="main-nav" role="navigation">
+	<button id="toggle" class="main-nav__btn" aria-label="Menu toggle" aria-expanded="false" tabindex="0">
+		<div class="main-nav__btn-box" tabindex="-1">
+			<svg class="main-nav__icon icon-menu" width="18" height="18" viewBox="0 0 18 18">
+				<path class="icon-menu__burger" d="M18 0v3.6H0V0h18zM0 10.8h18V7.2H0v3.6zM0 18h18v-3.6H0V18z"/>
+				<path class="icon-menu__x" d="M11.55 9L18 15.45 15.45 18 9 11.55 2.55 18 0 15.45 6.45 9 0 2.55 2.55 0 9 6.45 15.45 0 18 2.55 11.55 9z"/>
+			</svg>
+		</div>
+	</button>
+	<ul id="menu" class="main-nav__list">
+			<li class="main-nav__item">
+				<a class="main-nav__link" href="/hireme/">
+					
+					<span class="main-nav__text">Contacts (hire me!)</span>
+					
+				</a>
+			</li>
+	</ul>
+</nav>
+</header>
+	<div class="primary">
+	
+	<main class="main">
+		
+		<div class="single block">
+			<article class="entry">
+	<div class="entry__meta meta mb">
+	<time class="entry__meta-published meta-published" datetime="2023-01-10T03:13:15&#43;07:00">January 10, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/php/" rel="tag">Php</a>, 
+		<a class="meta-tags__link" href="/tags/command-line/" rel="tag">Command line</a>, 
+		<a class="meta-tags__link" href="/tags/preudographics/" rel="tag">Preudographics</a>
+	</span>
+</div>
+	</div>
+				<h1 class="entry__title">Php CLI how to draw table</h1>
+<details class="entry__toc toc" open>
+	<summary class="toc__title">Table of Contents</summary>
+	<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-goal">The goal</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+</nav>
+</details>
+				<div class="entry__content"><h2 id="the-goal">The goal</h2>
+<p>Php shine whenever you work with a lot of text data. So php-cli applications are quite demandable.
+But for cli (<strong>c</strong>ommand <strong>l</strong>ine <strong>i</strong>nterface) we do not have all this fancy html tags and css3 styles.
+Cli applications are intendent for advanced users, who often want output as stream, which can be directed to next tool in chain.
+So, in most cases writing results with simple <em>echo</em> works just fine.. unless you need to add a <em>table</em> to the output.</p>
+<h2 id="solution">Solution</h2>
+<p>My first idea was to use ncurses, but.. there is much simpler solution.</p>
+<blockquote>
+<p>All you need is <code>str_repeat()</code></p>
+</blockquote>
+<p>It&rsquo;s also possible to use <code>str_pad()</code> in some cases. But, unfortunately, <code>str_pad()</code> does not support unicode.</p>
+<p>The idea is to calculate max width for every column, and than fill all cells to this width with spaces.
+After that, just concatenate array with <code>implode</code> to display each table row.</p>
+<p>Example of the following <em>drawTable()</em> function output:</p>
+<p><img src="/img/2023-01-10/table.png" alt="php-cli table"></p>
+<p>Source code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="sd">/**
+</span><span class="sd"> @param Array data - array of table rows
+</span><span class="sd"> @return String representing the table
+</span><span class="sd"> @example echo drawTable([
+</span><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
+</span><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
+</span><span class="sd"> ]);
+</span><span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+    <span class="c1">// sanity check
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
+    <span class="c1">// get column names
+</span><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
+    <span class="c1">// calculate maximum width for each column
+</span><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
+            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// fill column titles with spaces
+</span><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
+        <span class="c1">// prepare horisontal lines
+</span><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
+    <span class="p">}</span>
+    <span class="c1">// fill every cell to max column width
+</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
+            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
+    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="nx">ob_start</span><span class="p">();</span>
+    <span class="c1">// draw table header
+</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="c1">// draw lines
+</span><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
+    <span class="p">}</span>
+    <span class="c1">// draw bottom line
+</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
+<span class="p">}</span>
+
+</code></pre></div><blockquote>
+<p>Note: This solution draw to string buffer, not stdout. For actual display use <code>echo drawTable(...)</code></p>
+</blockquote>
+<p>Of cause, you can just print it to stdout directly, without <code>ob_start()</code>, <code>ob_get_clean()</code> and use different symbols for table borders.</p>
+<p>Here, take some:</p>
+<pre><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
+    ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
+    ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
+    ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿
+    ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏
+    ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟
+    ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯
+    ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿
+</code></pre></div>
+				
+				<footer class="entry__footer">
+					
+<div class="entry__tags">
+			<a class="entry__tag btn" href="/tags/php/">Php</a>
+			<a class="entry__tag btn" href="/tags/command-line/">Command line</a>
+			<a class="entry__tag btn" href="/tags/preudographics/">Preudographics</a>
+</div>
+					
+				</footer>
+				
+			</article>
+		</div>
+	</main>
+	
+	
+
+
+
+	
+
+	</div>
+	<footer class="footer">
+<div class="footer__social social">
+		<a class="social__link" target="_blank" rel="noopener noreferrer" href="https://github.com/snowyurik">
+			<svg class="social__icon" aria-label="Github" role="img" width="32" height="32" viewBox="0 0 512 512"><path d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+		</a>
+</div>
+	<div class="footer__copyright">© 2023 Snowyurik&#39;s Blog. <span class="footer__copyright-credits">Powered by <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/vimux/binario" rel="nofollow noopener" target="_blank">Binario</a> theme.</span></div>
+</footer>
+<script src="/js/menu.js"></script>
+</body>
+</html>
