@@ -61,6 +61,92 @@
 			<div class="cards">
 					<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/just-a-few-useful-bashrc/">Just a few useful .bashrc changes</a></h1>
+	<div class="entry__content"><p>I found it useful to write wrappers for some commands and put them in ~/.bashrc. When:</p>
+<ul>
+<li>If command is too long to memorise</li>
+<li>If command is not self-explainary</li>
+</ul>
+<h2 id="here-are-some">Here are some:</h2>
+<h3 id="start-new-process-in-parallel-suppress-stdoutstderr-and-unlink-from-current-console">Start new process in parallel, suppress stdout/stderr and unlink from current console</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">parallel<span class="o">()</span> <span class="o">{</span>
+    nohup <span class="nv">$@</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>  
+<span class="o">}</span>
+</code></pre></div><p>Usage</p>
+<pre><code>parallel command arg1 arg2 arg3 ...
+</code></pre><p>Example</p>
+<pre><code>parallel kate .
+</code></pre><p>This will open current folder in kate editor.</p>
+<h3 id="record-video-from-screen-with-ffmpeg">Record video from screen with ffmpeg</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">capturescreen<span class="o">()</span> <span class="o">{</span>
+    ffmpeg -video_size 1920x1080 -framerate <span class="m">25</span> -f x11grab -i :0.0+0,0 <span class="nv">$1</span>
+<span class="o">}</span>
+</code></pre></div><p>Usage</p>
+<pre><code>capturescreen outfile.mp4
+</code></pre><h3 id="git-branch-but-sorted-by-last-commit-date-and-with-description">git branch, but sorted by last commit date and with description</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gitbranches<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">branch</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+    <span class="nv">branches</span><span class="o">=</span><span class="sb">`</span>git branch <span class="nv">$@</span><span class="sb">`</span>
+    <span class="k">while</span> <span class="nb">read</span> -r branch<span class="p">;</span> <span class="k">do</span>
+        <span class="nv">clean_branch_name</span><span class="o">=</span><span class="si">${</span><span class="nv">branch</span><span class="p">//</span><span class="se">\*\ </span><span class="p">/</span><span class="si">}</span>
+        <span class="nv">description</span><span class="o">=</span><span class="sb">`</span>git config branch.<span class="nv">$clean_branch_name</span>.description<span class="sb">`</span>
+        <span class="nv">lastcommitdate</span><span class="o">=</span><span class="sb">`</span>git <span class="k">for</span>-each-ref --sort<span class="o">=</span>committerdate <span class="s2">&#34;refs/heads/**/</span><span class="si">${</span><span class="nv">clean_branch_name</span><span class="si">}</span><span class="s2">&#34;</span> --format<span class="o">=</span><span class="s1">&#39;%(committerdate:short)&#39;</span><span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$clean_branch_name</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">printf</span> <span class="s2">&#34;\033[0;32m&#34;</span><span class="p">;</span>
+        <span class="k">fi</span><span class="p">;</span>
+        <span class="nb">printf</span> <span class="s2">&#34;%-15s %s\n&#34;</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">    [</span><span class="nv">$lastcommitdate</span><span class="s2">]   </span><span class="nv">$description</span><span class="s2">&#34;</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$clean_branch_name</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;</span><span class="nv">$branch</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">printf</span> <span class="s2">&#34;\033[0m&#34;</span><span class="p">;</span>
+        <span class="k">fi</span><span class="p">;</span>
+    <span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="nv">$branches</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+</code></pre></div><p>Useful if you use branch per task, like in GitFlow. You can pass <code>git branch</code> attributes to this function as usual</p>
+<p>Example</p>
+<pre><code>gitbranches --no-merged
+</code></pre><h3 id="init-envvars-for-my-current-projects">Init envvars for my current projects</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">initmyenv<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> ! <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$PATH</span><span class="s2">&#34;</span> <span class="o">=</span>~ <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">//scripts:&#34;</span> <span class="o">]]</span>
+    <span class="k">then</span>
+        <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">//scripts:</span><span class="nv">$PATH</span><span class="s2">&#34;</span>
+    <span class="k">fi</span>
+    <span class="nb">export</span> PATH
+    <span class="nb">export</span> <span class="nv">PROJECT1_DBCONNECT</span><span class="o">=</span><span class="s2">&#34;Server=localhost;Database=project1;User Id=sa;Password=somepw;&#34;</span>
+    <span class="nb">export</span> <span class="nv">PROJECT2_DBCONNECT</span><span class="o">=</span><span class="s2">&#34;Server=localhost;Database=project2;User Id=sa;Password=somepw;&#34;</span>
+    ...
+<span class="o">}</span>
+</code></pre></div><p>Btw, whis way you do not leak you db password to git. Search 12factor for more )</p>
+<h3 id="show-git-graph-in-text-mode">Show git graph in text mode</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gitgraph<span class="o">()</span> <span class="o">{</span>
+    git log --graph --full-history --all --color --pretty<span class="o">=</span>format:<span class="s2">&#34;%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s&#34;</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="help-for-my-ustom-commands">Help for my ustom commands</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helb<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&#34;.. i need sombody, heeeelb&#34;</span><span class="p">;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;
+</span><span class="s2">        parallel &lt;cmd&gt; &lt;args&gt;   - run command in parallel and forward stderr and stdout to /dev/null
+</span><span class="s2">        gitgraph                - display git log in nice form, with branch tree
+</span><span class="s2">        gitbranches             - display git branch with descriptions
+</span><span class="s2">        capturescreen   &lt;outfile&gt; - wrapper for ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 file.mp4
+</span><span class="s2">    &#34;</span><span class="p">;</span>
+    <span class="c1"># also show my custom scripts</span>
+    ls -1 ~/scripts
+<span class="o">}</span>
+</code></pre></div><p>I put call to  <code>helb</code> at the end of .bashrc, so every time I run new console I can see it.
+That&rsquo;s it )</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2022-11-09T01:47:19&#43;07:00">November 09, 2022</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/linux/" rel="tag">Linux</a>, 
+		<a class="meta-tags__link" href="/tags/bash/" rel="tag">bash</a>, 
+		<a class="meta-tags__link" href="/tags/.bashrc/" rel="tag">.bashrc</a>
+	</span>
+</div>
+	</div>
+</article>
+					</div>
+					<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/webmvctest-custom-add-expect-result-matcher/">ResultMatcher for .addExpect</a></h1>
 	<div class="entry__content"><p>Let&rsquo;s say we save some list of items and then read it back.
 Here is our original list:</p>

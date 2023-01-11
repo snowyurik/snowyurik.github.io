@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jan 2023 16:26:05 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Jan 2023 00:40:48 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agile</title>
+      <link>https://snowyurik.vihv.org/tags/agile/</link>
+      <pubDate>Thu, 12 Jan 2023 00:40:48 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/agile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test Driving Development</title>
+      <link>https://snowyurik.vihv.org/tags/test-driving-development/</link>
+      <pubDate>Thu, 12 Jan 2023 00:40:48 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/tags/test-driving-development/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Pseudographics</title>
       <link>https://snowyurik.vihv.org/tags/pseudographics/</link>
@@ -157,15 +175,6 @@
       <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
       
       <guid>https://snowyurik.vihv.org/tags/pytest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Test Driving Development</title>
-      <link>https://snowyurik.vihv.org/tags/test-driving-development/</link>
-      <pubDate>Thu, 17 Nov 2022 17:54:10 +0700</pubDate>
-      
-      <guid>https://snowyurik.vihv.org/tags/test-driving-development/</guid>
       <description></description>
     </item>
     

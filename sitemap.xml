@@ -3,12 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://snowyurik.vihv.org/post/cli-table-draw-python/</loc>
-    <lastmod>2023-01-11T16:26:05+07:00</lastmod>
+    <loc>https://snowyurik.vihv.org/tags/agile/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
   </url>
   
   <url>
     <loc>https://snowyurik.vihv.org/post/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/tags/test-driving-development/</loc>
+    <lastmod>2023-01-12T00:40:48+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://snowyurik.vihv.org/post/cli-table-draw-python/</loc>
     <lastmod>2023-01-11T16:26:05+07:00</lastmod>
   </url>
   
@@ -19,16 +44,6 @@
   
   <url>
     <loc>https://snowyurik.vihv.org/tags/python/</loc>
-    <lastmod>2023-01-11T16:26:05+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/</loc>
-    <lastmod>2023-01-11T16:26:05+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/tags/</loc>
     <lastmod>2023-01-11T16:26:05+07:00</lastmod>
   </url>
   
@@ -134,11 +149,6 @@
   
   <url>
     <loc>https://snowyurik.vihv.org/tags/pytest/</loc>
-    <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/tags/test-driving-development/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
   </url>
   

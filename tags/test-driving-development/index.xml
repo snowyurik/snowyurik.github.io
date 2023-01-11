@@ -6,7 +6,66 @@
     <description>Recent content in Test Driving Development on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:54:10 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/test-driving-development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Jan 2023 00:40:48 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/test-driving-development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agile: Why do we use Todo Work Ready Done, instead of Red Green Refactor Deploy?</title>
+      <link>https://snowyurik.vihv.org/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/</link>
+      <pubDate>Thu, 12 Jan 2023 00:40:48 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Looks obvious, right? 🤔&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;current-setup&#34;&gt;Current setup&lt;/h2&gt;
+&lt;p&gt;In TDD, we use the following sequence:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Red: try and fail&lt;/li&gt;
+&lt;li&gt;Green: fix and confirm&lt;/li&gt;
+&lt;li&gt;Refactor: polish solution&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&amp;rsquo;s 100% solid time-proven sequence. But in Agile/Scrum/Kanban we completely different approach:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Todo&lt;/li&gt;
+&lt;li&gt;Work&lt;/li&gt;
+&lt;li&gt;Ready&lt;/li&gt;
+&lt;li&gt;Done&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Which is not as good as it looks at first sight. That&amp;rsquo;s why Trello and Jira had an option to set custom workflow and custom task states.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TDD workflow and Agile task workflow does not map to each other in any aspect! 🥲&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So, why are we doing that? To be more &amp;ldquo;manager friendly&amp;rdquo;? Is it &amp;ldquo;positive thinking&amp;rdquo; which stops as from using the word &amp;ldquo;fail&amp;rdquo;?&lt;/p&gt;
+&lt;p&gt;Well, we can replace &amp;ldquo;try and fail&amp;rdquo; with &amp;ldquo;try and confirm that feature is not implemented / reproduce the bug&amp;rdquo;, happy?&lt;/p&gt;
+&lt;h2 id=&#34;suggestion&#34;&gt;Suggestion&lt;/h2&gt;
+&lt;p&gt;Maybe we can use sequence like that, for task management:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pick: from heap to sprint backlog&lt;/li&gt;
+&lt;li&gt;Try/Red: Try it and confirm the issue&lt;/li&gt;
+&lt;li&gt;Fix/Green: Fix and confirm solution&lt;/li&gt;
+&lt;li&gt;Polish/Refactor: polish solution&lt;/li&gt;
+&lt;li&gt;Commit: share changes with the team&lt;/li&gt;
+&lt;li&gt;Package: aggregate changes into release package&lt;/li&gt;
+&lt;li&gt;Test: QA team test the package&lt;/li&gt;
+&lt;li&gt;Deploy: publish package for general public&lt;/li&gt;
+&lt;li&gt;Collect feedback: from support team, investors, etc.&lt;/li&gt;
+&lt;li&gt;Fund: get money for next sprint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This looks much closer to reality, you know.. 😎&lt;/p&gt;
+&lt;p&gt;I suggest using &lt;em&gt;Try/Fix/Polish&lt;/em&gt; insteard of &lt;em&gt;Red/Green/Refactor&lt;/em&gt; to avoid confusion between task management and coding. But that sets maps to each other perfectly! &lt;br&gt;
+Also, that&amp;rsquo;s closer to the idea behind SMART criteria.&lt;/p&gt;
+&lt;p&gt;For in-house projects, it can be simplified to just:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pick&lt;/li&gt;
+&lt;li&gt;Try&lt;/li&gt;
+&lt;li&gt;Fix&lt;/li&gt;
+&lt;li&gt;Polish&lt;/li&gt;
+&lt;li&gt;Deploy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Why not?&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>How to start with unit testing in python</title>
       <link>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</link>
