@@ -66,6 +66,50 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/do-not-trust-trusted-third-party-code-signing/">NEVER trust Trusted Third Party (application signing)</a></h1>
+	<div class="entry__content"><p>You might had seen complains from Windows Defender, like &ldquo;unknown publisher&rdquo;.</p>
+<p>And if is a developer, you do not want this message to be displayed, so you have to buy certificate from so called &ldquo;trusted third party&rdquo;, and voila.</p>
+<p>But.. from end user point of view, does it even make any sence?</p>
+<blockquote>
+<p>This &ldquo;trusted&rdquo; companies check NOTHING important for end user</p>
+</blockquote>
+<p>All they do is googling company name. That&rsquo;s all.</p>
+<p>You can do it yourself, you can do it better.</p>
+<ul>
+<li>Do they check the package for viruses? NO!</li>
+<li>Will anyone be responsible if the app will damage your data? NO!
+Every license agreement have a &ldquo;disclaimer&rdquo; section.</li>
+<li>Will &ldquo;trusted&rdquo; third party be responsibe? Of cause not.</li>
+<li>Does it guarantee that the copy is legal and not pirated or modified? NO!
+In most companies literally everyone has access to this certificates. Why? Because, from the company point of view, the sole purpose of this certificate is to suppress windows defender warning. So, nobody cares. If certificate will leak - company won&rsquo;t lose anything valuable.</li>
+</ul>
+<p>In fact, self-signed applicationas are more secure. At least, no &ldquo;trusted&rdquo; third party has access to the certificate.</p>
+<p>So if (if!) the company want to prevent supply-chain attacks, it can do it.<br>
+Will company benefit from preventing supply-chain attacks? 🤔</p>
+<p>Also, checksums will actually work better. Attacker would have to hack both app and company website.</p>
+<p>So, there is a good idea to check package for viruses.</p>
+<p>For example, here you can check it before download: <a href="https://www.virustotal.com/gui/home/url">https://www.virustotal.com/gui/home/url</a></p>
+<p>Especially, if the app is signed by certificate issued by &ldquo;trusted&rdquo; third party.</p>
+<p>The only argument, &ldquo;trusted&rdquo; third pary companies have for trusting this &ldquo;trusted&rdquo; certificates is: if company can pay, that company is probably big enouth to trust.</p>
+<p>REALLY?</p>
+<blockquote>
+<p>Like we can&rsquo;t remember any big company which add backdoors, spy on users, collect personal data, sell that data to everyone who ask, make unexpected modifications on your disk etc, etc.</p>
+</blockquote>
+<p>What&rsquo;s I&rsquo;m talking about, things like that never happend. That&rsquo;s just imaginary situation, which has nothing common with reality.</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2023-03-07T23:32:39&#43;07:00">March 07, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/deploy/" rel="tag">deploy</a>, 
+		<a class="meta-tags__link" href="/tags/security/" rel="tag">security</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/">Agile: Why do we use Todo Work Ready Done, instead of Red Green Refactor Deploy?</a></h1>
 	<div class="entry__content"><blockquote>
 <p>Looks obvious, right? 🤔</p>
@@ -895,63 +939,6 @@ Just keep it simple, keep it iterative, do small steps, always refactor old code
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/typescript/" rel="tag">Typescript</a>, 
 		<a class="meta-tags__link" href="/tags/reactjs/" rel="tag">ReactJS</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--1col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/hugo-feedback-problem/">Hugo feedback problem</a></h1>
-	<div class="entry__content"><p>Ok I have this static blog now, it&rsquo;s kind of useful for myslef, but I have no idea if anyone else read it.
-I can use some 3rd party js based tracker, but adblockers will cancel them and I that&rsquo;s feels right.
-As for this blog is static website and hosted on github pages I can&rsquo;t count visitors myself on server side.</p>
-<p>So there is no obvious solution. So, let&rsquo;s get a stap back and view bigger picture</p>
-<h3 id="what-is-the-purpose-of-counting-visitors">What is the purpose of counting visitors?</h3>
-<ol>
-<li>I need some feedback for psychological comfort. Actually, this is main reason. Pointless work lead to depression, so it should be avoided.
-1.1. The blog itself is a feedback for finding solution for some complicated situations.</li>
-<li>I want to know what pasts are good and what posts are bullshit.</li>
-<li>In crisis times I want to use every opprotunity to earn something, do I have any opprtunities here?</li>
-<li>In wealthy times I want to help other people to become wealthy, because <code>economy of scale</code> magical effect on infrastructure which I use. More digital nomads -&gt; cheaper flights, you know.</li>
-</ol>
-<h3 id="how-can-i-achieve-this-goals-without-counting-visitors">How can I achieve this goals <em>without</em> counting visitors?</h3>
-<p>A few raw ideas:</p>
-<ul>
-<li>Donations might be better metric. Bots do not donate, you know. I do not think I will ever receive much, but donation require some effort, so I will be sure that people really like something. Even if it&rsquo;s 0.0000000000000000001 cents.</li>
-<li>
-<ul>
-<li>Hmm, maybe paid comments will be nice? At least I will have resources to moderate them and to answer questions in time.</li>
-</ul>
-</li>
-<li>Mention of my blog on other websites. However, if I will post link to my blog somewhere that will ruin the metric.</li>
-<li>&ldquo;Hireme&rdquo; is there, but it would be rare case anyway.</li>
-<li>I can see traffic for my github projects, that can be affected by blog indirectly, but.. too indirectly</li>
-</ul>
-<p>Donations looks like the best option for now&hellip;</p>
-<p>.. sounds of investigation process &hellip;</p>
-<p>Ok, I&rsquo;ve registred on &ldquo;Buy me a coffee&rdquo;. Here is the link <a href="https://www.buymeacoffee.com/snowyurik">https://www.buymeacoffee.com/snowyurik</a></p>
-<h3 id="how-to-add-buy-me-a-coffee-to-hugo-website">How to add &ldquo;buy me a coffee&rdquo; to hugo website?</h3>
-<p>Let&rsquo;s see..</p>
-<p>Maybe for other themes it will be different, but at least for <code>binario</code> theme:</p>
-<ul>
-<li>Go to <code>themes/binario/layouts/_default/baseof.html</code></li>
-<li>Add <code>&lt;script&gt;..</code> from Buy me a coffee there, widget will appear on all pages.</li>
-</ul>
-<p>Ok, done with that.</p>
-<h3 id="custom-color-for--buy-me-a-coffee-widget">Custom color for  &ldquo;buy me a coffee&rdquo; widget</h3>
-<p><code>&lt;script &gt;..</code> has a parameter <code>data-color</code>, lets change it and see what happen.. that affects only the circle and it&rsquo;s iframe. As for as I remember we can access iframe, but I do not want to dig it righ now. So lets leave it as is.</p>
-<h3 id="can-i-make-the-coffee-cost-less">Can I make <em>the coffee</em> cost less?</h3>
-<p>I do not really care about money here, I will better receive more frequent feedback. Let&rsquo;s see if I can change minimal donation..</p>
-<p>It&rsquo;s here <a href="https://www.buymeacoffee.com/page-settings,">https://www.buymeacoffee.com/page-settings,</a> so I&rsquo;m switching from 5$ (which is default) to 1$(which is minimal). Checking if it works.. nice 😊</p>
-<p>Ok, if you want to say something about it - feel free to add comment to 1$ donation using the widget in right bottom corner 😅</p></div>
-	<div class="entry__meta meta mt tar">
-	<time class="entry__meta-published meta-published" datetime="2022-11-09T02:38:59&#43;07:00">November 09, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/hogo/" rel="tag">Hogo</a>, 
-		<a class="meta-tags__link" href="/tags/buy-me-a-coffee/" rel="tag">Buy me a coffee</a>
 	</span>
 </div>
 	</div>

@@ -6,7 +6,44 @@
     <description>Recent content on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Jan 2023 00:40:48 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Mar 2023 23:32:39 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NEVER trust Trusted Third Party (application signing)</title>
+      <link>https://snowyurik.vihv.org/post/do-not-trust-trusted-third-party-code-signing/</link>
+      <pubDate>Tue, 07 Mar 2023 23:32:39 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/do-not-trust-trusted-third-party-code-signing/</guid>
+      <description>&lt;p&gt;You might had seen complains from Windows Defender, like &amp;ldquo;unknown publisher&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;And if is a developer, you do not want this message to be displayed, so you have to buy certificate from so called &amp;ldquo;trusted third party&amp;rdquo;, and voila.&lt;/p&gt;
+&lt;p&gt;But.. from end user point of view, does it even make any sence?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This &amp;ldquo;trusted&amp;rdquo; companies check NOTHING important for end user&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;All they do is googling company name. That&amp;rsquo;s all.&lt;/p&gt;
+&lt;p&gt;You can do it yourself, you can do it better.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do they check the package for viruses? NO!&lt;/li&gt;
+&lt;li&gt;Will anyone be responsible if the app will damage your data? NO!
+Every license agreement have a &amp;ldquo;disclaimer&amp;rdquo; section.&lt;/li&gt;
+&lt;li&gt;Will &amp;ldquo;trusted&amp;rdquo; third party be responsibe? Of cause not.&lt;/li&gt;
+&lt;li&gt;Does it guarantee that the copy is legal and not pirated or modified? NO!
+In most companies literally everyone has access to this certificates. Why? Because, from the company point of view, the sole purpose of this certificate is to suppress windows defender warning. So, nobody cares. If certificate will leak - company won&amp;rsquo;t lose anything valuable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In fact, self-signed applicationas are more secure. At least, no &amp;ldquo;trusted&amp;rdquo; third party has access to the certificate.&lt;/p&gt;
+&lt;p&gt;So if (if!) the company want to prevent supply-chain attacks, it can do it.&lt;br&gt;
+Will company benefit from preventing supply-chain attacks? 🤔&lt;/p&gt;
+&lt;p&gt;Also, checksums will actually work better. Attacker would have to hack both app and company website.&lt;/p&gt;
+&lt;p&gt;So, there is a good idea to check package for viruses.&lt;/p&gt;
+&lt;p&gt;For example, here you can check it before download: &lt;a href=&#34;https://www.virustotal.com/gui/home/url&#34;&gt;https://www.virustotal.com/gui/home/url&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Especially, if the app is signed by certificate issued by &amp;ldquo;trusted&amp;rdquo; third party.&lt;/p&gt;
+&lt;p&gt;The only argument, &amp;ldquo;trusted&amp;rdquo; third pary companies have for trusting this &amp;ldquo;trusted&amp;rdquo; certificates is: if company can pay, that company is probably big enouth to trust.&lt;/p&gt;
+&lt;p&gt;REALLY?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Like we can&amp;rsquo;t remember any big company which add backdoors, spy on users, collect personal data, sell that data to everyone who ask, make unexpected modifications on your disk etc, etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What&amp;rsquo;s I&amp;rsquo;m talking about, things like that never happend. That&amp;rsquo;s just imaginary situation, which has nothing common with reality.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Agile: Why do we use Todo Work Ready Done, instead of Red Green Refactor Deploy?</title>
       <link>https://snowyurik.vihv.org/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/</link>
