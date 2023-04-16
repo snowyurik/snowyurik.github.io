@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>framework on Snowyurik&#39;s Blog</title>
+    <link>https://snowyurik.vihv.org/tags/framework/</link>
+    <description>Recent content in framework on Snowyurik&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Apr 2023 18:50:43 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/tags/framework/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why frameworks don&#39;t last long?</title>
+      <link>https://snowyurik.vihv.org/post/frameworks-dont-last-long/</link>
+      <pubDate>Sun, 16 Apr 2023 18:50:43 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/frameworks-dont-last-long/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;They are costly to maintain&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That&amp;rsquo;s why we have brand new framework every year.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s kind of weird:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Framework without components is just a pattern.&lt;/li&gt;
+&lt;li&gt;The more components you have, the more successfull will be your framework.&lt;/li&gt;
+&lt;li&gt;To create competitive minimum of components you need to engage 3rd party devs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, for 3rd party component creators situation is different:&lt;br&gt;
+the more frameworks use your component - the more succesful your component is.&lt;/p&gt;
+&lt;p&gt;At the end of the day, we have framework-idependent component + set of wrappers.&lt;/p&gt;
+&lt;p&gt;So, frameworks tend to dissolve and turn back into patterns.
+Unless, they have some unique &amp;ldquo;game changing&amp;rdquo; features which are hard to replicate, complicated and bloated.&lt;/p&gt;
+&lt;p&gt;Here is a fork:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If fremework creators refactor framework architecture - that lead to simplification of core features, they become replicatabe, they are replicated, and framework turn into design pattern.&lt;/li&gt;
+&lt;li&gt;If they do not refactor their code - that lead to complicated legacy code which is impossible to maintain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One way or another - all frameworks are doomed 🙄&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
