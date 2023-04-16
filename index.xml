@@ -6,7 +6,29 @@
     <description>Recent content on Snowyurik&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Apr 2023 18:50:43 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 20:06:19 +0700</lastBuildDate><atom:link href="https://snowyurik.vihv.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oversimplified prediction 2023</title>
+      <link>https://snowyurik.vihv.org/post/oversimplified-prediction-2023/</link>
+      <pubDate>Sun, 16 Apr 2023 20:06:19 +0700</pubDate>
+      
+      <guid>https://snowyurik.vihv.org/post/oversimplified-prediction-2023/</guid>
+      <description>&lt;p&gt;I need to make some .. assumptions about future of IT, it&amp;rsquo;s not accurate at all, based on personal intuition, but here it is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ChatGPT will replace Alice&lt;/li&gt;
+&lt;li&gt;Kizune AI will reincarnate as Kizune GPT&lt;/li&gt;
+&lt;li&gt;ReactJS will dissapear, leaving JSX templates as the only trace of existance&lt;/li&gt;
+&lt;li&gt;Vue.js and Angular will also dissapear&lt;/li&gt;
+&lt;li&gt;Javascript will dominate desktop application market
+(just because having trial version in a browser is a huge marketing advantage)&lt;/li&gt;
+&lt;li&gt;Python will replace .NET for server applications&lt;/li&gt;
+&lt;li&gt;Competition between Python and Java Spring will intensify&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;For Him Who Is Not to be Named&amp;rdquo; aka &amp;ldquo;Hydrated Iron Oxide&amp;rdquo; will dissapear, due to reasons &lt;a href=&#34;https://www.youtube.com/watch?v=gutR_LNoZw0&#34;&gt;https://www.youtube.com/watch?v=gutR_LNoZw0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Amount of desktop apps for Linux will grow&lt;/li&gt;
+&lt;li&gt;Monitization priority will grow, probably we will have nice online market for opensource apps&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
     <item>
       <title>Why frameworks don&#39;t last long?</title>
       <link>https://snowyurik.vihv.org/post/frameworks-dont-last-long/</link>
