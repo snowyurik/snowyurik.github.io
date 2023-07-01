@@ -30,7 +30,7 @@ Every license agreement have a &amp;ldquo;disclaimer&amp;rdquo; section.&lt;/li&
 In most companies literally everyone has access to this certificates. Why? Because, from the company point of view, the sole purpose of this certificate is to suppress windows defender warning. So, nobody cares. If certificate will leak - company won&amp;rsquo;t lose anything valuable.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In fact, self-signed applicationas are more secure. At least, no &amp;ldquo;trusted&amp;rdquo; third party has access to the certificate.&lt;/p&gt;
-&lt;p&gt;So if (if!) the company want to prevent supply-chain attacks, it can do it.&lt;br&gt;
+&lt;p&gt;So if (if!) the company want to prevent supply-chain attacks, it can do it. &lt;br&gt;
 Will company benefit from preventing supply-chain attacks? 🤔&lt;/p&gt;
 &lt;p&gt;Also, checksums will actually work better. Attacker would have to hack both app and company website.&lt;/p&gt;
 &lt;p&gt;So, there is a good idea to check package for viruses.&lt;/p&gt;

@@ -66,6 +66,36 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/it-management-paradox/">IT Management Paradox</a></h1>
+	<div class="entry__content"><ul>
+<li>Effective management practices lead to small teams.</li>
+<li>Ineffective management practices lead to huge teams.</li>
+<li>Most people are involved in ineffective practices.</li>
+<li>Demand for ineffective management practices is higher, than denamd for effective practices.</li>
+<li>Education system follow the demand of the majority.</li>
+<li>Education system teach ineffective management practices, because the demand is higher.</li>
+<li>Effective management practices extinct.</li>
+</ul>
+<p>That explains all that billionairs with unfinished education: it&rsquo;s better to know nothing, then to know wrong.</p>
+<h2 id="example">Example:</h2>
+<p>&ldquo;Tick-the-code&rdquo; and similar practices are widely replaced by &ldquo;intuition-based-review-of-single-commit&rdquo; practices. Intuition based review is perfectly useless. Whatever you call it &ldquo;expert review&rdquo; or &ldquo;experience based review&rdquo; or whatever. Single commit review is also perfectly useless. All commits can be ideal, but together they can and will create nonsence. Bare minimum for review is 1 class.</p>
+<h2 id="old-school-agile-rule-of-thumb">Old-school Agile rule of thumb</h2>
+<p>If it needs special tools - it&rsquo;s bullshit.</p>
+<p>IMHO, it the tool is just a replacement for pen and paper, but you still can do it with pen and peper -it&rsquo;s ok. It&rsquo;s not handy to use pen and paper in the age of remote work.
+But anything more complex is only makes things worse.</p></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2023-07-01T22:19:56&#43;07:00">July 01, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/management/" rel="tag">Management</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/oversimplified-prediction-2023/">Oversimplified prediction 2023</a></h1>
 	<div class="entry__content"><p>I need to make some .. assumptions about future of IT, it&rsquo;s not accurate at all, based on personal intuition, but here it is:</p>
 <ul>
@@ -105,7 +135,7 @@
 <li>The more components you have, the more successfull will be your framework.</li>
 <li>To create competitive minimum of components you need to engage 3rd party devs.</li>
 </ul>
-<p>However, for 3rd party component creators situation is different:<br>
+<p>However, for 3rd party component creators situation is different: <br>
 the more frameworks use your component - the more succesful your component is.</p>
 <p>At the end of the day, we have framework-idependent component + set of wrappers.</p>
 <p>So, frameworks tend to dissolve and turn back into patterns.
@@ -148,7 +178,7 @@ Every license agreement have a &ldquo;disclaimer&rdquo; section.</li>
 In most companies literally everyone has access to this certificates. Why? Because, from the company point of view, the sole purpose of this certificate is to suppress windows defender warning. So, nobody cares. If certificate will leak - company won&rsquo;t lose anything valuable.</li>
 </ul>
 <p>In fact, self-signed applicationas are more secure. At least, no &ldquo;trusted&rdquo; third party has access to the certificate.</p>
-<p>So if (if!) the company want to prevent supply-chain attacks, it can do it.<br>
+<p>So if (if!) the company want to prevent supply-chain attacks, it can do it. <br>
 Will company benefit from preventing supply-chain attacks? 🤔</p>
 <p>Also, checksums will actually work better. Attacker would have to hack both app and company website.</p>
 <p>So, there is a good idea to check package for viruses.</p>
@@ -213,7 +243,7 @@ Will company benefit from preventing supply-chain attacks? 🤔</p>
 <li>Fund: get money for next sprint</li>
 </ul>
 <p>This looks much closer to reality, you know.. 😎</p>
-<p>I suggest using <em>Try/Fix/Polish</em> insteard of <em>Red/Green/Refactor</em> to avoid confusion between task management and coding. But that sets maps to each other perfectly! <br>
+<p>I suggest using <em>Try/Fix/Polish</em> insteard of <em>Red/Green/Refactor</em> to avoid confusion between task management and coding. But that sets maps to each other perfectly!  <br>
 Also, that&rsquo;s closer to the idea behind SMART criteria.</p>
 <p>For in-house projects, it can be simplified to just:</p>
 <ul>
@@ -248,46 +278,44 @@ Also, that&rsquo;s closer to the idea behind SMART criteria.</p>
 <p>Implemetation changed from <a href="https://snowyurik.vihv.org/post/php-cli-how-to-draw-table/" title="Php CLI how to draw table">Php CLI how to draw table</a> , but not really much:</p>
 <ul>
 <li>Multibyte string length:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">mb_strlen</span><span class="p">(</span> <span class="nx">cellContent</span> <span class="p">)</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span> <span class="n">cellContent</span> <span class="p">))</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">mb_strlen</span><span class="p">(</span> <span class="nx">cellContent</span> <span class="p">)</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span> <span class="n">cellContent</span> <span class="p">))</span>
+</span></span></code></pre></div></li>
 <li>Column names:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">))</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">key</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">)</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">))</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">key</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">)</span>
+</span></span></code></pre></div></li>
 <li>Horizontal lines:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">])</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s2">&#34;─&#34;</span><span class="p">)</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">])</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="s2">&#34;─&#34;</span><span class="p">)</span>
+</span></span></code></pre></div></li>
 <li>Data cell:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">))</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">)</span>
-</code></pre></div><p>(some cells contain numbers, thats why <code>str(..)</code>)</p>
-</li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">))</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span> <span class="n">maxLenghts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">)</span>
+</span></span></code></pre></div>(some cells contain numbers, thats why <code>str(..)</code>)</li>
 <li>Drawing table header:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;╭─&#34;</span><span class="o">+</span><span class="s2">&#34;─┬─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─╮&#34;</span><span class="p">);</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;│ &#34;</span><span class="o">+</span><span class="s2">&#34; │ &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">columnNames</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>    <span class="p">)</span><span class="o">+</span><span class="s2">&#34; │&#34;</span><span class="p">);</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;├─&#34;</span><span class="o">+</span><span class="s2">&#34;─┼─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─┤&#34;</span><span class="p">);</span>
-</code></pre></div><p>Pho associative key/value arrays are python dictionaries, and <code>join</code> will concatenate dictionary keys, not values in python. So we need <code>.values()</code> to turn it into array of values only.</p>
-</li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;╭─&#34;</span><span class="o">+</span><span class="s2">&#34;─┬─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─╮&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;│ &#34;</span><span class="o">+</span><span class="s2">&#34; │ &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">columnNames</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>    <span class="p">)</span><span class="o">+</span><span class="s2">&#34; │&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;├─&#34;</span><span class="o">+</span><span class="s2">&#34;─┼─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─┤&#34;</span><span class="p">);</span>
+</span></span></code></pre></div>Pho associative key/value arrays are python dictionaries, and <code>join</code> will concatenate dictionary keys, not values in python. So we need <code>.values()</code> to turn it into array of values only.</li>
 <li>Drawing data row:
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span> 
-</code></pre></div><p>bacome</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;│ &#34;</span><span class="o">+</span><span class="s2">&#34; │ &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34; │&#34;</span><span class="p">)</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span> 
+</span></span></code></pre></div>bacome
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;│ &#34;</span><span class="o">+</span><span class="s2">&#34; │ &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34; │&#34;</span><span class="p">)</span>
+</span></span></code></pre></div></li>
 <li>Drawing table footer
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-</code></pre></div><p>become</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;╰─&#34;</span><span class="o">+</span><span class="s2">&#34;─┴─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─╯&#34;</span><span class="p">)</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span></code></pre></div>become
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;╰─&#34;</span><span class="o">+</span><span class="s2">&#34;─┴─&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">horizontalLines</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">+</span><span class="s2">&#34;─╯&#34;</span><span class="p">)</span>
+</span></span></code></pre></div></li>
 </ul>
 <p>That&rsquo;s it 😊</p>
 <p>Should I make nice function, like in previous post? 🤔 I doubt that it&rsquo;s really nesessary, but if you want it - drop me a message with &ldquo;buy me a coffee&rdquo; widget in bottom-right corner 🤑</p></div>
@@ -322,69 +350,68 @@ After that, just concatenate array with <code>implode</code> to display each tab
 <p>Example of the following <em>drawTable()</em> function output:</p>
 <p><img src="/img/2023-01-10/table.png" alt="php-cli table"></p>
 <p>Source code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="sd">/**
-</span><span class="sd"> @param Array data - array of table rows
-</span><span class="sd"> @return String representing the table
-</span><span class="sd"> @example echo drawTable([
-</span><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
-</span><span class="sd"> ]);
-</span><span class="sd"> */</span>
-<span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
-    <span class="c1">// sanity check
-</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
-    <span class="c1">// get column names
-</span><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
-    <span class="c1">// calculate maximum width for each column
-</span><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
-        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
-            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// fill column titles with spaces
-</span><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
-        <span class="c1">// prepare horisontal lines
-</span><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
-    <span class="p">}</span>
-    <span class="c1">// fill every cell to max column width
-</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
-            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
-        <span class="p">});</span>
-        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
-    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
-    <span class="nx">ob_start</span><span class="p">();</span>
-    <span class="c1">// draw table header
-</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="c1">// draw lines
-</span><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
-    <span class="p">}</span>
-    <span class="c1">// draw bottom line
-</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
-<span class="p">}</span>
-
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @param Array data - array of table rows
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @return String representing the table
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @example echo drawTable([
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd"> ]);
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// sanity check
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// get column names
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// calculate maximum width for each column
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// fill column titles with spaces
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// prepare horisontal lines
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// fill every cell to max column width
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ob_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw table header
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw lines
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw bottom line
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
 <p>Note: This solution draw to string buffer, not stdout. For actual display use <code>echo drawTable(...)</code></p>
 </blockquote>
 <p>Of cause, you can just print it to stdout directly, without <code>ob_start()</code>, <code>ob_get_clean()</code> and use different symbols for table borders.</p>
 <p>Here, take some:</p>
-<pre><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
+<pre tabindex="0"><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
     ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
     ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
     ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿
@@ -502,146 +529,6 @@ Nope, that wont work )</p></div>
 <div class="entry__meta-tags meta-tags">
 	<span class="meta-tags__list">Tags:
 		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--1col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/spring-boot-app-to-kubernetes/">Spring Boot Multimodule App to Kubernetes</a></h1>
-	<div class="entry__content"><blockquote>
-<p><a href="/post/mvn.spring.boot.multimodule/">Previously on the series</a>
-(I will use same setup)</p>
-</blockquote>
-<h2 id="create-docker-image">Create docker image</h2>
-<pre><code>mvn -am -pl web spring-boot:build-image
-</code></pre><p>Where <code>web</code> is subproject name. According to 12factor we have to use enviromnemt variables for connections, and we will propbably have at least jdbc connection to database,
-so it becomes:</p>
-<pre><code>DATASOURCE_URL=&quot;jdbc:mysql://localhost:3306/dbname&quot; \
-DATASOURCE_USERNAME=&quot;username&quot; \
-DATASOURCE_PASSWORD=&quot;password&quot; \
-mvn -am -pl web spring-boot:build-image
-</code></pre><p>(If it&rsquo;s not multimodule, just skip <code>-am -pl web</code>)</p>
-<p>When build is finished, we should get in the output:</p>
-<pre><code>Successfully built image 'docker.io/library/projectName:1.0-SNAPSHOT'
-</code></pre><p>Whis image name can be used to run docker container</p>
-<h2 id="run-in-docker">Run in docker</h2>
-<pre><code>docker run --network=&quot;host&quot; \
-    -e DATASOURCE_URL=&quot;jdbc:mysql://localhost:3306/dbname&quot; \
-    -e DATASOURCE_USERNAME=&quot;username&quot; \
-    -e DATASOURCE_PASSWORD=&quot;password&quot; \
-    -p 8080:8080 \
-    projectName:1.0-SNAPSHOT
-</code></pre><p>Now we have the image, but kubernetes can&rsquo;t access it yet. Image has to be pushed to some <code>registry</code> or loaded into minikube directly like this:</p>
-<h2 id="load-image-to-minikube">Load image to minikube</h2>
-<pre><code>minikube image load projectName:1.0-SNAPSHOT
-</code></pre><h2 id="generate-yaml-for-kubernetes-deployment">Generate .yaml for kubernetes deployment</h2>
-<pre><code>kubectl create deployment \
-    --image=projectName:1.0-SNAPSHOT \
-    --dry-run=client \
-    -o=yaml projectName &gt; projectName.yaml
-echo --- &gt;&gt; projectName.yaml
-kubectl create service clusterip projectName \
-    --tcp=8080:8080 \
-    --dry-run=client \
-    -o=yaml &gt;&gt; projectName.yaml
-</code></pre><h2 id="adjust-spectemplatespeccontainers">Adjust spec/template/spec/containers</h2>
-<h3 id="disable-image-pull">Disable image pull</h3>
-<p>As for we use local image we do not need kubernetes to pull it from Docker public registry.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
-</span></code></pre></div><h3 id="connection-to-external-database-on-localhost">Connection to external database on localhost</h3>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">env</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_URL</span><span class="w">
-</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;jdbc:mysql://host.minikube.internal:3306/projectName&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_USERNAME</span><span class="w">
-</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_PASSWORD</span><span class="w">
-</span><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
-</span></code></pre></div><p>Notice <code>host.minikube.internal</code> this is host name for your host machine, localhost will point to the pod itself (to guest vm).</p>
-<h3 id="result-should-look-like-this">Result should look like this</h3>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
-</span><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">projectName:1.0-SNAPSHOT</span><span class="w">
-</span><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
-</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_URL</span><span class="w">
-</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;jdbc:mysql://host.minikube.internal:3306/projectName&#34;</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_USERNAME</span><span class="w">
-</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DATASOURCE_PASSWORD</span><span class="w">
-</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;projectName&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span>}<span class="w">
-</span><span class="w"></span><span class="nt">status</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
-</span><span class="w"></span><span class="nn">---</span><span class="w">
-</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="m">8080-8080</span><span class="w">
-</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
-</span><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">projectName</span><span class="w">
-</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
-</span><span class="w"></span><span class="nt">status</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">loadBalancer</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
-</span></code></pre></div><h2 id="apply-projectnameyaml">Apply projectName.yaml</h2>
-<pre><code>kubectl apply -f projectName.yaml
-</code></pre><p>After that <code>kubectl get pods</code> should return list of pods with state <code>Running</code> next to <code>projectName-XXXXXXX-XXX</code></p>
-<h2 id="view-logs">View logs</h2>
-<pre><code>kubectl logs POD_NAME
-</code></pre><p>Will shouw you console output, like</p>
-<pre><code>  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v2.7.4)
-
-...
-2022-11-20 06:00:24.718  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-20 06:00:24.730  INFO 1 --- [           main] org.Application       : Started Application in 4.718 seconds (JVM running for 4.967)
-</code></pre><p>Or some errors if any.</p>
-<p>Now pod is running, but it lives iside the cluster, so we need to get access from the outside.</p>
-<h2 id="access-service-through-proxy">Access service through proxy</h2>
-<pre><code>kubectl port-forward svc/projectName 8080:8080
-</code></pre><p>Now you should be able to connect to your spring-boot application using http://localhost:8080</p></div>
-	<div class="entry__meta meta mt tar">
-	<time class="entry__meta-published meta-published" datetime="2022-11-20T10:20:49&#43;07:00">November 20, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/kubernetes/" rel="tag">Kubernetes</a>, 
-		<a class="meta-tags__link" href="/tags/java/" rel="tag">Java</a>, 
-		<a class="meta-tags__link" href="/tags/spring/" rel="tag">Spring</a>, 
-		<a class="meta-tags__link" href="/tags/microservice/" rel="tag">Microservice</a>
 	</span>
 </div>
 	</div>

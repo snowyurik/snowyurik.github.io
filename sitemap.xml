@@ -1,304 +1,190 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://snowyurik.vihv.org/post/it-management-paradox/</loc>
+    <lastmod>2023-07-01T22:19:56+07:00</lastmod>
+  </url><url>
+    <loc>https://snowyurik.vihv.org/tags/management/</loc>
+    <lastmod>2023-07-01T22:19:56+07:00</lastmod>
+  </url><url>
+    <loc>https://snowyurik.vihv.org/post/</loc>
+    <lastmod>2023-07-01T22:19:56+07:00</lastmod>
+  </url><url>
+    <loc>https://snowyurik.vihv.org/</loc>
+    <lastmod>2023-07-01T22:19:56+07:00</lastmod>
+  </url><url>
+    <loc>https://snowyurik.vihv.org/tags/</loc>
+    <lastmod>2023-07-01T22:19:56+07:00</lastmod>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/future/</loc>
     <lastmod>2023-04-16T20:06:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/oversimplified-prediction-2023/</loc>
     <lastmod>2023-04-16T20:06:19+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/post/</loc>
-    <lastmod>2023-04-16T20:06:19+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/</loc>
-    <lastmod>2023-04-16T20:06:19+07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://snowyurik.vihv.org/tags/</loc>
-    <lastmod>2023-04-16T20:06:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/architecture/</loc>
     <lastmod>2023-04-16T18:50:43+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/framework/</loc>
     <lastmod>2023-04-16T18:50:43+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/frameworks-dont-last-long/</loc>
     <lastmod>2023-04-16T18:50:43+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/deploy/</loc>
     <lastmod>2023-03-07T23:32:39+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/do-not-trust-trusted-third-party-code-signing/</loc>
     <lastmod>2023-03-07T23:32:39+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/security/</loc>
     <lastmod>2023-03-07T23:32:39+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/agile/</loc>
     <lastmod>2023-01-12T00:40:48+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/agile-why-we-use-todo-work-ready-done-not-red-green-refactor-deploy/</loc>
     <lastmod>2023-01-12T00:40:48+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/test-driving-development/</loc>
     <lastmod>2023-01-12T00:40:48+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/cli-table-draw-python/</loc>
     <lastmod>2023-01-11T16:26:05+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/pseudographics/</loc>
     <lastmod>2023-01-11T16:26:05+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/python/</loc>
     <lastmod>2023-01-11T16:26:05+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/command-line/</loc>
     <lastmod>2023-01-10T03:13:15+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/php/</loc>
     <lastmod>2023-01-10T03:13:15+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/php-cli-how-to-draw-table/</loc>
     <lastmod>2023-01-10T03:13:15+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/preudographics/</loc>
     <lastmod>2023-01-10T03:13:15+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/ai/</loc>
     <lastmod>2023-01-02T12:56:17+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/code-generation/</loc>
     <lastmod>2023-01-02T12:56:17+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/instant-jun/</loc>
     <lastmod>2023-01-02T12:56:17+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/javascript/</loc>
     <lastmod>2022-12-23T03:00:00+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/knockoutjs/</loc>
     <lastmod>2022-12-23T03:00:00+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/knockoutjs-is-nice/</loc>
     <lastmod>2022-12-23T03:00:00+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/note/</loc>
     <lastmod>2022-12-23T03:00:00+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/hugo/</loc>
     <lastmod>2022-11-23T14:21:51+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/unexpected-usefulness-of-hugo-offline-editing/</loc>
     <lastmod>2022-11-23T14:21:51+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/java/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/kubernetes/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/microservice/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/spring/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/spring-boot-app-to-kubernetes/</loc>
     <lastmod>2022-11-20T10:20:49+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/how-to-start-with-unittesting-python/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/pyhton/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/pytest/</loc>
     <lastmod>2022-11-17T17:54:10+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/reactjs/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/typescript/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/typescript-react-usestate-useeffect-vs-component-interface-componentdidupdate/</loc>
     <lastmod>2022-11-17T15:37:13+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/buy-me-a-coffee/</loc>
     <lastmod>2022-11-09T02:38:59+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/hogo/</loc>
     <lastmod>2022-11-09T02:38:59+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/hugo-feedback-problem/</loc>
     <lastmod>2022-11-09T02:38:59+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/.bashrc/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/bash/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/just-a-few-useful-bashrc/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/linux/</loc>
     <lastmod>2022-11-09T01:47:19+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/rest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/webmvctest-custom-add-expect-result-matcher/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/springboottest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/unittest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/webmvctest/</loc>
     <lastmod>2022-11-06T00:49:22+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/hireme/</loc>
     <lastmod>2022-10-28T22:47:20+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/mvn.spring.boot.multimodule/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/multimodule/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/tags/springboot/</loc>
     <lastmod>2022-10-28T18:30:30+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/hugocommands/</loc>
     <lastmod>2022-10-28T01:44:42+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/post/initblog/</loc>
     <lastmod>2022-10-28T01:28:11+07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://snowyurik.vihv.org/categories/</loc>
   </url>
-  
 </urlset>

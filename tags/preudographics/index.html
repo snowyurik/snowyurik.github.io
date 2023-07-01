@@ -83,69 +83,68 @@ After that, just concatenate array with <code>implode</code> to display each tab
 <p>Example of the following <em>drawTable()</em> function output:</p>
 <p><img src="/img/2023-01-10/table.png" alt="php-cli table"></p>
 <p>Source code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="sd">/**
-</span><span class="sd"> @param Array data - array of table rows
-</span><span class="sd"> @return String representing the table
-</span><span class="sd"> @example echo drawTable([
-</span><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
-</span><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
-</span><span class="sd"> ]);
-</span><span class="sd"> */</span>
-<span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
-    <span class="c1">// sanity check
-</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
-    <span class="c1">// get column names
-</span><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
-    <span class="c1">// calculate maximum width for each column
-</span><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
-        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
-            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// fill column titles with spaces
-</span><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
-        <span class="c1">// prepare horisontal lines
-</span><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
-    <span class="p">}</span>
-    <span class="c1">// fill every cell to max column width
-</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
-            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
-        <span class="p">});</span>
-        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
-    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
-    <span class="nx">ob_start</span><span class="p">();</span>
-    <span class="c1">// draw table header
-</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="c1">// draw lines
-</span><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
-    <span class="p">}</span>
-    <span class="c1">// draw bottom line
-</span><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
-<span class="p">}</span>
-
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @param Array data - array of table rows
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @return String representing the table
+</span></span></span><span class="line"><span class="cl"><span class="sd"> @example echo drawTable([
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;1, &#34;name&#34;=&gt;&#34;Test A&#34;, &#34;description&#34;=&gt;&#34;short text&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;2, &#34;name&#34;=&gt;&#34;Test B&#34;, &#34;description&#34;=&gt;&#34;long text, describing something&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;3, &#34;name&#34;=&gt;&#34;Test C&#34;, &#34;description&#34;=&gt;&#34;long text with multibyte string ä ë ï ö ü&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;4, &#34;name&#34;=&gt;&#34;Test ö&#34;, &#34;description&#34;=&gt;&#34;myltybyte in name column&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd">    [ &#34;id&#34;=&gt;5, &#34;name&#34;=&gt;&#34;Test E&#34;, &#34;description&#34;=&gt;&#34;weeeee!!! äëïöü äëïöü äëïöü äëïöü äëïöü äëïöü&#34; ],
+</span></span></span><span class="line"><span class="cl"><span class="sd"> ]);
+</span></span></span><span class="line"><span class="cl"><span class="sd"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">drawTable</span><span class="p">(</span><span class="k">Array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span><span class="nx">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// sanity check
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// get column names
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$keys</span> <span class="o">=</span> <span class="nx">array_keys</span><span class="p">(</span> <span class="nx">reset</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// calculate maximum width for each column
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$columnWidths</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$width</span> <span class="o">=</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span> <span class="nv">$width</span> <span class="o">&gt;</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$columnNames</span> <span class="o">=</span> <span class="nv">$horizontalLines</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// fill column titles with spaces
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$columnNames</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$key</span><span class="o">.</span><span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$key</span><span class="p">));</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// prepare horisontal lines
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$horizontalLines</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span>  <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34;─&#34;</span><span class="p">,</span><span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// fill every cell to max column width
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">array_map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">array_walk</span><span class="p">(</span><span class="nv">$row</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$cell</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$columnWidths</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$cell</span> <span class="o">.=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="nv">$columnWidths</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">-</span> <span class="nx">mb_strlen</span><span class="p">(</span><span class="nv">$cell</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$row</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="nv">$data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ob_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw table header
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╭─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┬─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╮</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$columnNames</span>    <span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;├─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┼─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─┤</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw lines
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">foreach</span><span class="p">(</span> <span class="nv">$data</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;│ &#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34; │ &#34;</span><span class="p">,</span> <span class="nv">$row</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34; │</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// draw bottom line
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">echo</span> <span class="s2">&#34;╰─&#34;</span><span class="o">.</span><span class="nx">implode</span><span class="p">(</span><span class="s2">&#34;─┴─&#34;</span><span class="p">,</span> <span class="nv">$horizontalLines</span><span class="p">)</span><span class="o">.</span><span class="s2">&#34;─╯</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">ob_get_clean</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
 <p>Note: This solution draw to string buffer, not stdout. For actual display use <code>echo drawTable(...)</code></p>
 </blockquote>
 <p>Of cause, you can just print it to stdout directly, without <code>ob_start()</code>, <code>ob_get_clean()</code> and use different symbols for table borders.</p>
 <p>Here, take some:</p>
-<pre><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
+<pre tabindex="0"><code>    ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
     ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
     ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
     ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿

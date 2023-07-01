@@ -32,15 +32,15 @@
       <guid>https://snowyurik.vihv.org/post/hugocommands/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m using Hugo as blog engine. So, here is a bit of cli commands&lt;/p&gt;
 &lt;h3 id=&#34;create-new-post&#34;&gt;Create new post&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;hugo new post/postname.md
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo new post/postname.md
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;formatting-in-summary&#34;&gt;Formatting in summary&lt;/h3&gt;
 &lt;p&gt;By default summary is plain text, soo.. just use &lt;code&gt;&amp;lt;!--mоre--&amp;gt;&lt;/code&gt; and formatting will work in summary.
 I&amp;rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add &lt;code&gt;&amp;lt;!--mоre--&amp;gt;&lt;/code&gt; automatically?&lt;/p&gt;
 &lt;p&gt;Lets try..&lt;/p&gt;
 &lt;p&gt;Yes, I can change &lt;code&gt;archetypes/default.md&lt;/code&gt;.
 And I also want draft to be false by default.. here we go:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: &amp;quot;{{ replace .Name &amp;quot;-&amp;quot; &amp;quot; &amp;quot; | title }}&amp;quot;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;---
+title: &amp;#34;{{ replace .Name &amp;#34;-&amp;#34; &amp;#34; &amp;#34; | title }}&amp;#34;
 date: {{ .Date }}
 draft: false
 ---
@@ -53,9 +53,9 @@ draft: false
 &lt;li&gt;Remove &lt;code&gt;draft: true&lt;/code&gt; or replace it with &lt;code&gt;draft:false&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;run-locally&#34;&gt;Run locally&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;hugo server -D
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo server -D
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Will run hugo server in &amp;ldquo;development&amp;rdquo; mode, draft blogs are visible&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;hugo server
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo server
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;will run it in &amp;ldquo;release&amp;rdquo; mode&lt;/p&gt;
 &lt;h3 id=&#34;deploy&#34;&gt;Deploy&lt;/h3&gt;
 &lt;ul&gt;

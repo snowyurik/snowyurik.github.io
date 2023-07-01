@@ -89,15 +89,15 @@
 </details>
 				<div class="entry__content"><p>I&rsquo;m using Hugo as blog engine. So, here is a bit of cli commands</p>
 <h3 id="create-new-post">Create new post</h3>
-<pre><code>hugo new post/postname.md
+<pre tabindex="0"><code>hugo new post/postname.md
 </code></pre><h3 id="formatting-in-summary">Formatting in summary</h3>
 <p>By default summary is plain text, soo.. just use <code>&lt;!--mоre--&gt;</code> and formatting will work in summary.
 I&rsquo;m going to make most of posts just only summary, maybe I can change hugo code, to add <code>&lt;!--mоre--&gt;</code> automatically?</p>
 <p>Lets try..</p>
 <p>Yes, I can change <code>archetypes/default.md</code>.
 And I also want draft to be false by default.. here we go:</p>
-<pre><code>---
-title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+<pre tabindex="0"><code>---
+title: &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34;
 date: {{ .Date }}
 draft: false
 ---
@@ -110,9 +110,9 @@ draft: false
 <li>Remove <code>draft: true</code> or replace it with <code>draft:false</code></li>
 </ul>
 <h3 id="run-locally">Run locally</h3>
-<pre><code>hugo server -D
+<pre tabindex="0"><code>hugo server -D
 </code></pre><p>Will run hugo server in &ldquo;development&rdquo; mode, draft blogs are visible</p>
-<pre><code>hugo server
+<pre tabindex="0"><code>hugo server
 </code></pre><p>will run it in &ldquo;release&rdquo; mode</p>
 <h3 id="deploy">Deploy</h3>
 <ul>

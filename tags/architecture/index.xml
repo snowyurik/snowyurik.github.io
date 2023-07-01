@@ -23,7 +23,7 @@
 &lt;li&gt;The more components you have, the more successfull will be your framework.&lt;/li&gt;
 &lt;li&gt;To create competitive minimum of components you need to engage 3rd party devs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;However, for 3rd party component creators situation is different:&lt;br&gt;
+&lt;p&gt;However, for 3rd party component creators situation is different: &lt;br&gt;
 the more frameworks use your component - the more succesful your component is.&lt;/p&gt;
 &lt;p&gt;At the end of the day, we have framework-idependent component + set of wrappers.&lt;/p&gt;
 &lt;p&gt;So, frameworks tend to dissolve and turn back into patterns.

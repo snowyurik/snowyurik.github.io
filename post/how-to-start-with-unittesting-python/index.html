@@ -116,21 +116,21 @@
 <p>Let&rsquo;s run tests. What we expect from running tests in empty folder?
 We expect message that there are zero tests and there is nothing to run. If we get this message - that count as success.</p>
 <p>Let&rsquo;s try:</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 </code></pre><p>And the output is:</p>
-<pre><code>pytest: No such file or directory
+<pre tabindex="0"><code>pytest: No such file or directory
 </code></pre><p>We are at <code>RED</code> state here, we tried and failed.</p>
 <h3 id="lets-fix-that-and-get-green-state">Let&rsquo;s fix that and get GREEN state</h3>
 <p>Install pytest:</p>
-<pre><code>$ pip install pytest
+<pre tabindex="0"><code>$ pip install pytest
 </code></pre><p>Output:</p>
-<pre><code>Installing collected packages: pytest
+<pre tabindex="0"><code>Installing collected packages: pytest
 Successfully installed pytest-7.2.0
 </code></pre><h3 id="confirm-green-state">Confirm green state</h3>
 <p>Now, lets run tests again</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 </code></pre><p>And now we get</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 ============================== test session starts ==============================
 platform linux -- Python 3.10.1, pytest-7.2.0, pluggy-1.0.0
 rootdir: /home/snowyurik/tmp/10
@@ -139,18 +139,18 @@ collected 0 items
 
 ============================= no tests ran in 0.00s =============================
 </code></pre><h3 id="polish">Polish</h3>
-<p>Let&rsquo;s look into our code: do we have any <em>Code Smells</em>?<br>
+<p>Let&rsquo;s look into our code: do we have any <em>Code Smells</em>? <br>
 (&ldquo;code smells&rdquo; or &ldquo;antipatterns&rdquo; are rules to detect bad code, most notable are &ldquo;duplicated code&rdquo; and &ldquo;magic&rdquo; aka &ldquo;hardcode&rdquo;)</p>
-<p>No code = no code smells, excellent!<br>
+<p>No code = no code smells, excellent! <br>
 Refactoring is done 😎</p>
 <h3 id="repeat">Repeat</h3>
 <p>To start next <em>iteration</em> we have to change our expectations.<br>
 Let&rsquo;s expect now, that we run at least one test</p>
 <h3 id="try-and-fail">Try and fail</h3>
 <p>Btw, I advice you to really do so and I&rsquo;m actually doing such &ldquo;pointless&rdquo; actions on everyday basis.</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 </code></pre><p>And we get</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 ============================== test session starts ==============================
 platform linux -- Python 3.10.1, pytest-7.2.0, pluggy-1.0.0
 rootdir: /home/snowyurik/tmp/10
@@ -160,12 +160,12 @@ collected 0 items
 </code></pre><p>Same message, but as for as our expectation changed, we can&rsquo;t be satisfied with it anymore.
 From now we will interpret <code> no tests ran in 0.00s</code> as <code>RED</code> state.</p>
 <h3 id="lets-fix-that-and-confirm-the-fix-">Let&rsquo;s fix that and confirm the fix 😊</h3>
-<p>Add simplest possible test.<br>
-Here are some official docs <a href="https://docs.pytest.org/en/7.2.x/getting-started.html">https://docs.pytest.org/en/7.2.x/getting-started.html</a> but who have time to read everything?<br>
+<p>Add simplest possible test. <br>
+Here are some official docs <a href="https://docs.pytest.org/en/7.2.x/getting-started.html">https://docs.pytest.org/en/7.2.x/getting-started.html</a> but who have time to read everything? <br>
 That will be just empty file, test.py (by the way, that&rsquo;s not correct name)</p>
-<pre><code>$ touch test.py
+<pre tabindex="0"><code>$ touch test.py
 </code></pre><p>Does it work?</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 ============================== test session starts ==============================
 ..
 collected 0 items                                                               
@@ -174,18 +174,18 @@ collected 0 items
 </code></pre><p>No</p>
 <p>Why?</p>
 <p>Let&rsquo;s have a quick look at the docs&hellip; maybe our test file was not found automatically, so lets rename it exactly like in example:</p>
-<pre><code>mv test.py test_sample.py
+<pre tabindex="0"><code>mv test.py test_sample.py
 </code></pre><p>Run <code>pytest</code> again, does it work now? No. So we need more, let&rsquo;s copy-paste code from tutorial, this will be our <code>test_sample.py</code> content</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># content of test_sample.py</span>
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
-
-
-<span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
-</code></pre></div><p>What does this code mean? <em><strong>We don&rsquo;t care</strong></em><br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># content of test_sample.py</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+</span></span></code></pre></div><p>What does this code mean? <em><strong>We don&rsquo;t care</strong></em> <br>
 Right now all we want is to get message from <code>pytest</code> that at least one test was executed, no more, no less.</p>
-<pre><code>$ pytest
+<pre tabindex="0"><code>$ pytest
 ============================= test session starts ==============================
 ...
 collected 1 item                                                               
@@ -204,22 +204,22 @@ test_sample.py:7: AssertionError
 =========================== short test summary info ============================
 FAILED test_sample.py::test_answer - assert 4 == 5
 ============================== 1 failed in 0.05s ===============================
-</code></pre><p>Success!<br>
+</code></pre><p>Success! <br>
 Yep, it&rsquo;s colored red, but we see that tests are executed.<br>
 And pytest shows us where exactly test failed.</p>
 <h3 id="lets-polish-that-and-make-our-green-state-actually-green">Let&rsquo;s polish that and make our green state actually green</h3>
 <p>Here is our test</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
-</code></pre></div><p>What&rsquo;s going on here?<br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+</span></span></code></pre></div><p>What&rsquo;s going on here?<br>
 Pytest (by the way, unittest for python act the same) will find functions which started with <code>test_</code> and execute them.</p>
 <p>Ok, what is <code>assert</code>?<br>
-<code>assert</code> equals &ldquo;we excepect that the following statement is true&rdquo;. So <code>assert func(3) == 5</code> mean &ldquo;we expect that <code>func(3)</code> will return 5&rdquo;.<br>
+<code>assert</code> equals &ldquo;we excepect that the following statement is true&rdquo;. So <code>assert func(3) == 5</code> mean &ldquo;we expect that <code>func(3)</code> will return 5&rdquo;. <br>
 But it does not. So lets modify <code>func()</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
-</code></pre></div><p>And run pytest again</p>
-<pre><code>$ pytest
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+</span></span></code></pre></div><p>And run pytest again</p>
+<pre tabindex="0"><code>$ pytest
 ============================== test session starts ==============================
 ...
 collected 1 item                                                                
@@ -229,115 +229,115 @@ test_sample.py .                                                          [100%]
 =============================== 1 passed in 0.01s ==============================
 </code></pre><p>Now our green state is actually green, nice 🙂</p>
 <p>Lets see if we have some code smells here and mark them with <code>/// TODO</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">function</span> <span class="n">name</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">describe</span> <span class="n">function</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">hardcoded</span> <span class="n">value</span> <span class="mi">2</span>
-
-
-<span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">hardcoded</span> <span class="n">values</span> <span class="mi">3</span> <span class="ow">and</span> <span class="mi">5</span>
-</code></pre></div><p>We can&rsquo;t leave it like that. Why do we have this code at first place? We just copied example. It make no sense in our project and it should not.<br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">function</span> <span class="n">name</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">describe</span> <span class="n">function</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">hardcoded</span> <span class="n">value</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span> <span class="o">///</span> <span class="n">TODO</span> <span class="n">hardcoded</span> <span class="n">values</span> <span class="mi">3</span> <span class="ow">and</span> <span class="mi">5</span>
+</span></span></code></pre></div><p>We can&rsquo;t leave it like that. Why do we have this code at first place? We just copied example. It make no sense in our project and it should not.<br>
 What are we testing at first place?<br>
 We are testing ability to run tests. Let&rsquo;s modify the test so it will server only intendent purpose:<br>
 We do not need <code>def func(x)</code> at all, so we remove that and run pytest again:</p>
-<pre><code>E       NameError: name 'func' is not defined
+<pre tabindex="0"><code>E       NameError: name &#39;func&#39; is not defined
 </code></pre><p>Hmm.. let&rsquo;s replace <code>func(3)</code> with it&rsquo;s result:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span>
-</code></pre></div><p>Green state. But we still have hardcoded 5. Lets just use <code>True</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="bp">True</span>
-</code></pre></div><p>And make test name self-explanatory</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_ifWeCanExecuteTests</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="bp">True</span>
-</code></pre></div><p>Run pytest. State is green. What else we have? Oh yes, filename. As you remember, test.py did not work, but was it filename issue or it was lack of test functions inside? We can check:</p>
-<pre><code>$ mv test_sample.py test.py
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span>
+</span></span></code></pre></div><p>Green state. But we still have hardcoded 5. Lets just use <code>True</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>And make test name self-explanatory</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_ifWeCanExecuteTests</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>Run pytest. State is green. What else we have? Oh yes, filename. As you remember, test.py did not work, but was it filename issue or it was lack of test functions inside? We can check:</p>
+<pre tabindex="0"><code>$ mv test_sample.py test.py
 $ pytest
 ...
 ============================= no tests ran in 0.00s =============================
 </code></pre><p>Looks like filename should be like <code>test&lt;undescore&gt;&lt;something&gt;.py</code>. Let&rsquo;s try and make is self-explanatory</p>
-<pre><code>$ mv test.py test_application.py
+<pre tabindex="0"><code>$ mv test.py test_application.py
 $ pytest
 ...                                                                        [100%]
 =============================== 1 passed in 0.00s ===============================
 </code></pre><p>Refactoring done 🙄</p>
 <h3 id="repeat-">Repeat 😅</h3>
 <p>Now we are ready to implement something real. For that we need the task.<br>
-Let it be:<br>
+Let it be: <br>
 &ldquo;Create validator for phone number&rdquo;\</p>
 <h3 id="try-and-fail-1">Try and fail</h3>
 <p>We start from wring another test <em><strong>before</strong></em> any implementation</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
-</code></pre></div><p>And run test</p>
-<pre><code>E       NameError: name 'isValid' is not defined
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>And run test</p>
+<pre tabindex="0"><code>E       NameError: name &#39;isValid&#39; is not defined
 </code></pre><p>We are at <code>RED</code> state.</p>
 <h3 id="fix-and-confirm">Fix and confirm</h3>
 <p>Now our goal is to achieve GREEN state in the simplest possible way.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">isValid</span><span class="p">():</span>
-    <span class="k">return</span> <span class="bp">True</span>
-    
-<span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
-</code></pre></div><p>Now it&rsquo;s green.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isValid</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Now it&rsquo;s green.</p>
 <h3 id="refactor">Refactor</h3>
 <p>Yep, we can do that, but let&rsquo;s assume we are lazy and see if TDD will force use to do that.</p>
 <h3 id="repeat-1">Repeat</h3>
 <p>Let&rsquo;s add another test, we need <code>RED</code> state, remember.</p>
 <h3 id="try-and-fail-2">Try and fail</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+2(222)22-22-222&#34;</span><span class="p">)</span>
-</code></pre></div><p>Pytest and.. still green. We need <code>red</code>. ANY new test make no sence. As for we need <code>red</code> we have to write test which will fail.<br>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+2(222)22-22-222&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Pytest and.. still green. We need <code>red</code>. ANY new test make no sence. As for we need <code>red</code> we have to write test which will fail.<br>
 How about that one</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;this is definitely not valid phone number&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="bp">False</span>
-</code></pre></div><p>Pytest:</p>
-<pre><code>FAILED test_application.py::test_validatePhome - AssertionError: assert True == False
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;this is definitely not valid phone number&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+</span></span></code></pre></div><p>Pytest:</p>
+<pre tabindex="0"><code>FAILED test_application.py::test_validatePhome - AssertionError: assert True == False
 </code></pre><p>Nice, <code>RED</code> state</p>
 <h3 id="fix-and-confirm-1">Fix and confirm</h3>
 <p>Why second &ldquo;phone number&rdquo; is not correct? There are many answers. Let&rsquo;s say it&rsquo;s too long. Looks like valid phone numbers can contain maximum 15 digits.
 So let&rsquo;s check that inside <code>isValid</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
-    <span class="k">if</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">phone</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-</code></pre></div><p>And.. our first asserting failed. Because <code>len(&quot;+1(111)11-11-111&quot;)</code> is actually 16. So we see that we can&rsquo;t just count symbols. We need to count digits.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-</code></pre></div><p>Does it work? First assertion is passed, but &ldquo;this is definitely not valid phone number&rdquo; actually has zero digits. Which is also not correct, so:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="ow">or</span> <span class="n">digits</span> <span class="o">&lt;</span> <span class="mi">6</span> <span class="p">):</span> <span class="o">//</span> <span class="mi">6</span> <span class="ow">is</span> <span class="n">minimal</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-</code></pre></div><p>And now its green 🤗</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">phone</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>And.. our first asserting failed. Because <code>len(&quot;+1(111)11-11-111&quot;)</code> is actually 16. So we see that we can&rsquo;t just count symbols. We need to count digits.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>Does it work? First assertion is passed, but &ldquo;this is definitely not valid phone number&rdquo; actually has zero digits. Which is also not correct, so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="ow">or</span> <span class="n">digits</span> <span class="o">&lt;</span> <span class="mi">6</span> <span class="p">):</span> <span class="o">//</span> <span class="mi">6</span> <span class="ow">is</span> <span class="n">minimal</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>And now its green 🤗</p>
 <h3 id="polish-1">Polish</h3>
 <p>Obviously 15 and 6 are &ldquo;magic numbers&rdquo; aka &ldquo;hardcode&rdquo;. We can turm them into constants with self-explanatory names:
 And also move them to separate file together with isValid function, because it&rsquo;s a mess now. Let&rsquo;s say <code>phoneValidator.py</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">MIN_PHONE_NUMBER_LENGTH</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">MAX_PHONE_NUMBER_LENGTH</span> <span class="o">=</span> <span class="mi">15</span>
-
-<span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="n">MAX_PHONE_NUMBER_LENGTH</span> <span class="ow">or</span> <span class="n">digits</span> <span class="o">&lt;</span> <span class="n">MIN_PHONE_NUMBER_LENGTH</span> <span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-</code></pre></div><p>And for our test to work we need import it, so:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">phoneValidator</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">def</span> <span class="nf">test_ifWeCanExecuteTests</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="bp">True</span>
-    
-<span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;this is definitely not valid phone number&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="bp">False</span>
-</code></pre></div><p>Pytest.. green 🥳</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">MIN_PHONE_NUMBER_LENGTH</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAX_PHONE_NUMBER_LENGTH</span> <span class="o">=</span> <span class="mi">15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="n">phone</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">digits</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">phone</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span> <span class="n">digits</span> <span class="o">&gt;</span> <span class="n">MAX_PHONE_NUMBER_LENGTH</span> <span class="ow">or</span> <span class="n">digits</span> <span class="o">&lt;</span> <span class="n">MIN_PHONE_NUMBER_LENGTH</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span></code></pre></div><p>And for our test to work we need import it, so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">phoneValidator</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_ifWeCanExecuteTests</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_validatePhome</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;+1(111)11-11-111&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">isValid</span><span class="p">(</span><span class="s2">&#34;this is definitely not valid phone number&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+</span></span></code></pre></div><p>Pytest.. green 🥳</p>
 <h3 id="continue-like-that">Continue like that</h3>
-<p>Can you imagine another wrong phone number which will pass the test? Create the test and change implementation.<br>
+<p>Can you imagine another wrong phone number which will pass the test? Create the test and change implementation. <br>
 No? Can you imagine correct phone number which won&rsquo;t pass the test? Crete the test for false-negative result and change implementation.</p>
 <p>With iterative process like that, you will get closer and closer to ideal solution.</p>
 <p>Can you do it faster on-sight? Maybe. If you are good at regular expressions and phone standarts you might not need tests.</p>
