@@ -27,7 +27,7 @@
 &lt;p&gt;&amp;ldquo;Tick-the-code&amp;rdquo; and similar practices are widely replaced by &amp;ldquo;intuition-based-review-of-single-commit&amp;rdquo; practices. Intuition based review is perfectly useless. Whatever you call it &amp;ldquo;expert review&amp;rdquo; or &amp;ldquo;experience based review&amp;rdquo; or whatever. Single commit review is also perfectly useless. All commits can be ideal, but together they can, and will, create nonsence. Bare minimum for review is 1 class.&lt;/p&gt;
 &lt;h2 id=&#34;old-school-agile-rule-of-thumb&#34;&gt;Old-school Agile rule of thumb&lt;/h2&gt;
 &lt;p&gt;If it needs special tools - it&amp;rsquo;s bullshit.&lt;/p&gt;
-&lt;p&gt;IMHO, it the tool is just a replacement for pen and paper, but you still can do it with pen and peper -it&amp;rsquo;s ok. It&amp;rsquo;s not handy to use pen and paper in the age of remote work.
+&lt;p&gt;IMHO, if the tool is just a replacement for pen and paper, but you still can do it with pen and peper - it&amp;rsquo;s ok. It&amp;rsquo;s not handy to use pen and paper in the age of remote work.
 But anything more complex will only make things worse.&lt;/p&gt;</description>
     </item>
     
