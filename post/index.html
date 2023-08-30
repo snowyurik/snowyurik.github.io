@@ -66,6 +66,45 @@
 			
 				<div class="card card--1col">
 					<article class="entry card__box block">
+	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/cpp-size_t-0-is-less-than-minus-one/">Cpp size_t 0 is smaller than minus one</a></h1>
+	<div class="entry__content"><blockquote>
+<p>Be careful with your loops</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">size_t</span> <span class="n">zero</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">minus_one</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EXCPECT_FALSE</span><span class="p">(</span> <span class="n">zero</span> <span class="o">&lt;</span> <span class="n">minus_one</span> <span class="p">);</span> <span class="c1">// should be false, but in fact is true
+</span></span></span></code></pre></div><p>Why that matters? <br>
+I got this bug:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">limit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// default value was designed to skip the loop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span> <span class="p">..</span> <span class="p">)</span> <span class="p">{</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">optionalCalculatedValue</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span> <span class="n">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// infinite loop on default limit value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>Also, there was similar but less obvious situation is same project:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span> <span class="n">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">parameter</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// infinite loop if parameter is 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>You can fix it like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span> <span class="n">size_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">parameter</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// now it&#39;s ok
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></div>
+	<div class="entry__meta meta mt tar">
+	<time class="entry__meta-published meta-published" datetime="2023-08-30T11:23:41&#43;07:00">August 30, 2023</time>
+<div class="entry__meta-tags meta-tags">
+	<span class="meta-tags__list">Tags:
+		<a class="meta-tags__link" href="/tags/cpp/" rel="tag">cpp</a>, 
+		<a class="meta-tags__link" href="/tags/bug/" rel="tag">bug</a>
+	</span>
+</div>
+	</div>
+</article>
+				</div>
+			
+				<div class="card card--1col">
+					<article class="entry card__box block">
 	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/it-management-paradox/">IT Management Paradox</a></h1>
 	<div class="entry__content"><ul>
 <li>Effective management practices lead to small teams.</li>
@@ -507,29 +546,6 @@ Nope, that wont work )</p></div>
 		<a class="meta-tags__link" href="/tags/javascript/" rel="tag">Javascript</a>, 
 		<a class="meta-tags__link" href="/tags/knockoutjs/" rel="tag">Knockoutjs</a>, 
 		<a class="meta-tags__link" href="/tags/note/" rel="tag">Note</a>
-	</span>
-</div>
-	</div>
-</article>
-				</div>
-			
-				<div class="card card--1col">
-					<article class="entry card__box block">
-	<h1 class="entry__title title-excerpt"><a class="entry__title-link" href="/post/unexpected-usefulness-of-hugo-offline-editing/">Unexpected usefulness of offline blogging with Hugo</a></h1>
-	<div class="entry__content"><p>Life in changing. Internet evolve and become available everywhere.. suddenly, we are more and more offline.</p>
-<p>When you have cable connection and expect to be online only in the office or at home - you are always online, always with good (or at least the same) speed. Then, mobile internet shine and at first it had affected only content reading, but not content creation.</p>
-<p>But now, lifestyle itself changed and people become more mobile. More and more professions become remote. That lead to more travel. And more travel lead to more time offline. Quite often: unexpectedly offline. But you still have to do your remote work in time.</p>
-<blockquote>
-<p>Right now I&rsquo;m writing this post from airport. I don&rsquo;t have local sim yet, and airport wifi disconnects every hour.</p>
-</blockquote>
-<p>With Hugo I stll can work with my website. Local server let me check everything, I can fix elder posts, can work around SEO, can write new.</p>
-<p>What can I do with oldschool CMS which require me to be online and with stable connection? Only teke some notes to copy-paste them into CMS and edit their look later. And even copy-paste can be harmful for website layout, as for lot&rsquo;s of CMS themes do not provide html validation and rely on WYSIWYG editors.</p>
-<p>My flight was rescheduled twice and so back in Wordpress days I will lose 27 hours of working time. That&rsquo;s a lot!</p></div>
-	<div class="entry__meta meta mt tar">
-	<time class="entry__meta-published meta-published" datetime="2022-11-23T14:21:51&#43;07:00">November 23, 2022</time>
-<div class="entry__meta-tags meta-tags">
-	<span class="meta-tags__list">Tags:
-		<a class="meta-tags__link" href="/tags/hugo/" rel="tag">Hugo</a>
 	</span>
 </div>
 	</div>
